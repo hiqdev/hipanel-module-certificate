@@ -19,13 +19,13 @@ class SidebarMenu extends \hiqdev\yii2\menus\Menu
                 'url' => ['@certificate/index'],
                 'icon' => 'fa-shield',
                 'items' => [
-                    'my' => [
+                    'certificates' => [
                         'label' => Yii::t('hipanel:certificate', 'My certificates'),
-                        'url' => ['@certificate/my'],
-                    ],
-                    'get-certificate' => [
-                        'label' => Yii::t('hipanel:certificate', 'Get certificate'),
                         'url' => ['@certificate/index'],
+                    ],
+                    'certificate-types' => [
+                        'label' => Yii::t('hipanel:certificate', 'Get certificate'),
+                        'url' => ['@certificate/order/index'],
                     ],
                 ],
             ],

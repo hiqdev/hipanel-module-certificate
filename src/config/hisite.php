@@ -3,6 +3,7 @@
 return [
     'aliases' => [
         '@certificate' => '/certificate/certificate',
+        '@certificate/order' => '/certificate/certificate-order',
     ],
     'modules' => [
         'cart' => [
