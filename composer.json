@@ -59,7 +59,6 @@
         "hiqdev/omnipay-paypal": "*@dev",
         "hiqdev/omnipay-yandexmoney": "*@dev",
         "dercoder/omnipay-webmoney": "*@dev",
-        "2amigos/yii2-arrayquery-component": "*",
         "hiqdev/hipanel-module-client": "<2.0 || dev-master"
     },
     "require-dev": {
