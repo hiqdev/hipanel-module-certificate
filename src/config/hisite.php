@@ -24,6 +24,9 @@ return [
                 ],
             ],
         ],
+        'assetManager' => [
+            'linkAssets' => true,
+        ],
     ],
     'container' => [
         'definitions' => [
