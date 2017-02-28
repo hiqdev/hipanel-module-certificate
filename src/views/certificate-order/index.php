@@ -83,6 +83,7 @@ $this->registerCss(".popover {width: 300px;}");
 ?>
 <div class="row">
     <div class="col-md-3 filters">
+        <?= Html::a(Yii::t('hipanel:certificate', 'CSR Generator'), ['@certificate/order/csr-generator'], ['class' => 'btn btn-success btn-block margin-bottom']) ?>
         <div class="box box-solid">
             <div class="box-header with-border">
                 <h3 class="box-title"><?= Yii::t('hipanel:certificate', 'SSL Products') ?></h3>
