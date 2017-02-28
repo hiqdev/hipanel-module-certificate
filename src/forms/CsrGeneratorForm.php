@@ -14,11 +14,13 @@ class CsrGeneratorForm extends Model
     public $st;
     public $c;
     public $email;
+    public $productId;
 
     public function rules()
     {
         return [
             [['cn', 'o', 'ou', 'l', 'st', 'c', 'email'], 'required'],
+            ['productId', 'integer'],
 //            ['email', 'email'],
         ];
     }
