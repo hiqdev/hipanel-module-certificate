@@ -3,11 +3,13 @@
 use hipanel\assets\IsotopeAsset;
 use hipanel\modules\certificate\Asset;
 use hipanel\modules\certificate\models\CertificateType;
+use hipanel\modules\certificate\widgets\PreOrderQuestion;
 use yii\helpers\Html;
 use yii\web\View;
 
 Asset::register($this);
 IsotopeAsset::register($this);
+print PreOrderQuestion::widget();
 
 $this->title = Yii::t('hipanel:certificate', 'Get certificate');
 $this->params['breadcrumbs'][] = $this->title;
@@ -160,7 +162,7 @@ $this->registerCss(".popover {width: 300px;}");
                                 <a class="btn btn-default btn-flat text-bold disabled cert-price-btn">
                                     46 400 грн. / год
                                 </a>
-                                <a class="btn btn-success btn-flat cert-add-to-cart">
+                                <a class="btn btn-success btn-flat cert-make-order" data-product-id="<?= $model->id ?>">
                                     <i class="fa fa-cart-plus"></i>&nbsp;&nbsp;
                                     <?= Yii::t('hipanel:certificate', 'Order') ?>
                                 </a>
