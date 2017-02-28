@@ -77,9 +77,6 @@ $this->registerJs("
         var comboFilter = combo.join(', ');
         return comboFilter;
     }
-    
-    
-    
 ", View::POS_END);
 $this->registerCss(".popover {width: 300px;}");
 
@@ -120,10 +117,21 @@ $this->registerCss(".popover {width: 300px;}");
         <div id="filter-display" style="display: none"></div>
         <div class="info-box hidden-xs">
             <div class="info-box-content header">
-                <div class="sq"><?= Yii::t('hipanel:certificate', 'Название сертификата') ?></div>
-                <div class="sq text-center">Подходит для</div>
-                <div class="sq text-center">Гарантия&nbsp;&nbsp;<span class="label label-info"><i class="fa fa-info"></i></span></div>
-                <div class="sq text-center">Стоимость сертификата</div>
+                <div class="sq"><?= Yii::t('hipanel:certificate', 'Certificate name') ?></div>
+                <div class="sq text-center"><?= Yii::t('hipanel:certificate', 'Fit to')?></div>
+                <div class="sq text-center"><?= Yii::t('hipanel:certificate', 'Warranty') ?>
+                    &nbsp;
+                    <span class="label label-info"
+                          data-toggle="popover"
+                          title="<?= Yii::t('hipanel:certificate', 'Warranty')?>"
+                          data-content="<?= Yii::t('hipanel:certificate', 'This parameter indicates the amount that the Certification Authority guarantees to pay the end-user site, a secure SSL-certificate, in case of loss of their money. This amount will be paid if the money had been lost as a result of the issuance of a certificate for a non-existent company or a domain that does not belong to the user.')?>"
+                          data-trigger="hover"
+                          data-placement="bottom"
+                    >
+                        <i class="fa fa-info"></i>
+                    </span>
+                </div>
+                <div class="sq text-center"><?= Yii::t('hipanel:certificate', 'Price') ?></div>
             </div>
         </div>
         <div class="certificate-order">
@@ -131,7 +139,11 @@ $this->registerCss(".popover {width: 300px;}");
                 <?php $type = $model->type; ?>
                 <div class="info-box <?= $model->brand ?> <?= $type ?>">
                     <span class="info-box-icon">
-                        <?= Html::img($model->logo) ?>
+                        <?php if ($model->logo) : ?>
+                            <?= Html::img($model->logo) ?>
+                        <?php else: ?>
+                            <i class="fa fa fa-shield fa-fw"></i>
+                        <?php endif; ?>
                     </span>
                     <div class="info-box-content">
                         <div class="sq"><a href="#"><b><?= $model->name ?></b></a></div>
@@ -143,9 +155,15 @@ $this->registerCss(".popover {width: 300px;}");
                         </div>
                         <div class="sq hidden-xs text-center">$1,750,000</div>
                         <div class="sq text-center">
-                            <span class="price">46 400 грн. / год</span>
-                            &nbsp;
-                            <a href="#" class="btn btn-success">Заказать</a>
+                            <div class="btn-group">
+                                <a class="btn btn-default btn-flat text-bold disabled cert-price-btn">
+                                    46 400 грн. / год
+                                </a>
+                                <a class="btn btn-success btn-flat cert-add-to-cart">
+                                    <i class="fa fa-cart-plus"></i>&nbsp;&nbsp;
+                                    <?= Yii::t('hipanel:certificate', 'Order') ?>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

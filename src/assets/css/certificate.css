@@ -63,3 +63,7 @@
 .info-box-content .sq {
     flex: 2 1 33%;
 }
+
+.btn.disabled.cert-price-btn {
+    opacity: 1;
+}
