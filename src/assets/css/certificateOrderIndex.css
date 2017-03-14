@@ -2,13 +2,7 @@
     background: rgba(0, 0, 0, 0.1);
 }
 
-.type-buttons, .btn-group.filter {
-    padding-left: 0;
-    margin-bottom: 0;
-    display: block;
-}
-
-.type-buttons button {
+.filter li {
     border: none;
     text-align: left;
     border-bottom: 1px solid #f4f4f4;
@@ -23,30 +17,21 @@
     outline: none;
 }
 
-.type-buttons button:hover {
-    color: #444;
-    background: #f7f7f7;
-}
-
-.type-buttons button:active,
-.type-buttons button.active,
-.type-buttons button.is-checked {
-    background: transparent;
-    color: #444;
-    border-top: 0;
-    border-left-color: #3c8dbc;
-    outline: none;
-}
-
-.type-buttons button b {
+.filter li b {
 
 }
 
-.type-buttons button span {
+.filter li span {
     color: #777;
     display: block;
     font-size: smaller;
-    padding-top: .5rem;
+    padding-top: 1rem;
+}
+
+.filter li:hover {
+    color: #444;
+    background: #f7f7f7;
+    cursor: pointer;
 }
 
 .info-box-content.header {
