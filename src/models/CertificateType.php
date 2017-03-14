@@ -49,7 +49,7 @@ class CertificateType extends Model
         return [
             'symantec' => [
                 'label' => Yii::t('hipanel:certificate', 'Symantec SSL Certificates'),
-                'img' => 'https://cdn.ukrnames.com/theme/images/ssl-vendors/symantec_vendor.png',
+                'img' => 'symantec_vendor.png',
             ],
             'ukrnames' => [
                 'label' => Yii::t('hipanel:certificate', 'Ukrnames SSL Certificates')
@@ -59,19 +59,19 @@ class CertificateType extends Model
             ],
             'thawte' => [
                 'label' => Yii::t('hipanel:certificate', 'Thawte SSL Certificates'),
-                'img' => 'https://cdn.ukrnames.com/theme/images/ssl-vendors/thawte_vendor.png',
+                'img' => 'thawte_vendor.png',
             ],
             'geotrust' => [
                 'label' => Yii::t('hipanel:certificate', 'GeoTrust SSL Certificates'),
-                'img' => 'https://cdn.ukrnames.com/theme/images/ssl-vendors/geotrust_vendor.png',
+                'img' => 'geotrust_vendor.png',
             ],
             'rapidssl' => [
                 'label' => Yii::t('hipanel:certificate', 'RapidSSL Certificates'),
-                'img' => 'https://cdn.ukrnames.com/theme/images/ssl-vendors/rapidssl_vendor.png',
+                'img' => 'rapidssl_vendor.png',
             ],
             'comodo' => [
                 'label' => Yii::t('hipanel:certificate', 'Comodo SSL Certificates'),
-                'img' => 'https://cdn.ukrnames.com/theme/images/ssl-vendors/comodo_vendor.png',
+                'img' => 'comodo_vendor.png',
             ]
         ];
     }
@@ -79,8 +79,16 @@ class CertificateType extends Model
     public function getLogo()
     {
         $brands = static::brands();
+        $img = $brands[$this->brand]['img'];
+        if ($img !== null) {
+            $pathToImage = Yii::getAlias(sprintf('@hipanel/modules/certificate/assets/img/%s', $img));
+            if (is_file($pathToImage)) {
+                Yii::$app->assetManager->publish($pathToImage);
+                $img = Yii::$app->assetManager->getPublishedUrl($pathToImage);
+            }
+        }
 
-        return $brands[$this->brand]['img'];
+        return $img;
     }
 
     public function getType()
