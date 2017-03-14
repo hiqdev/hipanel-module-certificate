@@ -8,16 +8,16 @@ use yii\bootstrap\BootstrapPluginAsset;
 use yii\web\AssetBundle;
 use yii\web\JqueryAsset;
 
-class OrderIndexAsset extends AssetBundle
+class CertificateOrderIndexAsset extends AssetBundle
 {
     public $sourcePath = '@hipanel/modules/certificate/assets';
 
     public $css = [
-        'css/orderIndex.css',
+        'css/certificateOrderIndex.css',
     ];
 
     public $js = [
-        'js/orderIndex.js',
+        'js/certificateOrderIndex.js',
     ];
 
     public $depends = [
