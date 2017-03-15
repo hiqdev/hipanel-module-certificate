@@ -3,16 +3,29 @@
 namespace hipanel\modules\certificate\controllers;
 
 use hipanel\models\Ref;
+use hipanel\modules\certificate\cart\CertificateOrderProduct;
 use hipanel\modules\certificate\forms\CsrGeneratorForm;
 use hipanel\modules\certificate\forms\OrderForm;
 use hipanel\modules\certificate\repositories\CertRepository;
 use hipanel\modules\certificate\widgets\PreOrderQuestion;
+use hiqdev\yii2\cart\actions\AddToCartAction;
 use Yii;
 use yii\helpers\Url;
 use yii\web\Controller;
 
 class CertificateOrderController extends Controller
 {
+    public function actions()
+    {
+        return [
+            'add-to-cart-order' => [
+                'class' => AddToCartAction::class,
+                'productClass' => CertificateOrderProduct::class,
+                'redirectToCart' => true,
+            ],
+        ];
+    }
+
     public function actionIndex()
     {
         return $this->render('index', [
