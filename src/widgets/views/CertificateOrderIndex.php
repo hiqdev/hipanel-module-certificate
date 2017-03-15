@@ -87,10 +87,7 @@ use yii\helpers\Html;
                                 <a class="btn btn-default btn-flat text-bold disabled cert-price-btn">
                                     46 400 грн. / год
                                 </a>
-                                <a class="btn btn-success btn-flat cert-make-order" data-product-id="<?= $model->id ?>">
-                                    <i class="fa fa-cart-plus"></i>&nbsp;&nbsp;
-                                    <?= Yii::t('hipanel:certificate', 'Order') ?>
-                                </a>
+                                <?= Html::a(Yii::t('hipanel:certificate', 'Order'), ['@certificate/order/add-to-cart-order', 'product_id' => $model->id], ['class' => 'btn btn-success btn-flat']) ?>
                             </div>
                         </div>
                     </div>
