@@ -18,6 +18,21 @@ class CertificateType extends Model
     public $multidomains_included;
     public $multidomains_maximum;
 
+    public $product_id;
+    public $product_name;
+    public $product_brand;
+    public $product_description;
+    public $product_agreement;
+    public $product_organization;
+    public $product_wildcard;
+    public $product_unlimited_servers;
+    public $product_is_multidomain;
+    public $product_multidomains_included;
+    public $product_multidomains_maximum;
+    public $product_prices;
+    public $success;
+
+
     public static function types()
     {
         return [
