@@ -19,9 +19,14 @@ class CertificateOrderProduct extends AbstractCertificateProduct
      */
     public $product_id;
 
+    /** {@inheritdoc} */
     public function getId()
     {
-        return hash('crc32b', implode('_', ['certificate', 'order', $this->product_id]));
+        if ($this->_id === null) {
+            $this->_id = hash('crc32b', implode('_', ['certificate', 'order', $this->product_id, mt_rand()]));
+        }
+
+        return $this->_id;
     }
 
     /** {@inheritdoc} */
