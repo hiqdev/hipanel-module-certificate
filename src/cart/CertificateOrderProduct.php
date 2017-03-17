@@ -52,6 +52,6 @@ class CertificateOrderProduct extends AbstractCertificateProduct
             '3' => Yii::t('hipanel:certificate', '{0, plural, one{# year} other{# years}}', 3),
         ];
 
-        return CertificateCartQuantity::widget(['quantityOptions' => $quantityOptions, 'product_id' => $this->product_id]);
+        return CertificateCartQuantity::widget(['model' => $this, 'quantityOptions' => $quantityOptions, 'product_id' => $this->product_id]);
     }
 }
