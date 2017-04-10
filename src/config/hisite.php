@@ -6,8 +6,8 @@ return [
         '@certificate/order' => '/certificate/certificate-order',
     ],
     'modules' => [
-        'cart' => [
-            'class' => \hiqdev\yii2\cart\Module::class,
+        'certificate' => [
+            'class' => \hipanel\modules\certificate\Module::class,
         ],
     ],
     'components' => [
@@ -36,6 +36,7 @@ return [
                         'menu' => \hipanel\modules\certificate\menus\SidebarMenu::class,
                         'where' => [
                             'after' => ['domains'],
+                            'before' => ['servers','hosting','stock'],
                         ],
                     ],
                 ],
