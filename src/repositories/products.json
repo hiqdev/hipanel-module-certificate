@@ -1,0 +1,738 @@
+{
+  "products": [
+    {
+      "id": "78",
+      "name": "Comodo Code Signing SSL",
+      "periods": [],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "75",
+      "name": "Comodo Essential SSL",
+      "periods": [
+        0
+      ],
+      "organization": "no",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "76",
+      "name": "Comodo Essential Wildcard SSL",
+      "periods": [
+        0
+      ],
+      "organization": "no",
+      "wildcard": "yes",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "56",
+      "name": "Comodo EV SGC SSL",
+      "periods": [
+        12,
+        24
+      ],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "55",
+      "name": "Comodo EV SSL",
+      "periods": [
+        12,
+        24
+      ],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "79",
+      "name": "Comodo EV Trial SSL",
+      "periods": [
+        12
+      ],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "47",
+      "name": "Comodo InstantSSL",
+      "periods": [],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "49",
+      "name": "Comodo InstantSSL Premium",
+      "periods": [],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "48",
+      "name": "Comodo InstantSSL Pro",
+      "periods": [],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "86",
+      "name": "Comodo Intel vPro AMT",
+      "periods": [
+        0
+      ],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "88",
+      "name": "Comodo Intel vPro AMT SAN",
+      "periods": [
+        0
+      ],
+      "organization": "no",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "yes",
+      "multidomains_included": "3",
+      "multidomains_maximum": "210"
+    },
+    {
+      "id": "87",
+      "name": "Comodo Intel vPro AMT Wildcard",
+      "periods": [
+        0
+      ],
+      "organization": "no",
+      "wildcard": "yes",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "102",
+      "name": "Comodo Intranet SSL",
+      "periods": [
+        0
+      ],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "57",
+      "name": "Comodo Multi-Domain EV SSL",
+      "periods": [
+        12,
+        24
+      ],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "yes",
+      "multidomains_included": "3",
+      "multidomains_maximum": "210"
+    },
+    {
+      "id": "54",
+      "name": "Comodo Multi-Domain SSL",
+      "periods": [
+        12,
+        24,
+        36
+      ],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "yes",
+      "multidomains_included": "3",
+      "multidomains_maximum": "210"
+    },
+    {
+      "id": "63",
+      "name": "Comodo Multi-Domain Wildcard SSL",
+      "periods": [
+        0
+      ],
+      "organization": "no",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "yes",
+      "multidomains_included": "3",
+      "multidomains_maximum": "100"
+    },
+    {
+      "id": "58",
+      "name": "Comodo Platinum SSL",
+      "periods": [
+        0
+      ],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "45",
+      "name": "Comodo PositiveSSL",
+      "periods": [],
+      "organization": "no",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "77",
+      "name": "Comodo PositiveSSL UCC/SAN",
+      "periods": [],
+      "organization": "no",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "yes",
+      "multidomains_included": "3",
+      "multidomains_maximum": "210"
+    },
+    {
+      "id": "46",
+      "name": "Comodo PositiveSSL Wildcard",
+      "periods": [],
+      "organization": "no",
+      "wildcard": "yes",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "50",
+      "name": "Comodo Premium Wildcard SSL",
+      "periods": [],
+      "organization": "yes",
+      "wildcard": "yes",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "51",
+      "name": "Comodo SGC SSL",
+      "periods": [],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "52",
+      "name": "Comodo SGC Wildcard SSL",
+      "periods": [],
+      "organization": "yes",
+      "wildcard": "yes",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "82",
+      "name": "Comodo SSL Certificate",
+      "periods": [
+        0
+      ],
+      "organization": "no",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "85",
+      "name": "Comodo SSL UCC DV",
+      "periods": [
+        0
+      ],
+      "organization": "no",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "yes",
+      "multidomains_included": "3",
+      "multidomains_maximum": "210"
+    },
+    {
+      "id": "53",
+      "name": "Comodo SSL UCC OV",
+      "periods": [
+        12,
+        24,
+        36
+      ],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "yes",
+      "multidomains_included": "3",
+      "multidomains_maximum": "210"
+    },
+    {
+      "id": "105",
+      "name": "Comodo SSL Wildcard",
+      "periods": [
+        0
+      ],
+      "organization": "no",
+      "wildcard": "yes",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "70",
+      "name": "Comodo Trial SSL",
+      "periods": [
+        0
+      ],
+      "organization": "no",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "26",
+      "name": "GeoTrust QuickSSL Premium",
+      "periods": [
+        0
+      ],
+      "organization": "no",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "12",
+      "name": "GeoTrust QuickSSL Premium SAN",
+      "periods": [
+        0
+      ],
+      "organization": "no",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "yes",
+      "multidomains_included": "4",
+      "multidomains_maximum": "20"
+    },
+    {
+      "id": "27",
+      "name": "GeoTrust TrueBusinessID",
+      "periods": [
+        0
+      ],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "29",
+      "name": "GeoTrust TrueBusinessID EV",
+      "periods": [
+        0
+      ],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "71",
+      "name": "GeoTrust TrueBusinessID EV SAN",
+      "periods": [
+        0
+      ],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "yes",
+      "multidomains_included": "5",
+      "multidomains_maximum": "20"
+    },
+    {
+      "id": "30",
+      "name": "GeoTrust TrueBusinessID SAN",
+      "periods": [
+        0
+      ],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "yes",
+      "multidomains_included": "5",
+      "multidomains_maximum": "20"
+    },
+    {
+      "id": "28",
+      "name": "GeoTrust TrueBusinessID Wildcard",
+      "periods": [
+        0
+      ],
+      "organization": "yes",
+      "wildcard": "yes",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "66",
+      "name": "GGSSL Domain SSL",
+      "periods": [
+        0
+      ],
+      "organization": "no",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "69",
+      "name": "GGSSL Trial",
+      "periods": [
+        0
+      ],
+      "organization": "no",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "31",
+      "name": "RapidSSL Standard",
+      "periods": [],
+      "organization": "no",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "83",
+      "name": "RapidSSL Trial",
+      "periods": [
+        0
+      ],
+      "organization": "no",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "32",
+      "name": "RapidSSL WildcardSSL",
+      "periods": [],
+      "organization": "no",
+      "wildcard": "yes",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "39",
+      "name": "Symantec Code Signing SSL",
+      "periods": [
+        0
+      ],
+      "organization": "no",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "40",
+      "name": "Symantec Safe Site",
+      "periods": [
+        0
+      ],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "no",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "41",
+      "name": "Symantec Secure Site",
+      "periods": [
+        0
+      ],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "no",
+      "is_multidomain": "yes",
+      "multidomains_included": "1",
+      "multidomains_maximum": "20"
+    },
+    {
+      "id": "44",
+      "name": "Symantec Secure Site EV SAN",
+      "periods": [
+        0
+      ],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "no",
+      "is_multidomain": "yes",
+      "multidomains_included": "1",
+      "multidomains_maximum": "20"
+    },
+    {
+      "id": "42",
+      "name": "Symantec Secure Site PRO",
+      "periods": [
+        0
+      ],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "no",
+      "is_multidomain": "yes",
+      "multidomains_included": "1",
+      "multidomains_maximum": "20"
+    },
+    {
+      "id": "43",
+      "name": "Symantec Secure Site PRO EV",
+      "periods": [
+        0
+      ],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "no",
+      "is_multidomain": "yes",
+      "multidomains_included": "1",
+      "multidomains_maximum": "20"
+    },
+    {
+      "id": "84",
+      "name": "Symantec Secure Site Wildcard",
+      "periods": [
+        0
+      ],
+      "organization": "yes",
+      "wildcard": "yes",
+      "unlimited_servers": "no",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "33",
+      "name": "Thawte Code Signing SSL",
+      "periods": [
+        0
+      ],
+      "organization": "no",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "13",
+      "name": "Thawte Code Signing SSL for Individuals",
+      "periods": [
+        0
+      ],
+      "organization": "no",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "34",
+      "name": "Thawte SGC SuperCerts",
+      "periods": [],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "no",
+      "is_multidomain": "yes",
+      "multidomains_included": "0",
+      "multidomains_maximum": "20"
+    },
+    {
+      "id": "36",
+      "name": "Thawte SSL 123",
+      "periods": [],
+      "organization": "no",
+      "wildcard": "no",
+      "unlimited_servers": "no",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "37",
+      "name": "Thawte Web Server SAN EV",
+      "periods": [
+        12,
+        24
+      ],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "no",
+      "is_multidomain": "yes",
+      "multidomains_included": "1",
+      "multidomains_maximum": "20"
+    },
+    {
+      "id": "35",
+      "name": "Thawte Web Server SAN SSL",
+      "periods": [],
+      "organization": "yes",
+      "wildcard": "no",
+      "unlimited_servers": "no",
+      "is_multidomain": "yes",
+      "multidomains_included": "1",
+      "multidomains_maximum": "20"
+    },
+    {
+      "id": "38",
+      "name": "Thawte Wildcard SSL Certificate",
+      "periods": [
+        12,
+        24
+      ],
+      "organization": "yes",
+      "wildcard": "yes",
+      "unlimited_servers": "no",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "107",
+      "name": "Ukrnames DomainSSL",
+      "periods": [
+        0
+      ],
+      "organization": "no",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "106",
+      "name": "Ukrnames TrialSSL",
+      "periods": [
+        0
+      ],
+      "organization": "no",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    },
+    {
+      "id": "108",
+      "name": "Ukrnames UCC/SAN SSL",
+      "periods": [
+        0
+      ],
+      "organization": "no",
+      "wildcard": "no",
+      "unlimited_servers": "yes",
+      "is_multidomain": "yes",
+      "multidomains_included": "3",
+      "multidomains_maximum": "200"
+    },
+    {
+      "id": "104",
+      "name": "Ukrnames Wildcard SSL Certificate",
+      "periods": [
+        0
+      ],
+      "organization": "no",
+      "wildcard": "yes",
+      "unlimited_servers": "yes",
+      "is_multidomain": "no",
+      "multidomains_included": "0",
+      "multidomains_maximum": "0"
+    }
+  ],
+  "success": true
+}
