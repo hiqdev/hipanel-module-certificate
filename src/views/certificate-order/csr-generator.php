@@ -7,6 +7,8 @@
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
+\hipanel\modules\certificate\CsrGeneratorAsset::register($this);
+
 $csr = '-----BEGIN CERTIFICATE REQUEST-----';
 
 $this->title = Yii::t('hipanel:certificate', 'Generate new CSR and Private Key');
@@ -52,8 +54,8 @@ function genCsr() {
 ?>
 
 <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-        <div class="box box-primary">
+    <div class="col-md-6">
+        <div class="box box-solid">
             <?php $form = ActiveForm::begin([
                 'id' => 'csr-generator-form',
                 'action' => '#',
