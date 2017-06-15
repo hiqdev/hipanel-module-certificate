@@ -13,11 +13,6 @@ return [
         '@certificate' => '/certificate/certificate',
         '@certificate/order' => '/certificate/certificate-order',
     ],
-    'modules' => [
-        'certificate' => [
-            'class' => \hipanel\modules\certificate\Module::class,
-        ],
-    ],
     'components' => [
         'themeManager' => [
             'pathMap' => [
@@ -32,8 +27,10 @@ return [
                 ],
             ],
         ],
-        'assetManager' => [
-            'linkAssets' => true,
+    ],
+    'modules' => [
+        'certificate' => [
+            'class' => \hipanel\modules\certificate\Module::class,
         ],
     ],
     'container' => [
