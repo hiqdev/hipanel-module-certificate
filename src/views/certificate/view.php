@@ -18,8 +18,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'box-solid',
             ],
             'bodyOptions' => [
-                'class' => 'no-padding'
-            ]
+                'class' => 'no-padding',
+            ],
         ]); ?>
         <div class="profile-user-img text-center">
             <i class="fa fa-shield fa-5x"></i>

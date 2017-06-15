@@ -3,7 +3,6 @@
 /** @var \hipanel\modules\certificate\forms\CsrGeneratorForm $model */
 /** @var array $countries */
 /** @var string $orderUrl */
-
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 

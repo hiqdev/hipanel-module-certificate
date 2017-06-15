@@ -1,5 +1,4 @@
-HiPanel SSL Certificates Module
-===============================
+# HiPanel SSL Certificates Module
 
 **SSL certificates module for HiPanel**
 

@@ -1,4 +1,12 @@
 <?php
+/**
+ * SSL certificates module for HiPanel.
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-certificate
+ * @package   hipanel-module-certificate
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2017, HiQDev (http://hiqdev.com/)
+ */
 
 namespace hipanel\modules\certificate\models;
 
@@ -31,7 +39,6 @@ class CertificateType extends Model
     public $product_multidomains_maximum;
     public $product_prices;
     public $success;
-
 
     public static function types()
     {
@@ -67,7 +74,7 @@ class CertificateType extends Model
                 'img' => 'symantec_vendor.png',
             ],
             'ukrnames' => [
-                'label' => Yii::t('hipanel:certificate', 'Ukrnames SSL Certificates')
+                'label' => Yii::t('hipanel:certificate', 'Ukrnames SSL Certificates'),
             ],
             'ggssl' => [
                 'label' => Yii::t('hipanel:certificate', 'GoGetSSL SSL Certificates'),
@@ -87,7 +94,7 @@ class CertificateType extends Model
             'comodo' => [
                 'label' => Yii::t('hipanel:certificate', 'Comodo SSL Certificates'),
                 'img' => 'comodo_vendor.png',
-            ]
+            ],
         ];
     }
 

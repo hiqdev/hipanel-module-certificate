@@ -1,6 +1,5 @@
 <?php
 /** @var \hipanel\modules\certificate\forms\OrderForm $model */
-
 $this->title = Yii::t('hipanel:certificate', 'Order');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel:certificate', 'Get certificate'), 'url' => ['@certificate/order/index']];
 $this->params['breadcrumbs'][] = $this->title;
