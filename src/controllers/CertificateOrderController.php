@@ -10,6 +10,7 @@
 
 namespace hipanel\modules\certificate\controllers;
 
+use hipanel\actions\RenderAction;
 use hipanel\models\Ref;
 use hipanel\modules\certificate\cart\CertificateOrderProduct;
 use hipanel\modules\certificate\forms\CsrGeneratorForm;
@@ -31,14 +32,13 @@ class CertificateOrderController extends Controller
                 'productClass' => CertificateOrderProduct::class,
                 'redirectToCart' => true,
             ],
+            'index' => [
+                'class' => RenderAction::class,
+                'data' => [
+                    'models' => CertRepository::create()->getTypes(),
+                ],
+            ],
         ];
-    }
-
-    public function actionIndex()
-    {
-        return $this->render('index', [
-            'models' => CertRepository::create()->getTypes(),
-        ]);
     }
 
     public function actionCsrGenerator($productId = null)
