@@ -37,7 +37,7 @@ return [
         'definitions' => [
             \hiqdev\thememanager\menus\AbstractSidebarMenu::class => [
                 'add' => [
-                    'certificate' => [
+                    'certificates' => [
                         'menu' => \hipanel\modules\certificate\menus\SidebarMenu::class,
                         'where' => [
                             'after' => ['domains'],

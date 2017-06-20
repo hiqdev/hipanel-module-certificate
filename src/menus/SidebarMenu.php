@@ -22,7 +22,7 @@ class SidebarMenu extends \hiqdev\yii2\menus\Menu
         }
 
         return [
-            'certificate' => [
+            'certificates' => [
                 'label' => Yii::t('hipanel:certificate', 'SSL certificates'),
                 'url' => ['@certificate/index'],
                 'icon' => 'fa-shield',
