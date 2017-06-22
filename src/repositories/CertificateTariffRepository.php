@@ -66,7 +66,7 @@ class CertificateTariffRepository
      * @see orderResources
      * @return array
      */
-    public function getResources(Tariff $tariff = null, $type = CertificateResource::TYPE_CERT_REGISTRATION, $orderByDefault = true)
+    public function getResources(Tariff $tariff = null, $type = CertificateResource::TYPE_CERT_PURCHASE, $orderByDefault = true)
     {
         if ($tariff === null) {
             $tariff = $this->getTariff();
