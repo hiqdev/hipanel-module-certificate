@@ -1,6 +1,9 @@
 <?php
+
 use hipanel\modules\certificate\models\CertificateType;
 use yii\helpers\Html;
+
+$formatter = Yii::$app->formatter;
 
 ?>
 <div class="row">
@@ -11,7 +14,7 @@ use yii\helpers\Html;
             </div>
             <div class="box-body no-padding">
                 <ul class="nav nav-pills nav-stacked filter-type filter" data-filter-group="type">
-                    <?php foreach (CertificateType::types() as $key => $filter) : ?>
+                    <?php foreach (CertificateType::features() as $key => $filter) : ?>
                         <li data-filter=".<?= $key ?>">
                             <b><?= $filter['label'] ?></b>
                             <div class="icheck pull-left" style="margin-right: 1rem">
@@ -63,18 +66,19 @@ use yii\helpers\Html;
             </div>
         </div>
         <div class="certificate-order">
-            <?php foreach ($models as $model) : ?>
-                <?php $type = $model->type; ?>
-                <div class="info-box <?= $model->brand ?> <?= $type ?>">
+            <?php foreach ($resources as $resource) : ?>
+                <?php $type = $resource->certificateType ?>
+                <?php $features = implode(' ', $type->getFeatures()) ?>
+                <div class="info-box <?= $type->brand ?> <?= $features ?>">
                     <span class="info-box-icon">
-                        <?php if ($model->logo) : ?>
-                            <?= Html::img($model->logo) ?>
+                        <?php if ($type->logo) : ?>
+                            <?= Html::img($type->logo) ?>
                         <?php else: ?>
                             <i class="fa fa fa-shield fa-fw"></i>
                         <?php endif; ?>
                     </span>
                     <div class="info-box-content">
-                        <div class="sq"><a href="#"><b><?= $model->name ?></b></a></div>
+                        <div class="sq"><a href="#"><b><?= $type->name ?></b></a></div>
                         <div class="sq hidden-xs text-center">
                             <ul class="list-unstyled">
                                 <li>Крупный интернет-магазин</li>
@@ -85,9 +89,11 @@ use yii\helpers\Html;
                         <div class="sq text-center">
                             <div class="btn-group">
                                 <a class="btn btn-default btn-flat text-bold disabled cert-price-btn">
-                                    46 400 грн. / год
+                                    <?= $formatter->asCurrency($resource->getPriceForPeriod(1), $resource->getCurrency()) ?>
+                                    / <?= Yii::t('hipanel', 'year') ?>
+
                                 </a>
-                                <?= Html::a(Yii::t('hipanel:certificate', 'Order'), ['@certificate/order/add-to-cart-order', 'product_id' => $model->id], ['class' => 'btn btn-success btn-flat']) ?>
+                                <?= Html::a(Yii::t('hipanel:certificate', 'Order'), ['@certificate/order/add-to-cart-order', 'product_id' => $type->id], ['class' => 'btn btn-success btn-flat']) ?>
                             </div>
                         </div>
                     </div>

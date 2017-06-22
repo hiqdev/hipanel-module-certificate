@@ -12,10 +12,11 @@ namespace hipanel\modules\certificate\controllers;
 
 use hipanel\actions\RenderAction;
 use hipanel\models\Ref;
+use hipanel\modules\certificate\Module;
 use hipanel\modules\certificate\cart\CertificateOrderProduct;
 use hipanel\modules\certificate\forms\CsrGeneratorForm;
 use hipanel\modules\certificate\forms\OrderForm;
-use hipanel\modules\certificate\repositories\CertRepository;
+use hipanel\modules\certificate\repositories\CertificateTariffRepository;
 use hipanel\modules\certificate\widgets\PreOrderQuestion;
 use hiqdev\yii2\cart\actions\AddToCartAction;
 use Yii;
@@ -24,6 +25,18 @@ use yii\web\Controller;
 
 class CertificateOrderController extends Controller
 {
+    /**
+     * @var CertificateTariffRepository
+     */
+    protected $tariffRepository;
+
+    public function __construct($id, Module $module, CertificateTariffRepository $tariffRepository, array $config = [])
+    {
+        parent::__construct($id, $module, $config);
+
+        $this->tariffRepository = $tariffRepository;
+    }
+
     public function actions()
     {
         return [
@@ -35,7 +48,7 @@ class CertificateOrderController extends Controller
             'index' => [
                 'class' => RenderAction::class,
                 'data' => [
-                    'models' => CertRepository::create()->getTypes(),
+                    'resources' => $this->tariffRepository->getResources(),
                 ],
             ],
         ];

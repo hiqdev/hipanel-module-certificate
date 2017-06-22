@@ -17,7 +17,7 @@ use yii\web\View;
 
 class CertificateOrderIndex extends Widget
 {
-    public $models;
+    public $resources;
 
     public function init()
     {
@@ -31,6 +31,6 @@ class CertificateOrderIndex extends Widget
 
     public function run()
     {
-        return $this->render('CertificateOrderIndex', ['models' => $this->models]);
+        return $this->render('CertificateOrderIndex', ['resources' => $this->resources]);
     }
 }

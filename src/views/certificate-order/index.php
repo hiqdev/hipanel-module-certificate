@@ -15,4 +15,4 @@ $this->title = Yii::t('hipanel:certificate', 'Get certificate');
 $this->params['breadcrumbs'][] = $this->title;
 
 echo PreOrderQuestion::widget();
-echo CertificateOrderIndex::widget(['models' => $models]);
+echo CertificateOrderIndex::widget(['resources' => $resources]);

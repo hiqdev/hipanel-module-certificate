@@ -20,8 +20,6 @@ class Calculation extends \hipanel\modules\finance\cart\Calculation
         parent::init();
 
         $this->object = 'certificate';
-        $this->type = 'dregistration';
-        $this->tariff_id = 2013590;
     }
 
     /** {@inheritdoc} */

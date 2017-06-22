@@ -12,56 +12,61 @@ namespace hipanel\modules\certificate\models;
 
 use hipanel\helpers\StringHelper;
 use Yii;
-use yii\base\Model;
 
-class CertificateType extends Model
+class CertificateType extends \hiqdev\hiart\ActiveRecord
 {
     public $id;
     public $name;
-    public $periods;
     public $organization;
     public $wildcard;
+    public $code_signing;
+    public $extended_validation;
     public $unlimited_servers;
     public $is_multidomain;
     public $multidomains_included;
     public $multidomains_maximum;
 
-    public $product_id;
-    public $product_name;
-    public $product_brand;
-    public $product_description;
-    public $product_agreement;
-    public $product_organization;
-    public $product_wildcard;
-    public $product_unlimited_servers;
-    public $product_is_multidomain;
-    public $product_multidomains_included;
-    public $product_multidomains_maximum;
-    public $product_prices;
-    public $success;
+    protected $_features = [];
 
-    public static function types()
+    public function init()
+    {
+        parent::init();
+        $known = static::getKnownType($this->id);
+        foreach (array_keys(get_object_vars($this)) as $key) {
+            if ($this->{$key} === null) {
+                $this->{$key} = $known->{$key};
+            }
+        }
+    }
+
+    protected static $knownTypes;
+
+    public static function features()
     {
         return [
             'dv' => [
                 'label' => Yii::t('hipanel:certificate', 'Domain Validation'),
                 'text' => Yii::t('hipanel:certificate', 'Get no-frills, industry standard encryption for a cheap price with our DV SSL Certificates'),
             ],
-            'sun' => [
-                'label' => Yii::t('hipanel:certificate', 'Multi-Domain Certs'),
-                'text' => Yii::t('hipanel:certificate', 'Secure multiple domains on a single certificate for a cheap price with Multi-Domain SSL'),
-            ],
             'ov' => [
                 'label' => Yii::t('hipanel:certificate', 'Organization Validation'),
                 'text' => Yii::t('hipanel:certificate', 'Get light business authentication at an extremely cheap price with our OV SSL Certificates'),
             ],
-            'wc' => [
-                'label' => Yii::t('hipanel:certificate', 'Wildcard Certificates'),
-                'text' => Yii::t('hipanel:certificate', 'Secure unlimited Sub-Domains for one cheap price with these Wildcard SSL Certificates'),
-            ],
             'ev' => [
                 'label' => Yii::t('hipanel:certificate', 'Extended Validation'),
                 'text' => Yii::t('hipanel:certificate', 'Inspire maximum trust at an unbeatable price with an Extended Validation SSL'),
+            ],
+            'cs' => [
+                'label' => Yii::t('hipanel:certificate', 'Code Signing'),
+                'text' => Yii::t('hipanel:certificate', 'Allows publishers to sign their files with own signature to proof their identity'),
+            ],
+            'san' => [
+                'label' => Yii::t('hipanel:certificate', 'Multi-Domain / SAN'),
+                'text' => Yii::t('hipanel:certificate', 'Secure multiple domains on a single certificate for a cheap price with Multi-Domain SSL'),
+            ],
+            'wc' => [
+                'label' => Yii::t('hipanel:certificate', 'Wildcard Certificates'),
+                'text' => Yii::t('hipanel:certificate', 'Secure unlimited Sub-Domains for one cheap price with these Wildcard SSL Certificates'),
             ],
         ];
     }
@@ -72,9 +77,6 @@ class CertificateType extends Model
             'symantec' => [
                 'label' => Yii::t('hipanel:certificate', 'Symantec SSL Certificates'),
                 'img' => 'symantec_vendor.png',
-            ],
-            'ukrnames' => [
-                'label' => Yii::t('hipanel:certificate', 'Ukrnames SSL Certificates'),
             ],
             'ggssl' => [
                 'label' => Yii::t('hipanel:certificate', 'GoGetSSL SSL Certificates'),
@@ -98,6 +100,44 @@ class CertificateType extends Model
         ];
     }
 
+    public static function getKnownType($key)
+    {
+        $types = static::getKnownTypes();
+        if (isset($types[$key])) {
+            return $types[$key];
+        }
+        foreach ($types as $type) {
+            if ($type->name === $key) {
+                return $type;
+            }
+        }
+
+        return null;
+    }
+
+    public static function getKnownTypes()
+    {
+        if (static::$knownTypes === null) {
+            static::$knownTypes = static::fetchKnownTypes();
+        }
+
+        return static::$knownTypes;
+    }
+
+    protected static function fetchKnownTypes()
+    {
+        static $already = 0;
+        if ($already>0) {
+            return [];
+        }
+        $already++;
+        $res = Yii::$app->get('cache')->getOrSet([__METHOD__], function () use ($seller, $client_id) {
+            return static::find()->indexBy('id')->all();
+        }, 10); /// TODO change to 3600*24 XXX
+
+        return $res;
+    }
+
     public function getLogo()
     {
         $brands = static::brands();
@@ -113,12 +153,38 @@ class CertificateType extends Model
         return $img;
     }
 
-    public function getType()
+    public function getFeatures()
     {
-        $data = array_keys(static::types());
-        $v = array_rand(array_flip($data), 2);
+        if (!$this->_features) {
+            $this->_features = $this->detectFeatures();
+        }
 
-        return implode(' ', $v);
+        return $this->_features;
+    }
+
+    public function detectFeatures()
+    {
+        $res = ['dv' => 'dv'];
+        if ($this->organization) {
+            $res['ov'] = 'ov';
+            unset($res['dv']);
+        }
+        if ($this->extended_validation) {
+            $res['ev'] = 'ev';
+            unset($res['dv']);
+        }
+        if ($this->code_signing) {
+            $res['cs'] = 'cs';
+            unset($res['dv']);
+        }
+        if ($this->wildcard) {
+            $res['wc'] = 'wc';
+        }
+        if ($this->is_multidomain) {
+            $res['san'] = 'san';
+        }
+
+        return $res;
     }
 
     public function getBrand()
