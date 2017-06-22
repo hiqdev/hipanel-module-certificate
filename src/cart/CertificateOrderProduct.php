@@ -10,7 +10,7 @@
 
 namespace hipanel\modules\certificate\cart;
 
-use hipanel\modules\certificate\repositories\CertRepository;
+use hipanel\modules\certificate\models\CertificateType;
 use hipanel\modules\certificate\widgets\CertificateCartQuantity;
 use Yii;
 
@@ -41,8 +41,8 @@ class CertificateOrderProduct extends AbstractCertificateProduct
     public function load($data, $formName = null)
     {
         if ($result = parent::load($data, '')) {
-            $this->_model = CertRepository::create()->getTypeDetail($this->product_id);
-            $this->name = $this->_model->product_name;
+            $this->_model = new CertificateType(['id' => $this->product_id]);
+            $this->name = $this->_model->name;
             $this->description = Yii::t('hipanel:certificate', 'Order');
         }
 
