@@ -93,24 +93,13 @@ class CertificateTariffRepository
     }
 
     /**
-     * @param Resource[] $zones array of domain resources to be sorted
-     * @return array sorted by the default zone resources
+     * @param Resource[] $resources array of resources to be sorted
+     * @return array sorted by name
      */
     public function orderResources($resources)
     {
         ArrayHelper::multisort($resources, 'certificateType.name');
 
-        /*uasort($result, function ($a, $b) {
-            return $a->zone === Certificate::DEFAULT_ZONE;
-        });*/
-
         return $resources;
-    }
-
-    public static function getCertificateRefs()
-    {
-        $refs = CertificateType::getKnownTypes();
-        var_dump($refs);
-        die;
     }
 }
