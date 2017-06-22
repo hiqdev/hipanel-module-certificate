@@ -126,11 +126,13 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
 
     protected static function fetchKnownTypes()
     {
+        /// prevent infinit recursion loop
         static $already = 0;
         if ($already>0) {
             return [];
         }
         $already++;
+
         $res = Yii::$app->get('cache')->getOrSet([__METHOD__], function () use ($seller, $client_id) {
             return static::find()->indexBy('id')->all();
         }, 10); /// TODO change to 3600*24 XXX
