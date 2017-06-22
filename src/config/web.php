@@ -47,5 +47,10 @@ return [
                 ],
             ],
         ],
+        'singletons' => [
+            \hipanel\modules\certificate\repositories\CertificateTariffRepository::class => [
+                'class' => \hipanel\modules\certificate\repositories\CertificateTariffRepository::class,
+            ],
+        ],
     ],
 ];
