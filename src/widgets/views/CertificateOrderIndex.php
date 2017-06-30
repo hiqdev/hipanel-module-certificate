@@ -47,29 +47,33 @@ $formatter = Yii::$app->formatter;
     <div class="col-md-9">
         <div id="filter-display" style="display: none"></div>
         <div class="info-box hidden-xs">
-            <div class="info-box-content header">
-                <div class="sq"><?= Yii::t('hipanel:certificate', 'Certificate name') ?></div>
-                <div class="sq text-center"><?= Yii::t('hipanel:certificate', 'Fit to') ?></div>
-                <div class="sq text-center"><?= Yii::t('hipanel:certificate', 'Warranty') ?>
-                    &nbsp;
-                    <span class="label label-info"
-                          data-toggle="popover"
-                          title="<?= Yii::t('hipanel:certificate', 'Warranty') ?>"
-                          data-content="<?= Yii::t('hipanel:certificate', 'This parameter indicates the amount that the Certification Authority guarantees to pay the end-user site, a secure SSL-certificate, in case of loss of their money. This amount will be paid if the money had been lost as a result of the issuance of a certificate for a non-existent company or a domain that does not belong to the user.') ?>"
-                          data-trigger="hover"
-                          data-placement="bottom"
-                    >
-                        <i class="fa fa-info"></i>
-                    </span>
+            <div class="info-box-content header ca-header">
+                <div class="sq">
+                    <a href="#" class="ca-sort-link ca-asc" data-sort-value="name">
+                        <?= Yii::t('hipanel:certificate', 'Certificate name') ?>
+                        <i class="fa fa-sort-asc" aria-hidden="true"></i>
+                    </a>
                 </div>
-                <div class="sq text-center"><?= Yii::t('hipanel:certificate', 'Price') ?></div>
+                <div class="sq text-center">
+                    <a href="#" class="ca-sort-link ca-asc" data-sort-value="fc">
+                        <?= Yii::t('hipanel:certificate', 'Attributes') ?>
+                        <i class="fa fa-sort-asc" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="sq text-center">
+                    <a href="#" class="ca-sort-link ca-asc" data-sort-value="price">
+                        <?= Yii::t('hipanel:certificate', 'Price') ?>
+                        <i class="fa fa-sort-asc" aria-hidden="true"></i>
+                    </a>
+                </div>
             </div>
         </div>
         <div class="certificate-order">
             <?php foreach ($resources as $resource) : ?>
                 <?php $type = $resource->certificateType ?>
                 <?php $features = implode(' ', $type->getFeatures()) ?>
-                <div class="info-box <?= $type->brand ?> <?= $features ?>">
+                <div class="info-box <?= $type->brand ?> <?= $features ?>"
+                     data-featuresCount="<?= count($type->getFeatures()) ?>">
                     <span class="info-box-icon">
                         <?php if ($type->logo) : ?>
                             <?= Html::img($type->logo) ?>
@@ -78,18 +82,22 @@ $formatter = Yii::$app->formatter;
                         <?php endif; ?>
                     </span>
                     <div class="info-box-content">
-                        <div class="sq"><a href="#"><b><?= $type->name ?></b></a></div>
+                        <div class="sq"><a href="#"><b class="ca-name"><?= $type->name ?></b></a></div>
                         <div class="sq hidden-xs text-center">
                             <ul class="list-unstyled">
-                                <li>Крупный интернет-магазин</li>
-                                <li>Финансовая организация</li>
+                                <?php foreach (explode(' ', $features) as $feature) : ?>
+                                    <li>
+                                        <span class="label label-info"><?= CertificateType::features()[$feature]['label'] ?></span>
+                                    </li>
+                                <?php endforeach; ?>
                             </ul>
                         </div>
-                        <div class="sq hidden-xs text-center">$1,750,000</div>
                         <div class="sq text-center">
                             <div class="btn-group">
                                 <a class="btn btn-default btn-flat text-bold disabled cert-price-btn">
+                                    <span class="ca-price">
                                     <?= $formatter->asCurrency($resource->getPriceForPeriod(1), $resource->getCurrency()) ?>
+                                    </span>
                                     / <?= Yii::t('hipanel', 'year') ?>
 
                                 </a>
