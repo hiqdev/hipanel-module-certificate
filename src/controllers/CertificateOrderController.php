@@ -49,8 +49,6 @@ class CertificateOrderController extends Controller
                 'class' => RenderAction::class,
                 'data' => [
                     'resources' => $this->tariffRepository->getResources(),
-//                    'resources' => json_decode(file_get_contents(__DIR__ . '/../repositories/products.json')),
-
                 ],
             ],
         ];
