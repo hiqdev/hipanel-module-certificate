@@ -4,6 +4,8 @@ use hipanel\modules\certificate\models\CertificateType;
 use yii\helpers\Html;
 
 $formatter = Yii::$app->formatter;
+$secureKeys = ['dv', 'ov', 'ev'];
+$amountKeys = ['cs', 'san', 'wc'];
 
 ?>
 <div class="row">
@@ -13,15 +15,32 @@ $formatter = Yii::$app->formatter;
                 <h3 class="box-title"><?= Yii::t('hipanel:certificate', 'SSL Products') ?></h3>
             </div>
             <div class="box-body no-padding">
-                <ul class="nav nav-pills nav-stacked filter-type filter" data-filter-group="type">
+                <ul class="nav nav-pills nav-stacked filter-type filter" data-filter-group="secureType">
                     <?php foreach (CertificateType::features() as $key => $filter) : ?>
-                        <li data-filter=".<?= $key ?>">
-                            <b><?= $filter['label'] ?></b>
-                            <div class="icheck pull-left" style="margin-right: 1rem">
-                                <input type="checkbox" name="quux[2]" id="baz[2]">
-                            </div>
-                            <span><?= $filter['text'] ?></span>
-                        </li>
+                        <?php if (in_array($key, $secureKeys)) : ?>
+                            <li data-filter=".<?= $key ?>">
+                                <b><?= $filter['label'] ?></b>
+                                <div class="icheck pull-left" style="margin-right: 1rem">
+                                    <input type="checkbox" name="<?= $key ?>">
+                                </div>
+                                <span><?= $filter['text'] ?></span>
+                            </li>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+            <div class="box-footer no-padding" style="border-width: 7px;">
+                <ul class="nav nav-pills nav-stacked filter-type filter" data-filter-group="amountType">
+                    <?php foreach (CertificateType::features() as $key => $filter) : ?>
+                        <?php if (in_array($key, $amountKeys)) : ?>
+                            <li data-filter=".<?= $key ?>">
+                                <b><?= $filter['label'] ?></b>
+                                <div class="icheck pull-left" style="margin-right: 1rem">
+                                    <input type="checkbox" name="<?= $key ?>">
+                                </div>
+                                <span><?= $filter['text'] ?></span>
+                            </li>
+                        <?php endif; ?>
                     <?php endforeach; ?>
                 </ul>
             </div>
@@ -36,7 +55,7 @@ $formatter = Yii::$app->formatter;
                         <li data-filter=".<?= $key ?>">
                             <b><?= $brand['label'] ?></b>
                             <div class="icheck pull-left" style="margin-right: 1rem">
-                                <input type="checkbox" name="quux[2]" id="baz[2]">
+                                <input type="checkbox" name="<?= $key ?>">
                             </div>
                         </li>
                     <?php endforeach; ?>
@@ -49,21 +68,18 @@ $formatter = Yii::$app->formatter;
         <div class="info-box hidden-xs">
             <div class="info-box-content header ca-header">
                 <div class="sq">
-                    <a href="#" class="ca-sort-link ca-asc" data-sort-value="name">
+                    <a href="#" class="ca-sort-link" data-sort-value="name">
                         <?= Yii::t('hipanel:certificate', 'Certificate name') ?>
-                        <i class="fa fa-sort-asc" aria-hidden="true"></i>
                     </a>
                 </div>
                 <div class="sq text-center">
-                    <a href="#" class="ca-sort-link ca-asc" data-sort-value="fc">
+                    <a href="#" class="ca-sort-link" data-sort-value="fc">
                         <?= Yii::t('hipanel:certificate', 'Features') ?>
-                        <i class="fa fa-sort-asc" aria-hidden="true"></i>
                     </a>
                 </div>
                 <div class="sq text-center">
-                    <a href="#" class="ca-sort-link ca-asc" data-sort-value="price">
+                    <a href="#" class="ca-sort-link" data-sort-value="price">
                         <?= Yii::t('hipanel:certificate', 'Price') ?>
-                        <i class="fa fa-sort-asc" aria-hidden="true"></i>
                     </a>
                 </div>
             </div>

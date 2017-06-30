@@ -40,15 +40,8 @@
 
             $('.ca-header').on('click', '.ca-sort-link', function (e) {
                 e.preventDefault();
-                var sortValue = $(this).attr('data-sort-value');
                 var $elem = $(this);
-                var asc = $elem.hasClass('ca-asc');
-
-                $elem.toggleClass('ca-asc').find('i').toggleClass('fa-sort-asc');
-                $elem.toggleClass('ca-desc').find('i').toggleClass('fa-sort-desc');
-
-                // make an array of values
-                // sortValue = sortValue.split(',');
+                var sortValue = $elem.attr('data-sort-value');
                 grid.isotope({sortBy: sortValue, sortAscending: asc});
             });
 
