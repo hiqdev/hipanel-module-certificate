@@ -56,7 +56,7 @@ $formatter = Yii::$app->formatter;
                 </div>
                 <div class="sq text-center">
                     <a href="#" class="ca-sort-link ca-asc" data-sort-value="fc">
-                        <?= Yii::t('hipanel:certificate', 'Attributes') ?>
+                        <?= Yii::t('hipanel:certificate', 'Features') ?>
                         <i class="fa fa-sort-asc" aria-hidden="true"></i>
                     </a>
                 </div>
