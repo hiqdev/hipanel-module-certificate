@@ -41,7 +41,11 @@
             $('.ca-header').on('click', '.ca-sort-link', function (e) {
                 e.preventDefault();
                 var $elem = $(this);
-                var sortValue = $elem.attr('data-sort-value');
+                var asc, direction;
+                asc = $elem.attr('data-direction') === 'asc' ? false : true;
+                $elem.attr('data-direction', (asc ? 'asc' : 'desc'));
+
+                var sortValue = $elem.data('sort-value');
                 grid.isotope({sortBy: sortValue, sortAscending: asc});
             });
 

@@ -7,6 +7,21 @@ $formatter = Yii::$app->formatter;
 $secureKeys = ['dv', 'ov', 'ev'];
 $amountKeys = ['cs', 'san', 'wc'];
 
+$this->registerCss('
+.ca-sort-link:after {
+    font: normal normal normal 11px/1 FontAwesome;
+    content: " \f0dc";
+}
+.ca-sort-link[data-direction=asc]:after {
+    font: normal normal normal 11px/1 FontAwesome;
+    content: " \f160";
+}
+.ca-sort-link[data-direction=desc]:after {
+    font: normal normal normal 11px/1 FontAwesome;
+    content: " \f161";
+}
+');
+
 ?>
 <div class="row">
     <div class="col-md-3 filters">
