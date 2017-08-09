@@ -15,13 +15,13 @@ use hipanel\grid\MainColumn;
 
 class CertificateGridView extends BoxedGridView
 {
-    public static function defaultColumns()
+    public function columns()
     {
-        return [
+        return array_merge(parent::columns(), [
             'id' => [
                 'class' => MainColumn::class,
                 'attribute' => 'id',
             ],
-        ];
+        ]);
     }
 }
