@@ -22,6 +22,9 @@ class CertificateOrderProduct extends AbstractCertificateProduct
     /** {@inheritdoc} */
     protected $_purchaseModel = CertificatePurchase::class;
 
+    /** {@inheritdoc} */
+    protected $_operation = 'certificate_purchase';
+
     /**
      * @var integer
      */
@@ -66,5 +69,14 @@ class CertificateOrderProduct extends AbstractCertificateProduct
         ];
 
         return CertificateCartQuantity::widget(['model' => $this, 'quantityOptions' => $quantityOptions, 'product_id' => $this->product_id]);
+    }
+
+    /** {@inheritdoc} */
+    public function getCalculationModel($options = [])
+    {
+        return parent::getCalculationModel(array_merge([
+            'type' => $this->_operation,
+            'product_id' => $this->product_id,
+        ], $options));
     }
 }
