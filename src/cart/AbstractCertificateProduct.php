@@ -20,6 +20,11 @@ abstract class AbstractCertificateProduct extends AbstractCartPosition
      */
     protected $_model;
 
+    /**
+     * @var string operation name: certificate_purchase, certificate_renewal
+     */
+    protected $_operation;
+
     /** {@inheritdoc} */
     public function getIcon()
     {
