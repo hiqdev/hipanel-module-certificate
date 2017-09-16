@@ -12,6 +12,7 @@ namespace hipanel\modules\certificate\cart;
 
 use hipanel\modules\certificate\models\CertificateType;
 use hipanel\modules\certificate\widgets\CertificateCartQuantity;
+use hipanel\modules\finance\models\CertificateResource;
 use Yii;
 
 class CertificateOrderProduct extends AbstractCertificateProduct
@@ -23,7 +24,7 @@ class CertificateOrderProduct extends AbstractCertificateProduct
     protected $_purchaseModel = CertificatePurchase::class;
 
     /** {@inheritdoc} */
-    protected $_operation = 'certificate_purchase';
+    protected $_operation = CertificateResource::TYPE_CERT_PURCHASE;
 
     /**
      * @var integer
@@ -45,6 +46,7 @@ class CertificateOrderProduct extends AbstractCertificateProduct
     {
         if ($result = parent::load($data, '')) {
             $this->_model = new CertificateType(['id' => $this->product_id]);
+            $this->_resource = $this->getResource();
             $this->name = $this->_model->name;
             $this->description = Yii::t('hipanel:certificate', 'Order');
         }
@@ -62,11 +64,7 @@ class CertificateOrderProduct extends AbstractCertificateProduct
 
     public function getQuantityOptions()
     {
-        $quantityOptions = [
-            '1' => Yii::t('hipanel:certificate', '{0, plural, one{# year} other{# years}}', 1),
-            '2' => Yii::t('hipanel:certificate', '{0, plural, one{# year} other{# years}}', 2),
-            '3' => Yii::t('hipanel:certificate', '{0, plural, one{# year} other{# years}}', 3),
-        ];
+        $quantityOptions = $this->getResource()->getAvailablePeriods();
 
         return CertificateCartQuantity::widget(['model' => $this, 'quantityOptions' => $quantityOptions, 'product_id' => $this->product_id]);
     }

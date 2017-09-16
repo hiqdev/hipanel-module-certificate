@@ -92,6 +92,19 @@ class CertificateTariffRepository
         return $resources;
     }
 
+    public function getResource(Tariff $tariff = null, $type, $object_id)
+    {
+        if ($tariff === null) {
+            $tariff = $this->getTariff();
+        }
+
+        $resources = array_filter((array)$tariff->resources, function ($resource) use ($type, $object_id) {
+            return $resource->type === $type && ((string)$resource->object_id === (string)$object_id);
+        });
+
+        return reset($resources);
+    }
+
     /**
      * @param Resource[] $resources array of resources to be sorted
      * @return array sorted by name
