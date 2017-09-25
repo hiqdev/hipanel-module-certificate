@@ -28,10 +28,10 @@ class SidebarMenu extends \hiqdev\yii2\menus\Menu
                 'icon' => 'fa-shield',
                 'items' => [
                     'certificates' => [
-                        'label' => Yii::t('hipanel:certificate', 'My certificates'),
+                        'label' => Yii::t('hipanel:certificate', 'Certificates'),
                         'url' => ['@certificate/index'],
                     ],
-                    'certificate-types' => [
+                    'certificate-order' => [
                         'label' => Yii::t('hipanel:certificate', 'Get certificate'),
                         'url' => ['@certificate/order/index'],
                     ],
