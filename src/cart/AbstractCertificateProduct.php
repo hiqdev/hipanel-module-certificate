@@ -39,13 +39,28 @@ abstract class AbstractCertificateProduct extends AbstractCartPosition
         return $this->getTariffRepository()->getResource(null, $this->_operation, $this->_model->id);
     }
 
+    /**
+     * @return CertificateTariffRepository
+     */
     public function getTariffRepository()
     {
+        /** @var CertificateTariffRepository $repository */
         static $repository;
         if ($repository === null) {
             $repository = Yii::$container->get(CertificateTariffRepository::class);
         }
 
         return $repository;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function serializationMap()
+    {
+        $parent = parent::serializationMap();
+        $parent['_operation'] = $this->_operation;
+        $parent['_model'] = $this->_model;
+        return $parent;
     }
 }

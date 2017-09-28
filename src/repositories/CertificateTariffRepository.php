@@ -14,12 +14,16 @@ use hipanel\models\Ref;
 use hipanel\helpers\ArrayHelper;
 use hipanel\modules\certificate\models\CertificateType;
 use hipanel\modules\finance\models\CertificateResource;
+use hipanel\modules\finance\models\Resource;
 use hipanel\modules\finance\models\Tariff;
 use yii\base\Application;
 use yii\web\UnprocessableEntityHttpException;
 
 class CertificateTariffRepository
 {
+    /**
+     * @var Application
+     */
     protected $app;
 
     public function __construct(Application $app)
@@ -64,7 +68,7 @@ class CertificateTariffRepository
      * @param string $type
      * @param bool $orderByDefault whether to order prices by name
      * @see orderResources
-     * @return array
+     * @return Resource[]
      */
     public function getResources(Tariff $tariff = null, $type = CertificateResource::TYPE_CERT_PURCHASE, $orderByDefault = true)
     {
@@ -80,6 +84,7 @@ class CertificateTariffRepository
             if (!$resource->certificateType) {
                 unset($resources[$key]);
             }
+            /** @var CertificateResource $resource */
             if (!$resource->getPriceForPeriod(1)) {
                 unset($resources[$key]);
             }
@@ -92,6 +97,12 @@ class CertificateTariffRepository
         return $resources;
     }
 
+    /**
+     * @param Tariff|null $tariff
+     * @param $type
+     * @param $object_id
+     * @return Resource|CertificateResource
+     */
     public function getResource(Tariff $tariff = null, $type, $object_id)
     {
         if ($tariff === null) {
@@ -107,7 +118,7 @@ class CertificateTariffRepository
 
     /**
      * @param Resource[] $resources array of resources to be sorted
-     * @return array sorted by name
+     * @return Resource[] sorted by name
      */
     public function orderResources($resources)
     {

@@ -46,7 +46,6 @@ class CertificateOrderProduct extends AbstractCertificateProduct
     {
         if ($result = parent::load($data, '')) {
             $this->_model = new CertificateType(['id' => $this->product_id]);
-            $this->_resource = $this->getResource();
             $this->name = $this->_model->name;
             $this->description = Yii::t('hipanel:certificate', 'Order');
         }
@@ -76,5 +75,12 @@ class CertificateOrderProduct extends AbstractCertificateProduct
             'type' => $this->_operation,
             'product_id' => $this->product_id,
         ], $options));
+    }
+
+    protected function serializationMap()
+    {
+        $parent = parent::serializationMap();
+        $parent['product_id'] = $this->product_id;
+        return $parent;
     }
 }
