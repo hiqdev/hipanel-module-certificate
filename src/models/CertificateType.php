@@ -31,7 +31,7 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
     public function init()
     {
         parent::init();
-        $known = static::getKnownType($this->id);
+        $known = static::get($this->id);
         foreach (array_keys(get_object_vars($this)) as $key) {
             if ($this->{$key} === null) {
                 $this->{$key} = $known->{$key};
@@ -100,7 +100,7 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
         ];
     }
 
-    public static function getKnownType($key)
+    public static function get($key)
     {
         $types = static::getKnownTypes();
         if (isset($types[$key])) {
@@ -199,5 +199,9 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
         return [
             'name' => Yii::t('hipanel:certificate', 'Name'),
         ];
+    }
+    public function __toString()
+    {
+        return $this->name;
     }
 }

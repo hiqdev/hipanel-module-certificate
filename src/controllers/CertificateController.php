@@ -13,6 +13,7 @@ namespace hipanel\modules\certificate\controllers;
 use hipanel\actions\IndexAction;
 use hipanel\actions\ViewAction;
 use hipanel\base\CrudController;
+use yii\base\Event;
 
 class CertificateController extends CrudController
 {
@@ -21,6 +22,12 @@ class CertificateController extends CrudController
         return [
             'index' => [
                 'class' => IndexAction::class,
+                'on beforePerform' => function (Event $event) {
+                    /** @var \hipanel\actions\SearchAction $action */
+                    $action = $event->sender;
+                    $dataProvider = $action->getDataProvider();
+                    $dataProvider->query->joinWith('object');
+                },
             ],
             'view' => [
                 'class' => ViewAction::class,

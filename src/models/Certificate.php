@@ -12,6 +12,7 @@ namespace hipanel\modules\certificate\models;
 
 use hipanel\base\Model;
 use hipanel\base\ModelTrait;
+use hipanel\models\Obj;
 
 class Certificate extends Model
 {
@@ -22,7 +23,7 @@ class Certificate extends Model
     {
         return [
             [['id', 'remoteid', 'type_id', 'state_id', 'object_id', 'client_id', 'seller_id'], 'integer'],
-            [['type', 'state', 'client', 'seller', 'validity_start', 'validity_end', 'statuses', 'file', 'object'], 'safe'],
+            [['name', 'type', 'state', 'client', 'seller', 'begins', 'expires', 'statuses', 'file'], 'safe'],
         ];
     }
 
@@ -31,5 +32,15 @@ class Certificate extends Model
     {
         return $this->mergeAttributeLabels([
         ]);
+    }
+
+    public function getObject()
+    {
+        return $this->hasOne(Obj::class, ['id' => 'object_id']);
+    }
+
+    public function getCertificateType()
+    {
+        return CertificateType::get($this->type_id);
     }
 }

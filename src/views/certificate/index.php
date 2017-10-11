@@ -37,7 +37,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterModel' => $model,
                 'columns' => [
                     'checkbox',
-                    'id',
+                    'certificateType', 'name',
+                    'actions',
+                    'client_like', 'seller',
+                    'state', 'expires',
+
                 ],
             ]) ?>
         <?php $page->endBulkForm() ?>

@@ -80,7 +80,7 @@ class CertificateTariffRepository
             return $resource->type === $type;
         });
         foreach ($resources as $key => &$resource) {
-            $resource->certificateType = CertificateType::getKnownType($resource->object_id);
+            $resource->certificateType = CertificateType::get($resource->object_id);
             if (!$resource->certificateType) {
                 unset($resources[$key]);
             }

@@ -12,11 +12,3 @@ use hiqdev\combo\StaticCombo;
         <?= $search->field('seller_id')->widget(ClientCombo::class, ['formElementSelector' => '.form-group']) ?>
     </div>
 <?php endif ?>
-
-<div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('object')->widget(StaticCombo::class, [
-        'data' => $objectOptions,
-        'hasId' => true,
-        'multiple' => false,
-    ]) ?>
-</div>
