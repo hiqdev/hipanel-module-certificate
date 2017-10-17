@@ -7,7 +7,7 @@ use hipanel\widgets\ClientSellerLink;
 
 $this->title = $model->id;
 $this->params['subtitle'] = Yii::t('hipanel:certificate', 'Certificate detailed information') . ' #' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel:certificate', 'My Certificates'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel:certificate', 'Certificates'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
