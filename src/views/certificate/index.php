@@ -4,7 +4,7 @@ use hipanel\modules\certificate\grid\CertificateGridView;
 use hipanel\modules\certificate\menus\CertificateBulkActionsMenu;
 use hipanel\widgets\IndexPage;
 
-$this->title = Yii::t('hipanel:certificate', 'My Certificates');
+$this->title = Yii::t('hipanel:certificate', 'Certificates');
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
