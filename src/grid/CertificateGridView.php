@@ -18,6 +18,7 @@ use hipanel\modules\domain\widgets\Expires;
 use hipanel\modules\certificate\menus\CertificateActionsMenu;
 use hipanel\modules\certificate\widgets\CertificateState;
 use hiqdev\yii2\menus\grid\MenuColumn;
+use Yii;
 use yii\helpers\Html;
 
 class CertificateGridView extends BoxedGridView
@@ -30,6 +31,7 @@ class CertificateGridView extends BoxedGridView
                 'filterOptions' => ['class' => 'narrow-filter'],
             ],
             'certificateType' => [
+                'label' => Yii::t('hipanel:certificate', 'Certificate Type')
             ],
             'object' => [
                 'format' => 'raw',
@@ -54,6 +56,7 @@ class CertificateGridView extends BoxedGridView
                 'menuClass' => CertificateActionsMenu::class,
             ],
             'expires' => [
+                'label' => Yii::t('hipanel:certificate', 'Expires'),
                 'format' => 'raw',
                 'filter' => false,
                 'headerOptions' => ['style' => 'width:1em'],

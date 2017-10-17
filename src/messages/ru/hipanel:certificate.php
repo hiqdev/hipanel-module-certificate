@@ -9,4 +9,9 @@
  */
 
 return [
+    'Certificates' => 'Сертификаты',
+    'Certificate Type' => 'Тип сертификата',
+    'Expires' => 'Истекает',
+    'Renew' => 'Перевыпустить',
+    'Get certificate' => 'Получить сертификат',
 ];
