@@ -23,7 +23,9 @@ $form = ActiveForm::begin([
                         <h3 class="box-title"><?= $model->name ?></h3>
                     </div>
                     <div class="box-body">
-                        <?= $form->field($model, "approver_email") ?>
+                        <?= Html::activeHiddenInput($model, 'id') ?>
+                        <?= Html::activeHiddenInput($model, 'remoteid') ?>
+                        <?= Html::activeHiddenInput($model, 'name') ?>
                         <?= $form->field($model, "csr")->widget(CSRInput::class, ['fqdn' => $model->name]) ?>
                     </div>
                 </div>
