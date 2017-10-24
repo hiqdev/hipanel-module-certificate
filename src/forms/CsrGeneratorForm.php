@@ -15,34 +15,43 @@ use yii\base\Model;
 
 class CsrGeneratorForm extends Model
 {
-    public $cn;
-    public $o;
-    public $ou;
-    public $l;
-    public $st;
-    public $c;
-    public $email;
-    public $productId;
+    public $csr_commonname;
+    public $csr_organization;
+    public $csr_department;
+    public $csr_city;
+    public $csr_state;
+    public $csr_country;
+    public $csr_email;
 
     public function rules()
     {
         return [
-            [['cn', 'o', 'ou', 'l', 'st', 'c', 'email'], 'required'],
-            ['productId', 'integer'],
-//            ['email', 'email'],
+            [
+                [
+                    'csr_commonname',
+                    'csr_organization',
+                    'csr_department',
+                    'csr_city',
+                    'csr_state',
+                    'csr_country',
+                    'csr_email',
+                ],
+                'required',
+            ],
+            ['csr_email', 'email'],
         ];
     }
 
     public function attributeLabels()
     {
         return [
-            'cn' => Yii::t('hipanel:certificate', 'Common Name'),
-            'o' => Yii::t('hipanel:certificate', 'Organization'),
-            'ou' => Yii::t('hipanel:certificate', 'Department'),
-            'l' => Yii::t('hipanel:certificate', 'City'),
-            'st' => Yii::t('hipanel:certificate', 'State'),
-            'c' => Yii::t('hipanel:certificate', 'Country'),
-            'email' => Yii::t('hipanel:certificate', 'Email'),
+            'csr_commonname' => Yii::t('hipanel:certificate', 'Common Name'),
+            'csr_organization' => Yii::t('hipanel:certificate', 'Organization'),
+            'csr_department' => Yii::t('hipanel:certificate', 'Department'),
+            'csr_city' => Yii::t('hipanel:certificate', 'City'),
+            'csr_state' => Yii::t('hipanel:certificate', 'State'),
+            'csr_country' => Yii::t('hipanel:certificate', 'Country'),
+            'csr_email' => Yii::t('hipanel:certificate', 'Email'),
         ];
     }
 }

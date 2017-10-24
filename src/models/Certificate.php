@@ -13,6 +13,7 @@ namespace hipanel\modules\certificate\models;
 use hipanel\base\Model;
 use hipanel\base\ModelTrait;
 use hipanel\models\Obj;
+use Yii;
 
 class Certificate extends Model
 {
@@ -24,6 +25,9 @@ class Certificate extends Model
         return [
             [['id', 'remoteid', 'type_id', 'state_id', 'object_id', 'client_id', 'seller_id'], 'integer'],
             [['name', 'type', 'state', 'client', 'seller', 'begins', 'expires', 'statuses', 'file'], 'safe'],
+
+            [['id', 'remoteid', 'client_id', 'approver_email'], 'integer', 'on' => ['reissue']],
+            [['id', 'csr'], 'required', 'on' => 'reissue'],
         ];
     }
 
@@ -31,6 +35,7 @@ class Certificate extends Model
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([
+            'csr' => Yii::t('hipanel:certificate', 'CSR'),
         ]);
     }
 

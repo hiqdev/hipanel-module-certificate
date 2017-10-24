@@ -32,6 +32,12 @@ class CertificateActionsMenu extends Menu
                 'url' => ['@certificate/bulk-renew', 'id' => $this->model->id],
                 'encode' => false,
             ],
+            'reissue' => [
+                'label' => Yii::t('hipanel:certificate', 'Reissue'),
+                'icon' => 'fa-refresh',
+                'url' => ['@certificate/reissue', 'id' => $this->model->id],
+                'encode' => false,
+            ],
         ];
     }
 }

@@ -12,6 +12,10 @@ return [
     'Certificates' => 'Сертификаты',
     'Certificate Type' => 'Тип сертификата',
     'Expires' => 'Истекает',
-    'Renew' => 'Перевыпустить',
+    'Reissue' => 'Перевыпустить',
+    'Renew' => 'Продлить',
     'Get certificate' => 'Получить сертификат',
+    'Generating' => 'Генерирую',
+    'Generate CSR' => 'Генерировать CSR',
+    'Generate CSR form' => 'Форма генерации CSR'
 ];
