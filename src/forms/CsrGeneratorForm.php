@@ -23,6 +23,8 @@ class CsrGeneratorForm extends Model
     public $csr_country;
     public $csr_email;
     public $copy_to_email = true;
+    public $client;
+    public $client_id;
 
     public function rules()
     {
@@ -36,11 +38,16 @@ class CsrGeneratorForm extends Model
                     'csr_state',
                     'csr_country',
                     'csr_email',
+                    'client_id',
+                    'client',
+                    'copy_to_email',
                 ],
                 'required',
             ],
             ['csr_email', 'email'],
             ['copy_to_email', 'boolean'],
+            ['client_id', 'integer'],
+            ['client', 'string'],
         ];
     }
 
