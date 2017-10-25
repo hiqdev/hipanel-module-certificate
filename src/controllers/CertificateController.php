@@ -51,7 +51,7 @@ class CertificateController extends CrudController
         ];
     }
 
-    public function actionCsrGenerateForm($client_id = null, $client = null, $fqdn = null)
+    public function actionCsrGenerateForm($client = null, $fqdn = null)
     {
         $request = Yii::$app->request;
         $model = new CsrGeneratorForm();
@@ -79,7 +79,6 @@ class CertificateController extends CrudController
                 }
             } else {
                 $model->client = $client;
-                $model->client_id = $client_id;
 
                 return $this->renderAjax('_csrGenerate', [
                     'model' => $model,

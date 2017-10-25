@@ -27,7 +27,6 @@ class CSRInput extends Widget
                 'header' => Html::tag('h4', Yii::t('hipanel:certificate', 'Generate CSR form'), ['class' => 'modal-title']),
                 'actionUrl' => Url::to([
                     '@certificate/csr-generate-form',
-                    'client_id' => $this->model->client_id,
                     'client' => $this->model->client,
                     'fqdn' => $this->model->name,
                 ]),

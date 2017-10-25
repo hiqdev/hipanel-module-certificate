@@ -94,7 +94,7 @@ $('#contact-combo').on('select2:select select2:unselect', function (e) {
         ]) ?>
         <p class="help-block">
             <?= Yii::t('hipanel:certificate', 'Or fill in the fields manually.') ?>
-            <?= Yii::t('hipanel:certificate', 'Also, you can {:create_new_contact} and select it for autocomplete.', [':create_new_contact' => Html::a(Yii::t('hipanel:certificate', 'create a new contact'), ['@contact/create'], ['target' => '_blank'])]) ?>
+            <?= Yii::t('hipanel:certificate', 'Also, you can {create_new_contact} and select it for autocomplete.', ['create_new_contact' => Html::a(Yii::t('hipanel:certificate', 'create a new contact'), ['@contact/create'], ['target' => '_blank'])]) ?>
         </p>
     </div>
 
@@ -105,7 +105,6 @@ $('#contact-combo').on('select2:select select2:unselect', function (e) {
         'action' => Url::to($requestUrl),
     ]) ?>
 
-    <?= Html::activeHiddenInput($model, 'client_id') ?>
     <?= Html::activeHiddenInput($model, 'client') ?>
 
     <div class="row">
@@ -125,7 +124,7 @@ $('#contact-combo').on('select2:select select2:unselect', function (e) {
             <?= $form->field($model, 'csr_state')->hint(Yii::t('hipanel:certificate', 'The state/region/province where your organization is located.')) ?>
         </div>
         <div class="col-md-6">
-            <?= $form->field($model, 'csr_country')->dropDownList($countries, ['prompt' => '--'])->hint(Yii::t('hipanel:certificate', 'Business Location - Country')) ?>
+            <?= $form->field($model, 'csr_country')->dropDownList($countries, ['prompt' => '--'])->hint(Yii::t('hipanel:certificate', 'Business Location - Country.')) ?>
         </div>
         <div class="col-md-6">
             <?= $form->field($model, 'csr_email')->hint(Yii::t('hipanel:certificate', 'An email address used to contact your organization.')) ?>
@@ -139,7 +138,7 @@ $('#contact-combo').on('select2:select select2:unselect', function (e) {
         'id' => 'csr-generate-button',
         'class' => 'btn btn-success ',
         'data' => [
-            'loading-text' => Yii::t('hipanel:certificate', 'Generating') . '...',
+            'loading-text' => Yii::t('hipanel:certificate', 'Generating...'),
         ],
     ]) ?>
     <?php $form->end() ?>
