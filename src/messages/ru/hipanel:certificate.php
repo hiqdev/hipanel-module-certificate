@@ -17,5 +17,7 @@ return [
     'Get certificate' => 'Получить сертификат',
     'Generating' => 'Генерирую',
     'Generate CSR' => 'Генерировать CSR',
-    'Generate CSR form' => 'Форма генерации CSR'
+    'Generate CSR form' => 'Форма генерации CSR',
+    'Copy to email' => 'Отправить копию на электронную почту',
+    'Send me CSR and Private Key' => 'Отправьте мне CSR и Private Key',
 ];

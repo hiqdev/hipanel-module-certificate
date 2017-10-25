@@ -22,6 +22,7 @@ class CsrGeneratorForm extends Model
     public $csr_state;
     public $csr_country;
     public $csr_email;
+    public $copy_to_email = true;
 
     public function rules()
     {
@@ -39,6 +40,7 @@ class CsrGeneratorForm extends Model
                 'required',
             ],
             ['csr_email', 'email'],
+            ['copy_to_email', 'boolean'],
         ];
     }
 
@@ -52,6 +54,7 @@ class CsrGeneratorForm extends Model
             'csr_state' => Yii::t('hipanel:certificate', 'State'),
             'csr_country' => Yii::t('hipanel:certificate', 'Country'),
             'csr_email' => Yii::t('hipanel:certificate', 'Email'),
+            'copy_to_email' => Yii::t('hipanel:certificate', 'Copy to email'),
         ];
     }
 }

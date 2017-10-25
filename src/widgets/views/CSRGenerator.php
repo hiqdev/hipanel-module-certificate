@@ -5,11 +5,11 @@
 
 /** @var string $orderUrl */
 
-use hipanel\modules\client\widgets\combo\ContactCombo;
 use yii\base\DynamicModel;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use hipanel\modules\client\widgets\combo\ContactCombo;
 
 $loadingText = Yii::t('hipanel', 'Loadding');
 $this->registerJs("
@@ -125,6 +125,9 @@ $('#contact-combo').on('select2:select select2:unselect', function (e) {
         </div>
         <div class="col-md-6">
             <?= $form->field($model, 'csr_email')->hint(Yii::t('hipanel:certificate', 'An email address used to contact your organization.')) ?>
+        </div>
+        <div class="col-md-12">
+            <?= $form->field($model, 'copy_to_email')->checkbox()->hint(Yii::t('hipanel:certificate', 'Send me CSR and Private Key')) ?>
         </div>
     </div>
     <hr>
