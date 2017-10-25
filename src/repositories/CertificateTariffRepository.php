@@ -85,7 +85,7 @@ class CertificateTariffRepository
                 unset($resources[$key]);
             }
             /** @var CertificateResource $resource */
-            if (!$resource->getPriceForPeriod(1)) {
+            if (!$resource->hasPriceForPeriod(1)) {
                 unset($resources[$key]);
             }
         }
