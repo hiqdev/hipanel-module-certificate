@@ -51,10 +51,10 @@ class CertificateController extends CrudController
         ];
     }
 
-    public function actionCsrGenerateForm($fqdn = null)
+    public function actionCsrGenerateForm($client_id = null, $client = null, $fqdn = null)
     {
-        $model = new CsrGeneratorForm();
         $request = Yii::$app->request;
+        $model = new CsrGeneratorForm();
 
         if ($request->isAjax) {
             if ($request->isPost) {
@@ -78,6 +78,9 @@ class CertificateController extends CrudController
                     return $this->renderJson($result);
                 }
             } else {
+                $model->client = $client;
+                $model->client_id = $client_id;
+
                 return $this->renderAjax('_csrGenerate', [
                     'model' => $model,
                     'countries' => array_change_key_case(Ref::getList('country_code'), CASE_UPPER),

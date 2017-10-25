@@ -104,6 +104,10 @@ $('#contact-combo').on('select2:select select2:unselect', function (e) {
         'id' => 'csr-generator-form',
         'action' => Url::to($requestUrl),
     ]) ?>
+
+    <?= Html::activeHiddenInput($model, 'client_id') ?>
+    <?= Html::activeHiddenInput($model, 'client') ?>
+
     <div class="row">
         <div class="col-md-12">
             <?= $form->field($model, 'csr_commonname')->textInput(['readonly' => !empty($model->csr_commonname)])->hint(Yii::t('hipanel:certificate', 'The fully qualified domain name (FQDN) of your server. This must match exactly what you type in your web browser or you will receive a name mismatch error.')) ?>

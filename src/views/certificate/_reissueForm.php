@@ -26,7 +26,7 @@ $form = ActiveForm::begin([
                         <?= Html::activeHiddenInput($model, 'id') ?>
                         <?= Html::activeHiddenInput($model, 'remoteid') ?>
                         <?= Html::activeHiddenInput($model, 'name') ?>
-                        <?= $form->field($model, "csr")->widget(CSRInput::class, ['fqdn' => $model->name]) ?>
+                        <?= $form->field($model, "csr")->widget(CSRInput::class) ?>
                     </div>
                 </div>
             </div>
@@ -45,22 +45,3 @@ $form = ActiveForm::begin([
 
 
 <?php $form->end() ?>
-
-<?php
-$url = Url::to(['@certificate/csr-generate-form']);
-echo AjaxModal::widget([
-    'id' => 'csr-modal',
-    'size' => AjaxModal::SIZE_LARGE,
-    'header' => Html::tag('h4', Yii::t('hipanel:certificate', 'Generate CSR form'), ['class' => 'modal-title']),
-    'actionUrl' => $url,
-    'scenario' => 'csr-generate',
-    'toggleButton' => false,
-    'clientEvents' => [
-        'show.bs.modal' => new \yii\web\JsExpression("function (e) {
-            if (e.namespace !== 'bs.modal') return true;
-            $.get('{$url}?fqdn=' + e.relatedTarget.getAttribute('data-fqdn')).done(function (data) {
-                $('#csr-modal .modal-body').html(data);
-            });
-        }"),
-    ],
-]) ?>
