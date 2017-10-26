@@ -19,7 +19,7 @@ class CSRInput extends Widget
 
     public function init()
     {
-        $this->registerClientCss();
+        $this->addClientCss();
         $this->view->on(View::EVENT_END_BODY, function ($event) {
             echo AjaxModal::widget([
                 'id' => 'csr-modal',
@@ -50,7 +50,7 @@ class CSRInput extends Widget
         return Html::tag('div', $html, ['class' => 'csr-input-container']);
     }
 
-    private function registerClientCss()
+    private function addClientCss()
     {
         $this->view->registerCss("
         .csr-input-container {
