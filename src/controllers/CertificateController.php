@@ -27,7 +27,7 @@ class CertificateController extends CrudController
 {
     public function actions()
     {
-        return [
+        return array_merge(parent::actions(), [
             'index' => [
                 'class' => IndexAction::class,
                 'on beforePerform' => function (Event $event) {
@@ -48,7 +48,7 @@ class CertificateController extends CrudController
             'validate-form' => [
                 'class' => ValidateFormAction::class,
             ],
-        ];
+        ]);
     }
 
     public function actionCsrGenerateForm($client = null, $fqdn = null)

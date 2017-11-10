@@ -39,7 +39,7 @@ class CertificateOrderController extends Controller
 
     public function actions()
     {
-        return [
+        return array_merge(parent::actions(), [
             'add-to-cart-order' => [
                 'class' => AddToCartAction::class,
                 'productClass' => CertificateOrderProduct::class,
@@ -51,7 +51,7 @@ class CertificateOrderController extends Controller
                     'resources' => $this->tariffRepository->getResources(),
                 ],
             ],
-        ];
+        ]);
     }
 
     public function actionCsrGenerator($productId = null)
