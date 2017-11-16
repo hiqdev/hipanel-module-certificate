@@ -62,7 +62,7 @@ class CertificateController extends CrudController
                     $result = [];
                     try {
                         $result['status'] = 'success';
-                        $result['csr'] = Certificate::perform('GenerateCSR', $model->getAttributes());
+                        $result['csr'] = Certificate::perform('generate-CSR', $model->getAttributes());
                     } catch (Exception $e) {
                         $result['status'] = 'fail';
                         if (!Yii::getAlias('@ticket', false)) {
