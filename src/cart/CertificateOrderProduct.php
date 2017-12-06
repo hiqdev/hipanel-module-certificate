@@ -21,7 +21,7 @@ class CertificateOrderProduct extends AbstractCertificateProduct
     protected $_calculationModel = Calculation::class;
 
     /** {@inheritdoc} */
-    protected $_purchaseModel = CertificatePurchase::class;
+    protected $_purchaseModel = CertificateOrderPurchase::class;
 
     /** {@inheritdoc} */
     protected $_operation = CertificateResource::TYPE_CERT_PURCHASE;
