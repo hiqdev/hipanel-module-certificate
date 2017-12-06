@@ -16,8 +16,7 @@ class SidebarMenu extends \hiqdev\yii2\menus\Menu
 {
     public function items()
     {
-        $identity = Yii::$app->user->identity;
-        if (!in_array($identity->login, ['sol','solex','tofid','tafid','silverfire','bladeroot'])) {
+        if (!Yii::$app->user->can('test.beta')) {
             return [];
         }
 
