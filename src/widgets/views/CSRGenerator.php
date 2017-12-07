@@ -114,22 +114,24 @@ $('#contact-combo').on('select2:select select2:unselect', function (e) {
         <div class="col-md-6">
             <?= $form->field($model, 'csr_organization')->hint(Yii::t('hipanel:certificate', 'The legal name of your organization.')) ?>
         </div>
-        <div class="clearfix"></div>
         <div class="col-md-6">
             <?= $form->field($model, 'csr_department')->hint(Yii::t('hipanel:certificate', 'The division of your organization handling the certificate.')) ?>
         </div>
+        <div class="clearfix"></div>
         <div class="col-md-6">
             <?= $form->field($model, 'csr_city')->hint(Yii::t('hipanel:certificate', 'The city where your organization is located.')) ?>
         </div>
         <div class="col-md-6">
             <?= $form->field($model, 'csr_state')->hint(Yii::t('hipanel:certificate', 'The state/region/province where your organization is located.')) ?>
         </div>
+        <div class="clearfix"></div>
         <div class="col-md-6">
             <?= $form->field($model, 'csr_country')->dropDownList($countries, ['prompt' => '--'])->hint(Yii::t('hipanel:certificate', 'Business Location - Country.')) ?>
         </div>
         <div class="col-md-6">
             <?= $form->field($model, 'csr_email')->hint(Yii::t('hipanel:certificate', 'An email address used to contact your organization.')) ?>
         </div>
+        <div class="clearfix"></div>
         <div class="col-md-12">
             <?= $form->field($model, 'copy_to_email')->checkbox()->hint(Yii::t('hipanel:certificate', 'Send me CSR and Private Key')) ?>
         </div>
