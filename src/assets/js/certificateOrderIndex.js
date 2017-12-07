@@ -31,7 +31,7 @@
                 isInitLayout: false,
                 getSortData: {
                     name: '.ca-name',
-                    price: '.ca-price parseFloat',
+                    price: '.ca-raw-price parseInt',
                     fc: '[data-featuresCount]'
                 }
             });

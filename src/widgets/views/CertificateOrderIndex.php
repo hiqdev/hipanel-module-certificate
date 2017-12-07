@@ -126,13 +126,17 @@ $this->registerCss('
                         <div class="sq text-center">
                             <div class="btn-group">
                                 <a class="btn btn-default btn-flat text-bold disabled cert-price-btn">
+                                    <span class="ca-raw-price" style="display: none"><?= $resource->getPriceForPeriod(1) ?></span>
                                     <span class="ca-price">
                                     <?= $formatter->asCurrency($resource->getPriceForPeriod(1), $resource->getCurrency()) ?>
                                     </span>
                                     / <?= Yii::t('hipanel', 'year') ?>
 
                                 </a>
-                                <?= Html::a(Yii::t('hipanel:certificate', 'Order'), ['@certificate/order/add-to-cart-order', 'product_id' => $type->id], ['class' => 'btn btn-success btn-flat']) ?>
+                                <?= Html::a(Yii::t('hipanel:certificate', 'Order'), [
+                                    '@certificate/order/add-to-cart-order',
+                                    'product_id' => $type->id,
+                                ], ['class' => 'btn btn-success btn-flat']) ?>
                             </div>
                         </div>
                     </div>
