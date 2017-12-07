@@ -26,8 +26,6 @@ $form = ActiveForm::begin([
 
                         <?= $form->field($model, "approver_email") ?>
 
-                        <?= $form->field($model, "approver_emails") ?>
-
                         <?= $form->field($model, 'admin_id')->widget(ContactCombo::class, ['hasId' => true]) ?>
 
                         <?= $form->field($model, 'tech_id')->widget(ContactCombo::class, ['hasId' => true]) ?>
