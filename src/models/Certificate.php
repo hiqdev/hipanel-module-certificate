@@ -26,13 +26,16 @@ class Certificate extends Model
             [['id', 'remoteid', 'type_id', 'state_id', 'object_id', 'client_id', 'seller_id'], 'integer'],
             [['name', 'type', 'state', 'client', 'seller', 'begins', 'expires', 'statuses', 'file'], 'safe'],
 
-            [['id', 'remoteid', 'client_id', 'approver_email'], 'integer', 'on' => ['reissue']],
+            [['id', 'remoteid', 'client_id'], 'integer', 'on' => ['reissue']],
             [['id', 'csr'], 'required', 'on' => 'reissue'],
 
             // Issue
             [['id', 'admin_id', 'tech_id', 'org_id'], 'integer', 'on' => 'issue'],
             [['dcv_method', 'webserver_type', 'dns_names', 'csr'], 'string', 'on' => 'issue'],
-            [['approver_email'], 'email', 'on' => 'issue'],
+
+            [['approver_email'], 'email', 'on' => ['issue', 'reissue']],
+            [['approver_email'], 'required', 'on' => ['issue', 'reissue']],
+
             [['approver_emails'], 'email', 'on' => 'issue'],
         ];
     }
