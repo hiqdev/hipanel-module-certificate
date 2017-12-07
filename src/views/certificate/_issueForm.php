@@ -22,7 +22,11 @@ $form = ActiveForm::begin([
                     <div class="box-body">
                         <?= Html::activeHiddenInput($model, 'id') ?>
 
-                        <?= $form->field($model, "dns_names") ?>
+                        <?php if ($model->needsDnsNames()) : ?>
+                            <?= $form->field($model, "dns_names") ?>
+                        <?php endif ?>
+
+                        <?= $form->field($model, 'dcv_method')->dropDownList($model->dcvMethodOptions()) ?>
 
                         <?= $form->field($model, "approver_email") ?>
 
@@ -31,8 +35,6 @@ $form = ActiveForm::begin([
                         <?= $form->field($model, 'tech_id')->widget(ContactCombo::class, ['hasId' => true]) ?>
 
                         <?= $form->field($model, 'org_id')->widget(ContactCombo::class, ['hasId' => true]) ?>
-
-                        <?= $form->field($model, 'dcv_method')->dropDownList($model->dcvMethodOptions()) ?>
 
                         <?= $form->field($model, "csr")->widget(CSRInput::class) ?>
                     </div>

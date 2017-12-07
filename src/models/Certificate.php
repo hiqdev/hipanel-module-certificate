@@ -42,6 +42,8 @@ class Certificate extends Model
     {
         return $this->mergeAttributeLabels([
             'csr' => Yii::t('hipanel:certificate', 'CSR'),
+            'dns_names' => Yii::t('hipanel:certificate', 'DNS names'),
+            'dcv_method' => Yii::t('hipanel:certificate', 'Domain Control Validation method'),
         ]);
     }
 
@@ -60,5 +62,15 @@ class Certificate extends Model
         return [
             'email' => Yii::t('hipanel:certificate', 'Email'),
         ];
+    }
+
+    /**
+     * DNS names are needed for SAN/UCC/Multi-Domain certificates.
+     * @return bool
+     */
+    public function needsDnsNames()
+    {
+        /// TODO check if SAN/UCC/Multi-Domain
+        return false;
     }
 }
