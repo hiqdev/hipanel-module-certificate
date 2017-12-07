@@ -69,8 +69,11 @@ class CertificateGridView extends BoxedGridView
                 'class' => MenuColumn::class,
                 'menuClass' => CertificateActionsMenu::class,
             ],
+            'begins' => [
+                'format' => 'date',
+                'filter' => false,
+            ],
             'expires' => [
-                'label' => Yii::t('hipanel:certificate', 'Expires'),
                 'format' => 'raw',
                 'filter' => false,
                 'headerOptions' => ['style' => 'width:1em'],

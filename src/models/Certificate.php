@@ -44,6 +44,8 @@ class Certificate extends Model
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([
+            'begins' => Yii::t('hipanel:certificate', 'Valid from'),
+            'expires' => Yii::t('hipanel:certificate', 'Expires'),
             'csr' => Yii::t('hipanel:certificate', 'CSR'),
             'dns_names' => Yii::t('hipanel:certificate', 'DNS names'),
             'dcv_method' => Yii::t('hipanel:certificate', 'Domain Control Validation method'),

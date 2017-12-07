@@ -5,8 +5,8 @@ use hipanel\modules\certificate\menus\CertificateDetailMenu;
 use hipanel\widgets\Box;
 use hipanel\widgets\ClientSellerLink;
 
-$this->title = $model->name;
-$this->params['subtitle'] = Yii::t('hipanel:certificate', 'Certificate detailed information') . ' #' . $model->name;
+$this->title = $model->name ?: $model->id;
+$this->params['subtitle'] = Yii::t('hipanel:certificate', 'Certificate detailed information') . ' #' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel:certificate', 'Certificates'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <i class="fa fa-shield fa-5x"></i>
         </div>
         <p class="text-center">
-            <span class="profile-user-name"><?= $model->id ?></span>
+            <span class="profile-user-name"><?= $model->name ?: $model->id ?></span>
             <br>
             <span class="profile-user-name"><?= ClientSellerLink::widget(compact('model')) ?></span>
         </p>
@@ -37,25 +37,22 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="col-md-9">
-        <div class="row">
-            <div class="col-md-6">
-                <?php
-                $box = Box::begin(['renderBody' => false]);
-                $box->beginHeader();
-                echo $box->renderTitle(Yii::t('hipanel:certificate', 'Certificate information'));
-                $box->endHeader();
-                $box->beginBody();
-                echo CertificateGridView::detailView([
+        <?php $box = Box::begin(['renderBody' => false]) ?>
+            <?php $box->beginHeader() ?>
+                <?= $box->renderTitle(Yii::t('hipanel:certificate', 'Certificate information')) ?>
+            <?php $box->endHeader() ?>
+            <?php $box->beginBody() ?>
+                <?= CertificateGridView::detailView([
                     'boxed' => false,
                     'model' => $model,
                     'columns' => [
                         'id', 'seller_id', 'client_id',
+                        'state', 'certificateType',
+                        'name',
+                        'begins', 'expires',
                     ],
-                ]);
-                $box->endBody();
-                $box->end();
-                ?>
-            </div>
-        </div>
+                ]) ?>
+            <?php $box->endBody() ?>
+        <?php $box->end() ?>
     </div>
 <?php
