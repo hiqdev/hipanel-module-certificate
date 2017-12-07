@@ -28,6 +28,18 @@ class Certificate extends Model
 
             [['id', 'remoteid', 'client_id', 'approver_email'], 'integer', 'on' => ['reissue']],
             [['id', 'csr'], 'required', 'on' => 'reissue'],
+
+            // Issue
+            [['id', 'admin_id', 'tech_id', 'org_id'], 'integer', 'on' => 'issue'],
+            [['dcv_method', 'webserver_type', 'dns_names', 'csr'], 'string', 'on' => 'issue'],
+            [['approver_email'], 'email', 'on' => 'issue'],
+            [
+                ['approver_emails'],
+                function ($attribute) {
+
+                },
+                'on' => 'issue',
+            ],
         ];
     }
 
@@ -47,5 +59,12 @@ class Certificate extends Model
     public function getCertificateType()
     {
         return CertificateType::get($this->type_id);
+    }
+
+    public function dcvMethodOptions()
+    {
+        return [
+            'email' => Yii::t('hipanel:certificate', 'Email'),
+        ];
     }
 }

@@ -13,6 +13,7 @@ namespace hipanel\modules\certificate\grid;
 use hipanel\grid\BoxedGridView;
 use hipanel\grid\MainColumn;
 use hipanel\grid\RefColumn;
+use hipanel\modules\certificate\widgets\IssueButton;
 use hipanel\widgets\obj\ObjLinkWidget;
 use hipanel\modules\domain\widgets\Expires;
 use hipanel\modules\certificate\menus\CertificateActionsMenu;
@@ -27,11 +28,24 @@ class CertificateGridView extends BoxedGridView
     {
         return array_merge(parent::columns(), [
             'name' => [
-                'class' => MainColumn::class,
                 'filterOptions' => ['class' => 'narrow-filter'],
+                'format' => 'raw',
+                'value' => function ($model) {
+                    $out = '';
+                    if ($model->state === 'ok') {
+                        $out = Html::a($model->name, [
+                            '@certificate/view',
+                            'id' => $model->id,
+                        ], ['class' => 'text-bold']);
+                    } else {
+                        $out = IssueButton::widget(['certificate_id' => $model->id]);
+                    }
+
+                    return $out;
+                },
             ],
             'certificateType' => [
-                'label' => Yii::t('hipanel:certificate', 'Certificate Type')
+                'label' => Yii::t('hipanel:certificate', 'Certificate Type'),
             ],
             'object' => [
                 'format' => 'raw',
@@ -41,13 +55,13 @@ class CertificateGridView extends BoxedGridView
                 },
             ],
             'state' => [
-                'class'  => RefColumn::class,
+                'class' => RefColumn::class,
                 'filterAttribute' => 'state_in',
                 'filterOptions' => ['class' => 'narrow-filter'],
                 'format' => 'raw',
-                'gtype'  => 'state,certificate',
+                'gtype' => 'state,certificate',
                 'i18nDictionary' => 'hipanel:certificate',
-                'value'  => function ($model) {
+                'value' => function ($model) {
                     return CertificateState::widget(compact('model'));
                 },
             ],

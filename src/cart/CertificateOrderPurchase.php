@@ -10,6 +10,9 @@
 
 namespace hipanel\modules\certificate\cart;
 
+use hipanel\modules\certificate\widgets\IssueButton;
+use Yii;
+
 class CertificateOrderPurchase extends AbstractCertificatePurchase
 {
     public $product_id;
@@ -32,5 +35,13 @@ class CertificateOrderPurchase extends AbstractCertificatePurchase
         return array_merge(parent::rules(), [
             [['product_id'], 'integer'],
         ]);
+    }
+
+    /** {@inheritdoc} */
+    public function renderNotes()
+    {
+        $certificate_id = $this->_result['id'];
+
+        return Yii::t('hipanel:certificate', 'Certificate successfully paid.') . '<br>' . IssueButton::widget(compact('certificate_id'));
     }
 }
