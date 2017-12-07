@@ -40,7 +40,7 @@ class CSRInput extends Widget
     {
         $html = Html::activeTextarea($this->model, $this->attribute, ['class' => 'form-control', 'rows' => 5]);
         $html .= Html::button('<i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp;' . Yii::t('hipanel:certificate', 'Generate CSR'), [
-            'class' => 'btn btn-xs btn-default btn-flat',
+            'class' => 'btn btn-xs btn-warning btn-flat',
             'data' => [
                 'toggle' => 'modal',
                 'target' => '#csr-modal',
