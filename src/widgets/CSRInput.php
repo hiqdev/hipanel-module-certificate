@@ -39,7 +39,7 @@ class CSRInput extends Widget
     public function run()
     {
         $html = Html::activeTextarea($this->model, $this->attribute, ['class' => 'form-control', 'rows' => 5]);
-        $html .= Html::button('<i class="fa fa-cog" aria-hidden="true"></i>&nbsp;' . Yii::t('hipanel:certificate', 'Generate CSR'), [
+        $html .= Html::button('<i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp;' . Yii::t('hipanel:certificate', 'Generate CSR'), [
             'class' => 'btn btn-xs btn-default btn-flat',
             'data' => [
                 'toggle' => 'modal',
@@ -62,7 +62,6 @@ class CSRInput extends Widget
             position: absolute;
             top: -25px;
             right: 0px;
-            opacity: .7;
         }
         .csr-input-container .btn:hover {
             opacity: 1;
