@@ -19,24 +19,29 @@ $form = ActiveForm::begin([
         <div class="col-md-4">
             <div class="item">
                 <div class="box box-widget">
+                    <?php if ($model->name) : ?>
+                        <div class="box-header with-border">
+                            <h3 class="box-title"><?= $model->name ?></h3>
+                        </div>
+                    <?php endif ?>
                     <div class="box-body">
                         <?= Html::activeHiddenInput($model, 'id') ?>
 
                         <?php if ($model->needsDnsNames()) : ?>
-                            <?= $form->field($model, "dns_names") ?>
+                            <?= $form->field($model, 'dns_names') ?>
                         <?php endif ?>
 
                         <?= $form->field($model, 'dcv_method')->dropDownList($model->dcvMethodOptions()) ?>
 
-                        <?= $form->field($model, "approver_email") ?>
+                        <?= $form->field($model, 'approver_email') ?>
 
-                        <?= $form->field($model, 'admin_id')->widget(ContactCombo::class, ['hasId' => true]) ?>
+                        <?php if ($model->scenario !== 'reissue') : ?>
+                            <?= $form->field($model, 'admin_id')->widget(ContactCombo::class, ['hasId' => true]) ?>
+                            <?= $form->field($model, 'tech_id')->widget(ContactCombo::class, ['hasId' => true]) ?>
+                            <?= $form->field($model, 'org_id')->widget(ContactCombo::class, ['hasId' => true]) ?>
+                        <?php endif ?>
 
-                        <?= $form->field($model, 'tech_id')->widget(ContactCombo::class, ['hasId' => true]) ?>
-
-                        <?= $form->field($model, 'org_id')->widget(ContactCombo::class, ['hasId' => true]) ?>
-
-                        <?= $form->field($model, "csr")->widget(CSRInput::class) ?>
+                        <?= $form->field($model, 'csr')->widget(CSRInput::class) ?>
                     </div>
                 </div>
             </div>
