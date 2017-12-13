@@ -12,7 +12,8 @@ use yii\helpers\Url;
 use hipanel\modules\client\widgets\combo\ContactCombo;
 
 $loadingText = Yii::t('hipanel', 'Loadding');
-$this->registerJs("
+$this->registerJs(/** @lang JavaScript */
+    "
 
 // Form
 var CSRForm = $('#csr-generator-form');
@@ -42,6 +43,7 @@ CSRForm.on('beforeSubmit', function(event) {
                 $('#csr-result-container').show();
                 $('#csr_code').text(data.csr.csr_code);
                 $('#csr_key').text(data.csr.csr_key);
+                $('#certificate-csr').eq(0).val(data.csr.csr_code);
             } else {
                 hipanel.notify.error(data.message);
             }
