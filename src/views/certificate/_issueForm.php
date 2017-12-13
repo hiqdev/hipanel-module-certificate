@@ -47,7 +47,7 @@ $form = ActiveForm::begin([
             </div>
             <div style="display: flex; justify-content: space-between">
                 <div>
-                    <?= Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-success']) ?>
+                    <?= Html::submitButton($model->scenario === 'issue' ? Yii::t('hipanel:certificate', 'Issue certificate') : Yii::t('hipanel:certificate', 'Reissue certificate'), ['class' => 'btn btn-success']) ?>
                     &nbsp;
                     <?= Html::button(Yii::t('hipanel', 'Cancel'), [
                         'class' => 'btn btn-default',

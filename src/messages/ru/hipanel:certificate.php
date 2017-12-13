@@ -41,4 +41,6 @@ return [
     'Or fill in the fields manually.' => 'Или заполните поля вручную.',
     'Also, you can {create_new_contact} and select it for autocomplete.' => 'Кроме того, вы можете {create_new_contact} и выбрать его для автозаполнения.',
     'create a new contact' => 'создать новый контакт',
+    'Issue certificate' => 'Выпустить сертификат',
+    'Reissue certificate' => 'Перевыпустить сертификат',
 ];
