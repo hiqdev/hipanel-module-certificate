@@ -16,7 +16,7 @@ class IssueButton extends Widget
     public function run()
     {
         $html = Html::beginTag('div');
-        $html .= Html::a('<i class="fa fa-spinner fa-pulse fa-fw"></i>&nbsp;&nbsp;' . Yii::t('hipanel:certificate', 'Issue certificate'), [
+        $html .= Html::a(Yii::t('hipanel:certificate', 'Issue certificate'), [
             '@certificate/issue',
             'id' => $this->certificate_id,
         ], ['class' => 'btn btn-warning btn-sm btn-flat']);
