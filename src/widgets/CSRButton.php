@@ -9,17 +9,16 @@ use yii\bootstrap\Html;
 use hipanel\helpers\Url;
 use hipanel\widgets\AjaxModal;
 
-class CSRInput extends Widget
+class CSRButton extends Widget
 {
     public $model;
 
-    public $attribute = 'csr';
+    public $buttonOptions = [];
 
     public $buttonSelector = 'csr-button';
 
     public function init()
     {
-        $this->addClientCss();
         $this->view->on(View::EVENT_END_BODY, function ($event) {
             echo AjaxModal::widget([
                 'id' => 'csr-modal',
@@ -38,35 +37,15 @@ class CSRInput extends Widget
 
     public function run()
     {
-        $html = Html::activeTextarea($this->model, $this->attribute, ['class' => 'form-control', 'rows' => 5]);
-        $html .= Html::button('<i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp;' . Yii::t('hipanel:certificate', 'Generate CSR'), [
-            'class' => 'btn btn-xs btn-warning btn-flat',
+        $html = '';
+        $html .= Html::button('<i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp;' . Yii::t('hipanel:certificate', 'Generate CSR'), array_merge([
+            'class' => 'btn btn-warning btn-flat',
             'data' => [
                 'toggle' => 'modal',
                 'target' => '#csr-modal',
             ],
-        ]);
+        ], $this->buttonOptions));
 
         return Html::tag('div', $html, ['class' => 'csr-input-container']);
-    }
-
-    private function addClientCss()
-    {
-        $this->view->registerCss("
-        .csr-input-container {
-            position: relative;
-            width: 100%;
-        }
-        
-        .csr-input-container .btn {
-            position: absolute;
-            top: -25px;
-            right: 0px;
-        }
-        .csr-input-container .btn:hover {
-            opacity: 1;
-        }
-        
-        ");
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 use hipanel\helpers\Url;
-use hipanel\modules\certificate\widgets\CSRInput;
+use hipanel\modules\certificate\widgets\CSRButton;
 use hipanel\modules\client\widgets\combo\ContactCombo;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
@@ -41,18 +41,23 @@ $form = ActiveForm::begin([
                             <?= $form->field($model, 'org_id')->widget(ContactCombo::class, ['hasId' => true]) ?>
                         <?php endif ?>
 
-                        <?= $form->field($model, 'csr')->widget(CSRInput::class) ?>
+                        <?= $form->field($model, 'csr')->textarea(['rows' => 5]) ?>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-12">
-            <?= Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-success']) ?>
-            &nbsp;
-            <?= Html::button(Yii::t('hipanel', 'Cancel'), [
-                'class' => 'btn btn-default',
-                'onclick' => 'history.go(-1)',
-            ]) ?>
+            <div style="display: flex; justify-content: space-between">
+                <div>
+                    <?= Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-success']) ?>
+                    &nbsp;
+                    <?= Html::button(Yii::t('hipanel', 'Cancel'), [
+                        'class' => 'btn btn-default',
+                        'onclick' => 'history.go(-1)',
+                    ]) ?>
+                </div>
+                <div>
+                    <?= CSRButton::widget(compact('model')) ?>
+                </div>
+            </div>
         </div>
     </div>
 </div>
