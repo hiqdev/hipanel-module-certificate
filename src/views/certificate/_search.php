@@ -1,6 +1,8 @@
 <?php
+
+/** @var \hipanel\widgets\AdvancedSearch $search */
+
 use hipanel\modules\client\widgets\combo\ClientCombo;
-use hiqdev\combo\StaticCombo;
 
 ?>
 
