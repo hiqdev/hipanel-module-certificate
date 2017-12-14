@@ -64,7 +64,7 @@ class IssueButton extends Widget
         }
         ");
         $html = Html::beginTag('div');
-        $html .= Html::a('<i class="fa fa-exclamation-triangle blink"></i>&nbsp;' . Yii::t('hipanel:certificate', 'Issue certificate'), [
+        $html .= Html::a('<i class="fa fa-exclamation-triangle blink"></i>&nbsp;' . Yii::t('hipanel:certificate', 'Get certificate'), [
             '@certificate/issue',
             'id' => $this->certificate_id,
         ], ['class' => 'btn btn-warning btn-sm btn-flat pulse']);

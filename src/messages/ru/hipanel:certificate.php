@@ -43,4 +43,6 @@ return [
     'create a new contact' => 'создать новый контакт',
     'Issue certificate' => 'Выпустить сертификат',
     'Reissue certificate' => 'Перевыпустить сертификат',
+    'To complete the purchase procedure, you need to issue a certificate' => 'Чтобы завершить процедуру покупки, вам необходимо выпустить сертификат',
+    'Order certificate' => 'Заказать сертификат',
 ];
