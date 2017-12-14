@@ -49,6 +49,11 @@ class Certificate extends Model
             'csr' => Yii::t('hipanel:certificate', 'CSR'),
             'dns_names' => Yii::t('hipanel:certificate', 'DNS names'),
             'dcv_method' => Yii::t('hipanel:certificate', 'Domain Control Validation method'),
+            'approver_email' => Yii::t('hipanel:certificate', 'Approver email'),
+            'approver_emails' => Yii::t('hipanel:certificate', 'Approver emails'),
+            'admin_id' => Yii::t('hipanel:certificate', 'Admin contact'),
+            'tech_id' => Yii::t('hipanel:certificate', 'Tech contact'),
+            'org_id' => Yii::t('hipanel:certificate', 'Organization contact'),
         ]);
     }
 
