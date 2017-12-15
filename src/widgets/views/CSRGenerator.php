@@ -150,6 +150,9 @@ $('#contact-combo').on('select2:select select2:unselect', function (e) {
 </div>
 
 <div id="csr-result-container" style="display: none;">
+    <p class="bg-danger text-center" style="padding: 1em">
+        <?= Yii::t('hipanel:certificate', 'Keep your PRIVATE KEY in a safe place. Later it will be required to install the certificate on the server.') ?>
+    </p>
     <pre id="csr_code" class="text-center"></pre>
     <pre id="csr_key" class="text-center"></pre>
 </div>

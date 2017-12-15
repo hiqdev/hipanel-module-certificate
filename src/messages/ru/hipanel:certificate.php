@@ -108,4 +108,5 @@ return [
     'create a new contact' => 'создать новый контакт',
     'inform' => 'сообщите',
     'Buy certificate' => 'Купить сертификат',
+    'Keep your PRIVATE KEY in a safe place. Later it will be required to install the certificate on the server.' => 'Сохраните в надежном месте Ваш PRIVATE KEY. Впоследствии он потребуется для установки сертификата на сервер.'
 ];
