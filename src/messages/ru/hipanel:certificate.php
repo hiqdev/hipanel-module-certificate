@@ -107,4 +107,5 @@ return [
     'You can choose a contact to autocomplete form fields' => 'Вы можете выбрать контакт для автозаполнения полей формы',
     'create a new contact' => 'создать новый контакт',
     'inform' => 'сообщите',
+    'Buy certificate' => 'Купить сертификат',
 ];
