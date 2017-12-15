@@ -16,7 +16,7 @@ $form = ActiveForm::begin([
 
 <div class="container-items">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-sm-6 col-xs-12">
             <div class="item">
                 <div class="box box-widget">
                     <?php if ($model->name) : ?>
@@ -33,7 +33,7 @@ $form = ActiveForm::begin([
 
                         <?= $form->field($model, 'dcv_method')->dropDownList($model->dcvMethodOptions()) ?>
 
-                        <?= $form->field($model, 'approver_email') ?>
+                        <?= $form->field($model, 'approver_email')->hint(Yii::t('hipanel:certificate', 'An Approver Email address will be used during the order process of a Domain Validated SSL Certificate. An email requesting approval will be sent to the designated Approver Email address.')) ?>
 
                         <?php if ($model->scenario !== 'reissue') : ?>
                             <?= $form->field($model, 'admin_id')->widget(ContactCombo::class, ['hasId' => true]) ?>
