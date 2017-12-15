@@ -32,13 +32,13 @@ class CertificateGridView extends BoxedGridView
                 'format' => 'raw',
                 'value' => function ($model) {
                     $out = '';
-                    if ($model->state === 'ok') {
+                    if ($model->state === 'incomplete') {
+                        $out = IssueButton::widget(['certificate_id' => $model->id]);
+                    } else {
                         $out = Html::a($model->name, [
                             '@certificate/view',
                             'id' => $model->id,
                         ], ['class' => 'text-bold']);
-                    } else {
-                        $out = IssueButton::widget(['certificate_id' => $model->id]);
                     }
 
                     return $out;
