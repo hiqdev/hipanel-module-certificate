@@ -43,7 +43,12 @@ CSRForm.on('beforeSubmit', function(event) {
                 $('#csr-result-container').show();
                 $('#csr_code').text(data.csr.csr_code);
                 $('#csr_key').text(data.csr.csr_key);
-                $('#certificate-csr').eq(0).val(data.csr.csr_code);
+                
+                if ($('#certificate-csr').length > 0) {
+                    $('#select-csr button').click();
+                    $('#certificate-csr').eq(0).val(data.csr.csr_code);
+                    $('#certificate-csr').trigger('change');
+                }
             } else {
                 hipanel.notify.error(data.message);
             }
@@ -72,8 +77,6 @@ $('#contact-combo').on('select2:select select2:unselect', function (e) {
         }
     }
 });
-
-
 ");
 ?>
 <div id="csr-form-container">

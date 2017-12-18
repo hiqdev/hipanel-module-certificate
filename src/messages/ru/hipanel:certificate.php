@@ -44,7 +44,7 @@ return [
     'Get light business authentication at an extremely cheap price with our OV SSL Certificates' => 'Легкая бизнес-аутентификацию по низкой цене',
     'Get no-frills, industry standard encryption for a cheap price with our DV SSL Certificates' => 'Без излишеств, отраслевой стандарт шифрования по низкой цене',
     'GoGetSSL SSL Certificates' => '',
-    'I already have CSR' => '',
+    'I already have CSR' => 'У меня уже есть CSR',
     'Inspire maximum trust at an unbeatable price with an Extended Validation SSL' => 'Максимальное доверие по непревзойденной цене',
     'Multi-Domain / SAN' => '',
     'Name' => 'Название',
@@ -108,5 +108,7 @@ return [
     'create a new contact' => 'создать новый контакт',
     'inform' => 'сообщите',
     'Buy certificate' => 'Купить сертификат',
-    'Keep your PRIVATE KEY in a safe place. Later it will be required to install the certificate on the server.' => 'Сохраните в надежном месте Ваш PRIVATE KEY. Впоследствии он потребуется для установки сертификата на сервер.'
+    'Keep your PRIVATE KEY in a safe place. Later it will be required to install the certificate on the server.' => 'Сохраните в надежном месте Ваш PRIVATE KEY. Впоследствии он потребуется для установки сертификата на сервер.',
+    'In order to select an "Approver Email", you first need to fill in the csr field.' => 'Для того чтобы выбрать "Email для подтверждения зака SLL" вам сначала нужно заполнить поле CSR.',
+    'Approver emails received, please choose a email.' => 'Адреса эл. почты получены, пожалуйста, выберите один из них для подтверждения зака SLL',
 ];

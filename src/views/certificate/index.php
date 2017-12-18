@@ -2,6 +2,7 @@
 
 use hipanel\modules\certificate\grid\CertificateGridView;
 use hipanel\modules\certificate\menus\CertificateBulkActionsMenu;
+use hipanel\modules\certificate\widgets\CSRButton;
 use hipanel\widgets\IndexPage;
 use yii\bootstrap\Html;
 
@@ -14,9 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $page->setSearchFormData() ?>
 
     <?php $page->beginContent('main-actions') ?>
-        <?php if (Yii::getAlias('@certificate', false)) : ?>
-            <?= Html::a(Yii::t('hipanel:certificate', 'Order certificate'), ['@certificate/order/index'], ['class' => 'btn btn-sm btn-success']) ?>
-        <?php endif ?>
+        <?= Html::a(Yii::t('hipanel:certificate', 'Buy certificate'), ['@certificate/order/index'], ['class' => 'btn btn-sm btn-success']) ?>
+        <?= CSRButton::widget(['buttonOptions' => ['class' => 'btn btn-sm btn-default'], 'tagName' => 'a']) ?>
     <?php $page->endContent() ?>
 
     <?php $page->beginContent('sorter-actions') ?>

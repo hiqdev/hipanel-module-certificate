@@ -103,4 +103,26 @@ class CertificateController extends CrudController
     {
         return [];
     }
+
+    public function actionGetApproverEmails()
+    {
+        $csr = Yii::$app->request->post('csr');
+        $result = [
+            'success' => true,
+            'message' => Yii::t('hipanel:certificate', 'Approver emails received, please choose a email.'),
+            'emails' => [],
+        ];
+        if ($csr) {
+            try {
+                $apiData = Certificate::perform('get-domain-emails', ['csr' => $csr]);
+
+                $result['emails'] = $apiData;
+            } catch (\Exception $e) {
+                $result['success'] = false;
+                $result['message'] = ucfirst($e->getMessage());
+            }
+        }
+
+        return $this->asJson($result);
+    }
 }

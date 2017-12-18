@@ -15,7 +15,7 @@ class CSRButton extends Widget
 
     public $buttonOptions = [];
 
-    public $buttonSelector = 'csr-button';
+    public $tagName = 'a';
 
     public function init()
     {
@@ -26,8 +26,8 @@ class CSRButton extends Widget
                 'header' => Html::tag('h4', Yii::t('hipanel:certificate', 'Generate CSR form'), ['class' => 'modal-title']),
                 'actionUrl' => Url::to([
                     '@certificate/csr-generate-form',
-                    'client' => $this->model->client,
-                    'fqdn' => $this->model->name,
+                    'client' => $this->model ? $this->model->client : null,
+                    'fqdn' => $this->model ? $this->model->name : null,
                 ]),
                 'scenario' => 'csr-generate',
                 'toggleButton' => false,
@@ -37,8 +37,8 @@ class CSRButton extends Widget
 
     public function run()
     {
-        $html = '';
-        $html .= Html::button('<i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp;' . Yii::t('hipanel:certificate', 'Generate CSR'), array_merge([
+        $button = '';
+        $button .= Html::tag($this->tagName, '<i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp;' . Yii::t('hipanel:certificate', 'Generate CSR'), array_merge([
             'class' => 'btn btn-warning btn-flat',
             'data' => [
                 'toggle' => 'modal',
@@ -46,6 +46,6 @@ class CSRButton extends Widget
             ],
         ], $this->buttonOptions));
 
-        return Html::tag('div', $html, ['class' => 'csr-input-container']);
+        return $button;
     }
 }

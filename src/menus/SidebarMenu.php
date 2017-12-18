@@ -10,6 +10,7 @@
 
 namespace hipanel\modules\certificate\menus;
 
+use hipanel\modules\certificate\widgets\CSRButton;
 use Yii;
 
 class SidebarMenu extends \hiqdev\yii2\menus\Menu
@@ -33,6 +34,13 @@ class SidebarMenu extends \hiqdev\yii2\menus\Menu
                     'certificate-order' => [
                         'label' => Yii::t('hipanel:certificate', 'Get certificate'),
                         'url' => ['@certificate/order/index'],
+                    ],
+                    'certificate-generate-csr' => [
+                        'label' => CSRButton::widget([
+                            'tagName' => 'a',
+                            'buttonOptions' => ['class' => ''],
+                        ]),
+                        'encode' => false,
                     ],
                 ],
             ],

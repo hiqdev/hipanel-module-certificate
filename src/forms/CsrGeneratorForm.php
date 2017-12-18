@@ -37,7 +37,6 @@ class CsrGeneratorForm extends Model
                     'csr_state',
                     'csr_country',
                     'csr_email',
-                    'client',
                     'copy_to_email',
                 ],
                 'required',

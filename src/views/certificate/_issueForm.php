@@ -1,5 +1,7 @@
 <?php
 
+/** @var array $approverEmails */
+
 use hipanel\helpers\Url;
 use hipanel\modules\certificate\widgets\CSRButton;
 use hipanel\modules\client\widgets\combo\ContactCombo;
@@ -11,6 +13,27 @@ $form = ActiveForm::begin([
     'enableAjaxValidation' => true,
     'validationUrl' => Url::toRoute(['validate-form', 'scenario' => $model->scenario]),
 ]);
+$getApproverEmailsUrl = Url::to(['@certificate/get-approver-emails']);
+$this->registerJs(<<<heredoc
+    $(document).on('change', '#certificate-csr', function(e) {
+        var csr = e.target.value;
+        $.post('{$getApproverEmailsUrl}', {'csr': csr}).done(function(data) {
+            var dropdown = $("#certificate-approver_email");
+            if (data.success == true) {
+                hipanel.notify.success(data.message);    
+                $.each(data.emails, function() {
+                    dropdown.append($('<option />').val(this).text(this));
+                });
+                dropdown.removeAttr('readonly');
+            } else {
+                hipanel.notify.error(data.message);    
+                dropdown.find('option').remove().end().append($('<option />').val(null).text('--'));
+                dropdown.attr({readonly: true});
+            }  
+        });
+    });   
+heredoc
+);
 
 ?>
 
@@ -31,17 +54,38 @@ $form = ActiveForm::begin([
                             <?= $form->field($model, 'dns_names') ?>
                         <?php endif ?>
 
-                        <?= $form->field($model, 'dcv_method')->dropDownList($model->dcvMethodOptions()) ?>
-
-                        <?= $form->field($model, 'approver_email')->hint(Yii::t('hipanel:certificate', 'An Approver Email address will be used during the order process of a Domain Validated SSL Certificate. An email requesting approval will be sent to the designated Approver Email address.')) ?>
-
                         <?php if ($model->scenario !== 'reissue') : ?>
                             <?= $form->field($model, 'admin_id')->widget(ContactCombo::class, ['hasId' => true]) ?>
                             <?= $form->field($model, 'tech_id')->widget(ContactCombo::class, ['hasId' => true]) ?>
                             <?= $form->field($model, 'org_id')->widget(ContactCombo::class, ['hasId' => true]) ?>
                         <?php endif ?>
 
-                        <?= $form->field($model, 'csr')->textarea(['rows' => 5]) ?>
+
+                        <div class="csr-wrap tab-content">
+                            <div id="select-csr" class="tab-pane active">
+                                <div class="well" style="display: flex; justify-content: space-around">
+                                    <?= Html::button(Yii::t('hipanel:certificate', 'I already have CSR'), [
+                                        'class' => 'btn btn-success',
+                                        'data' => [
+                                            'target' => '#input-csr',
+                                            'toggle' => 'tab',
+                                        ],
+                                    ]) ?>
+                                    <?= CSRButton::widget(compact('model')) ?>
+                                </div>
+                            </div>
+                            <div id="input-csr" class="tab-pane">
+                                <?= $form->field($model, 'csr')->textarea(['rows' => 5]) ?>
+                            </div>
+                        </div>
+
+                        <?= $form->field($model, 'dcv_method')->dropDownList($model->dcvMethodOptions()) ?>
+                        <p class="bg-warning" style="margin-top: 1em; padding: 1em;"><?= Yii::t('hipanel:certificate', 'In order to select an "Approver Email", you first need to fill in the csr field.') ?></p>
+                        <?= $form->field($model, 'approver_email')->dropDownList([], [
+                            'prompt' => '--',
+                            'readonly' => true,
+                        ])->hint(Yii::t('hipanel:certificate', 'An Approver Email address will be used during the order process of a Domain Validated SSL Certificate. An email requesting approval will be sent to the designated Approver Email address.')) ?>
+
                     </div>
                 </div>
             </div>
@@ -53,9 +97,6 @@ $form = ActiveForm::begin([
                         'class' => 'btn btn-default',
                         'onclick' => 'history.go(-1)',
                     ]) ?>
-                </div>
-                <div>
-                    <?= CSRButton::widget(compact('model')) ?>
                 </div>
             </div>
         </div>
