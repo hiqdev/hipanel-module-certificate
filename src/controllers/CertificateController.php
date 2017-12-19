@@ -11,6 +11,7 @@
 namespace hipanel\modules\certificate\controllers;
 
 use Exception;
+use hipanel\filters\EasyAccessControl;
 use hipanel\models\Ref;
 use hipanel\modules\certificate\forms\CsrGeneratorForm;
 use hipanel\modules\certificate\models\Certificate;
@@ -25,6 +26,22 @@ use yii\helpers\Html;
 
 class CertificateController extends CrudController
 {
+    public function behaviors()
+    {
+        return array_merge(parent::behaviors(), [
+            [
+                'class' => EasyAccessControl::class,
+                'actions' => [
+                    'create'        => 'certificate.create',
+                    'reissue,renew' => 'certificate.update',
+                    'delete'        => 'certificate.delete',
+                    'push'          => 'certificate.push',
+                    '*'             => 'certificate.read',
+                ],
+            ],
+        ]);
+    }
+
     public function actions()
     {
         return array_merge(parent::actions(), [
