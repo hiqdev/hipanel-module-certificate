@@ -40,7 +40,7 @@ class SidebarMenu extends \hiqdev\yii2\menus\Menu
                     'certificate-generate-csr' => [
                         'label' => CSRButton::widget([
                             'tagName' => 'a',
-                            'buttonOptions' => ['class' => ''],
+                            'buttonOptions' => ['class' => '', 'href' => '#'],
                         ]),
                         'encode' => false,
                     ],
