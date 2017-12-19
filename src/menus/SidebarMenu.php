@@ -33,7 +33,7 @@ class SidebarMenu extends \hiqdev\yii2\menus\Menu
                         'url' => ['@certificate/index'],
                     ],
                     'certificate-order' => [
-                        'label' => Yii::t('hipanel:certificate', 'Get certificate'),
+                        'label' => Yii::t('hipanel:certificate', 'Buy certificate'),
                         'url' => ['@certificate/order/index'],
                         'visible' => Yii::$app->user->can('certificate.pay'),
                     ],
