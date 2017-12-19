@@ -39,7 +39,7 @@ class CSRButton extends Widget
     {
         $button = '';
         $button .= Html::tag($this->tagName, '<i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp;' . Yii::t('hipanel:certificate', 'Generate CSR'), array_merge([
-            'class' => 'btn btn-warning btn-flat',
+            'class' => 'btn btn-warning',
             'data' => [
                 'toggle' => 'modal',
                 'target' => '#csr-modal',

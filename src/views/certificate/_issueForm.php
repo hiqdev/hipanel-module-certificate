@@ -78,7 +78,7 @@ heredoc
                                 <?= CSRButton::widget([
                                     'model' => $model,
                                     'buttonOptions' => [
-                                        'class' => 'btn btn-xs btn-default pull-right',
+                                        'class' => 'btn btn-xs btn-warning pull-right',
                                     ],
                                 ]) ?>
                                 <?= $form->field($model, 'csr')->textarea(['rows' => 5]) ?>
