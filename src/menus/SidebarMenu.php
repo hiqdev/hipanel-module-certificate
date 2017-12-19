@@ -26,6 +26,7 @@ class SidebarMenu extends \hiqdev\yii2\menus\Menu
                 'label' => Yii::t('hipanel:certificate', 'SSL certificates'),
                 'url' => ['@certificate/index'],
                 'icon' => 'fa-shield',
+                'visible' => Yii::$app->user->can('certificate.read'),
                 'items' => [
                     'certificates' => [
                         'label' => Yii::t('hipanel:certificate', 'Certificates'),
@@ -34,6 +35,7 @@ class SidebarMenu extends \hiqdev\yii2\menus\Menu
                     'certificate-order' => [
                         'label' => Yii::t('hipanel:certificate', 'Get certificate'),
                         'url' => ['@certificate/order/index'],
+                        'visible' => Yii::$app->user->can('certificate.pay'),
                     ],
                     'certificate-generate-csr' => [
                         'label' => CSRButton::widget([
