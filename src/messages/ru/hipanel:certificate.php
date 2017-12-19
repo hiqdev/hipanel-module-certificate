@@ -109,6 +109,6 @@ return [
     'inform' => 'сообщите',
     'Buy certificate' => 'Купить сертификат',
     'Keep your PRIVATE KEY in a safe place. Later it will be required to install the certificate on the server.' => 'Сохраните в надежном месте Ваш PRIVATE KEY. Впоследствии он потребуется для установки сертификата на сервер.',
-    'In order to select an "Approver Email", you first need to fill in the csr field.' => 'Для того чтобы выбрать "Email для подтверждения зака SLL" вам сначала нужно заполнить поле CSR.',
-    'Approver emails received, please choose a email.' => 'Адреса эл. почты получены, пожалуйста, выберите один из них для подтверждения зака SLL',
+    'In order to select an "Approver Email", you first need to fill in the csr field.' => 'Для того чтобы выбрать "Email для подтверждения заказ SSL" вам сначала нужно заполнить поле CSR.',
+    'Approver emails received, please choose a email.' => 'Адреса эл. почты получены, пожалуйста, выберите один из них для подтверждения зака SSL',
 ];
