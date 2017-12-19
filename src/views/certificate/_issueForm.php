@@ -75,6 +75,12 @@ heredoc
                                 </div>
                             </div>
                             <div id="input-csr" class="tab-pane">
+                                <?= CSRButton::widget([
+                                    'model' => $model,
+                                    'buttonOptions' => [
+                                        'class' => 'btn btn-xs btn-default pull-right',
+                                    ],
+                                ]) ?>
                                 <?= $form->field($model, 'csr')->textarea(['rows' => 5]) ?>
                             </div>
                         </div>
