@@ -19,6 +19,7 @@ $this->registerJs(<<<heredoc
         var csr = e.target.value;
         $.post('{$getApproverEmailsUrl}', {'csr': csr}).done(function(data) {
             var dropdown = $("#certificate-approver_email");
+            dropdown.find('option').remove().end().append($('<option />').val(null).text('--'));
             if (data.success == true) {
                 hipanel.notify.success(data.message);    
                 $.each(data.emails, function() {
@@ -27,7 +28,6 @@ $this->registerJs(<<<heredoc
                 dropdown.removeAttr('readonly');
             } else {
                 hipanel.notify.error(data.message);    
-                dropdown.find('option').remove().end().append($('<option />').val(null).text('--'));
                 dropdown.attr({readonly: true});
             }  
         });
