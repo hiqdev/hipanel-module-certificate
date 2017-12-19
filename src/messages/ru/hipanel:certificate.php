@@ -72,7 +72,7 @@ return [
     'An error occurred during the CSR generation. Please {inform} the website administration about this.' => 'Произошла ошибка во время генерации CSR. Пожалуйста {inform} об этом администрации сайта.',
     'Approver email' => 'Email для подтверждения заказа SSL',
     'Approver emails' => 'Emails для подтверждения заказа SSL',
-    'An Approver Email address will be used during the order process of a Domain Validated SSL Certificate. An email requesting approval will be sent to the designated Approver Email address.' => 'Email для подтверждения заказа SSL сертификата обязательно должен включать доменное имя, для которого заказывается сертификат.',
+    'An Approver Email address will be used during the order process of a Domain Validated SSL Certificate. An email requesting approval will be sent to the designated Approver Email address.' => 'Email для подтверждения заказа SSL сертификата обязательно должен быть на домене, для которого заказывается сертификат.',
     'Business Location - Country.' => 'Местоположение, страна.',
     'Certificate Type' => 'Тип сертификата',
     'Certificates' => 'Сертификаты',
