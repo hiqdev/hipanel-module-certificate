@@ -15,6 +15,7 @@ use hipanel\filters\EasyAccessControl;
 use hipanel\models\Ref;
 use hipanel\modules\certificate\forms\CsrGeneratorForm;
 use hipanel\modules\certificate\models\Certificate;
+use hipanel\modules\certificate\widgets\DataView;
 use Yii;
 use yii\base\Event;
 use hipanel\actions\ViewAction;
@@ -32,11 +33,11 @@ class CertificateController extends CrudController
             [
                 'class' => EasyAccessControl::class,
                 'actions' => [
-                    'create'        => 'certificate.create',
+                    'create' => 'certificate.create',
                     'reissue,renew' => 'certificate.update',
-                    'delete'        => 'certificate.delete',
-                    'push'          => 'certificate.push',
-                    '*'             => 'certificate.read',
+                    'delete' => 'certificate.delete',
+                    'push' => 'certificate.push',
+                    '*' => 'certificate.read',
                 ],
             ],
         ]);
@@ -141,5 +142,14 @@ class CertificateController extends CrudController
         }
 
         return $this->asJson($result);
+    }
+
+    public function actionGetData($id)
+    {
+        if (Yii::$app->request->isAjax) {
+            $data = Certificate::perform('get-data', ['id' => $id]);
+
+            return DataView::widget(compact('data'));
+        }
     }
 }

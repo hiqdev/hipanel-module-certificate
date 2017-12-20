@@ -74,6 +74,11 @@ class Certificate extends Model
         ];
     }
 
+    public function isActive()
+    {
+        return $this->state === 'ok';
+    }
+
     /**
      * DNS names are needed for SAN/UCC/Multi-Domain certificates.
      * @return bool
