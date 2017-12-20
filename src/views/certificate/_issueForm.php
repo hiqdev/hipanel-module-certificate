@@ -3,6 +3,7 @@
 /** @var array $approverEmails */
 
 use hipanel\helpers\Url;
+use hipanel\modules\certificate\grid\CertificateGridView;
 use hipanel\modules\certificate\widgets\CSRButton;
 use hipanel\modules\client\widgets\combo\ContactCombo;
 use yii\bootstrap\ActiveForm;
@@ -39,6 +40,22 @@ heredoc
 
 <div class="container-items">
     <div class="row">
+        <div class="col-sm-4 col-xs-12">
+            <?= CertificateGridView::detailView([
+                'boxed' => true,
+                'model' => $model,
+                'columns' => [
+                    'id',
+                    'seller_id',
+                    'client_id',
+                    'state',
+                    'certificateType',
+                    'name',
+                    'begins',
+                    'expires',
+                ],
+            ]) ?>
+        </div>
         <div class="col-sm-6 col-xs-12">
             <div class="item">
                 <div class="box box-widget">
