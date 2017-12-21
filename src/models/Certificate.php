@@ -73,6 +73,7 @@ class Certificate extends Model
     {
         return [
             'email' => Yii::t('hipanel:certificate', 'Email'),
+            'dns'   => Yii::t('hipanel:certificate', 'DNS'),
         ];
     }
 
