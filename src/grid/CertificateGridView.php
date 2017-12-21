@@ -45,6 +45,9 @@ class CertificateGridView extends BoxedGridView
                     return $out;
                 },
             ],
+            'alt_name' => [
+                'attribute' => 'name',
+            ],
             'certificateType' => [
                 'label' => Yii::t('hipanel:certificate', 'Certificate Type'),
             ],

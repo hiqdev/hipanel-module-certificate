@@ -27,20 +27,6 @@ class DataView extends Widget
             'model' => $this->data,
             'attributes' => [
                 [
-                    'attribute' => 'csr_code',
-                    'label' => Yii::t('hipanel:certificate', 'Certificate request'),
-                    'value' => function ($model) {
-                        return nl2br($model['csr_code']);
-                    },
-                    'format' => 'html',
-                    'contentOptions' => [
-                        'class' => 'pre',
-                    ],
-                    'captionOptions' => [
-                        'style' => 'min-width: 20rem',
-                    ],
-                ],
-                [
                     'attribute' => 'crt_code',
                     'label' => Yii::t('hipanel:certificate', 'Certificate'),
                     'value' => function ($model) {
@@ -59,6 +45,20 @@ class DataView extends Widget
                     'label' => Yii::t('hipanel:certificate', 'Intermediate certificates'),
                     'value' => function ($model) {
                         return nl2br($model['ca_code']);
+                    },
+                    'format' => 'html',
+                    'contentOptions' => [
+                        'class' => 'pre',
+                    ],
+                    'captionOptions' => [
+                        'style' => 'min-width: 20rem',
+                    ],
+                ],
+                [
+                    'attribute' => 'csr_code',
+                    'label' => Yii::t('hipanel:certificate', 'Certificate request'),
+                    'value' => function ($model) {
+                        return nl2br($model['csr_code']);
                     },
                     'format' => 'html',
                     'contentOptions' => [

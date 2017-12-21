@@ -64,7 +64,7 @@ $this->registerJs("
                 'client_id',
                 'state',
                 'certificateType',
-                'name',
+                'alt_name',
                 'begins',
                 'expires',
             ],
