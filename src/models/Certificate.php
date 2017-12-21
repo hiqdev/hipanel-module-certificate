@@ -27,9 +27,9 @@ class Certificate extends Model
     {
         return [
             [['id', 'remoteid', 'type_id', 'state_id', 'object_id', 'client_id', 'seller_id'], 'integer'],
-            [['name', 'type', 'state', 'client', 'seller', 'begins', 'expires', 'statuses', 'file'], 'safe'],
-            [['dcv_method', 'webserver_type'], 'required'],
+            [['name', 'type', 'state', 'client', 'seller', 'begins', 'expires', 'statuses', 'file'], 'string'],
 
+            [['dcv_method', 'webserver_type'], 'required', 'on' => ['reissue', 'issue']],
             // Reissue
             [['id', 'remoteid', 'client_id'], 'integer', 'on' => ['reissue']],
             [['id', 'csr'], 'required', 'on' => 'reissue'],

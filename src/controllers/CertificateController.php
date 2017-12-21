@@ -15,6 +15,7 @@ use hipanel\filters\EasyAccessControl;
 use hipanel\models\Ref;
 use hipanel\modules\certificate\forms\CsrGeneratorForm;
 use hipanel\modules\certificate\models\Certificate;
+use hipanel\modules\certificate\models\CertificateType;
 use hipanel\modules\certificate\widgets\DataView;
 use Yii;
 use yii\base\Event;
@@ -53,6 +54,12 @@ class CertificateController extends CrudController
                     $action = $event->sender;
                     $dataProvider = $action->getDataProvider();
                     $dataProvider->query->joinWith('object');
+                },
+                'data' => function ($action) {
+                    return [
+                        'stateOptions' => $action->controller->getStateOptions(),
+                        'typeOptions' => $action->controller->getTypeOptions(),
+                    ];
                 },
             ],
             'view' => [
@@ -141,5 +148,15 @@ class CertificateController extends CrudController
 
             return DataView::widget(compact('data'));
         }
+    }
+
+    public function getStateOptions()
+    {
+        return Ref::getList('state,certificate', 'hipanel:certificate');
+    }
+
+    public function getTypeOptions()
+    {
+        return Ref::getList('type,certificate', 'hipanel:certificate');
     }
 }

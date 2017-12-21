@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?php $page = IndexPage::begin(compact('model', 'dataProvider')) ?>
 
-    <?= $page->setSearchFormData() ?>
+    <?= $page->setSearchFormData(compact('stateOptions', 'typeOptions')) ?>
 
     <?php $page->beginContent('main-actions') ?>
         <?php if (Yii::$app->user->can('certificate.pay') && Yii::$app->user->can('test.beta')) : ?>
@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php $page->beginContent('sorter-actions') ?>
         <?= $page->renderSorter([
-            'attributes' => [],
+            'attributes' => ['id', 'remoteid'],
         ]) ?>
     <?php $page->endContent() ?>
 
