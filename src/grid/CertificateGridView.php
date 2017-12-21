@@ -29,6 +29,7 @@ class CertificateGridView extends BoxedGridView
         return array_merge(parent::columns(), [
             'name' => [
                 'filterOptions' => ['class' => 'narrow-filter'],
+                'filterAttribute' => 'name_ilike',
                 'format' => 'raw',
                 'value' => function ($model) {
                     $out = '';

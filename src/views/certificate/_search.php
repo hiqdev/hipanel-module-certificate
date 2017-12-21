@@ -8,7 +8,7 @@ use hipanel\widgets\DatePicker;
 ?>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('name') ?>
+    <?= $search->field('name_ilike') ?>
 </div>
 
 <?php if (Yii::$app->user->can('support')) : ?>
