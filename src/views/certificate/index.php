@@ -15,7 +15,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $page->setSearchFormData() ?>
 
     <?php $page->beginContent('main-actions') ?>
-        <?= Html::a(Yii::t('hipanel:certificate', 'Buy certificate'), ['@certificate/order/index'], ['class' => 'btn btn-sm btn-success']) ?>
+        <?php if (Yii::$app->user->can('certificate.pay') && Yii::$app->user->can('test.beta')) : ?>
+            <?= Html::a(Yii::t('hipanel:certificate', 'Buy certificate'), ['@certificate/order/index'], ['class' => 'btn btn-sm btn-success']) ?>
+        <?php endif; ?>
         <?= CSRButton::widget(['buttonOptions' => ['class' => 'btn btn-sm btn-default'], 'tagName' => 'a']) ?>
     <?php $page->endContent() ?>
 
