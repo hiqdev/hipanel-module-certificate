@@ -45,6 +45,9 @@ $this->registerJs(<<<heredoc
             }
         });
     });
+    $('#{$form->id}').submit(function () {
+        $('#select-csr .btn-success').click();
+    });
 heredoc
 );
 
