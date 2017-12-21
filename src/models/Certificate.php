@@ -16,6 +16,7 @@ use hipanel\models\Obj;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\helpers\ArrayHelper;
+use yii\web\JsExpression;
 
 class Certificate extends Model
 {
@@ -27,16 +28,28 @@ class Certificate extends Model
         return [
             [['id', 'remoteid', 'type_id', 'state_id', 'object_id', 'client_id', 'seller_id'], 'integer'],
             [['name', 'type', 'state', 'client', 'seller', 'begins', 'expires', 'statuses', 'file'], 'safe'],
+            [['dcv_method', 'webserver_type'], 'required'],
 
+            // Reissue
             [['id', 'remoteid', 'client_id'], 'integer', 'on' => ['reissue']],
             [['id', 'csr'], 'required', 'on' => 'reissue'],
 
             // Issue
             [['id', 'admin_id', 'tech_id', 'org_id'], 'integer', 'on' => 'issue'],
-            [['dcv_method', 'webserver_type', 'dns_names', 'csr'], 'string', 'on' => 'issue'],
+            [['webserver_type', 'dns_names', 'csr'], 'string', 'on' => 'issue'],
 
             [['approver_email'], 'email', 'on' => ['issue', 'reissue']],
-            [['approver_email'], 'required', 'on' => ['issue', 'reissue']],
+            [
+                ['approver_email'],
+                'required',
+                'on' => ['issue', 'reissue'],
+                'when' => function ($model) {
+                    return $model->dcv_method === 'email';
+                },
+                'whenClient' => new JsExpression('function (attribute, value) { 
+                    return $(\'#certificate-dcv_method\').val() === \'email\';    
+                }'),
+            ],
 
             [['approver_emails'], 'email', 'on' => 'issue'],
         ];
@@ -73,7 +86,7 @@ class Certificate extends Model
     {
         return [
             'email' => Yii::t('hipanel:certificate', 'Email'),
-            'dns'   => Yii::t('hipanel:certificate', 'DNS'),
+            'dns' => Yii::t('hipanel:certificate', 'DNS'),
         ];
     }
 

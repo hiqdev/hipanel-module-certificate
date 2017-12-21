@@ -15,6 +15,7 @@ $form = ActiveForm::begin([
     'validationUrl' => Url::toRoute(['validate-form', 'scenario' => $model->scenario]),
 ]);
 $getApproverEmailsUrl = Url::to(['@certificate/get-approver-emails']);
+$this->registerCss('.method { display: none; }');
 $this->registerJs(<<<heredoc
     $(document).on('change', '#certificate-csr', function(e) {
         var csr = e.target.value;
@@ -33,6 +34,17 @@ $this->registerJs(<<<heredoc
             }  
         });
     });   
+
+    $('#{$form->id} #certificate-dcv_method').on('change', function (event) {
+        var state = event.target.value;
+        $('.method').each(function(index, value) {
+            if ($(value).hasClass(state)) {
+                $(value).show();
+            } else {
+                $(value).hide();
+            }
+        });
+    });
 heredoc
 );
 
@@ -45,8 +57,11 @@ heredoc
                 'boxed' => true,
                 'model' => $model,
                 'columns' => [
-                    'id', 'seller_id', 'client_id',
-                    'state', 'certificateType',
+                    'id',
+                    'seller_id',
+                    'client_id',
+                    'state',
+                    'certificateType',
                 ],
             ]) ?>
         </div>
@@ -97,12 +112,21 @@ heredoc
                             </div>
                         </div>
 
-                        <?= $form->field($model, 'dcv_method')->dropDownList($model->dcvMethodOptions()) ?>
-                        <p class="bg-warning" style="margin-top: 1em; padding: 1em;"><?= Yii::t('hipanel:certificate', 'In order to select an "Approver Email", you first need to fill in the csr field.') ?></p>
-                        <?= $form->field($model, 'approver_email')->dropDownList([], [
-                            'prompt' => '--',
-                            'readonly' => true,
-                        ])->hint(Yii::t('hipanel:certificate', 'An Approver Email address will be used during the order process of a Domain Validated SSL Certificate. An email requesting approval will be sent to the designated Approver Email address.')) ?>
+                        <?= $form->field($model, 'dcv_method')->dropDownList($model->dcvMethodOptions(), ['prompt' => '--']) ?>
+
+                        <div class="method email">
+                            <p class="bg-warning" style="margin-top: 1em; padding: 1em;"><?= Yii::t('hipanel:certificate', 'In order to select an "Approver Email", you first need to fill in the csr field.') ?></p>
+                            <?= $form->field($model, 'approver_email')->dropDownList([], [
+                                'prompt' => '--',
+                                'readonly' => true,
+                            ])->hint(Yii::t('hipanel:certificate', 'An Approver Email address will be used during the order process of a Domain Validated SSL Certificate. An email requesting approval will be sent to the designated Approver Email address.')) ?>
+                        </div>
+
+                        <div class="method dns">
+                            <p class="bg-warning" style="margin-top: 1em; padding: 1em;">
+                                <?= Yii::t('hipanel:certificate', 'In order to confirm domain ownership by this method, you will need to create a working DNS record in your domain. Make sure you can do this before choosing this method.') ?>
+                            </p>
+                        </div>
 
                     </div>
                 </div>

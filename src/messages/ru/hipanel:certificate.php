@@ -115,4 +115,5 @@ return [
     'Loading certificate data...' => 'Загрузка данных сертификата...',
     'Certificate' => 'Сертификат',
     'Intermediate certificates' => 'Промежуточные сертификаты',
+    'In order to confirm domain ownership by this method, you will need to create a working DNS record in your domain. Make sure you can do this before choosing this method.' => 'Для того чтобы подтвердить владение доменом этим методом Вам надо будет создать рабочую DNS запись в вашем домене. Убедитесь что Вы можете это сделать прежде чем выбирать этот метод.',
 ];
