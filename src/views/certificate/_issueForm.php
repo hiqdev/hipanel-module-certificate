@@ -45,13 +45,8 @@ heredoc
                 'boxed' => true,
                 'model' => $model,
                 'columns' => [
-                    'id',
-                    'seller_id',
-                    'client_id',
-                    'state',
-                    'certificateType',
-                    'begins',
-                    'expires',
+                    'id', 'seller_id', 'client_id',
+                    'state', 'certificateType',
                 ],
             ]) ?>
         </div>
