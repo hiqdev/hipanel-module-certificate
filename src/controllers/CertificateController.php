@@ -62,11 +62,6 @@ class CertificateController extends CrudController
                 'class' => SmartUpdateAction::class,
                 'success' => Yii::t('hipanel:client', 'Successfully issued'),
                 'error' => Yii::t('hipanel:client', 'Error issuing'),
-                'data' => function ($action) {
-                    return [
-                        'webserverTypes' => $action->controller->getWebserverTypes(),
-                    ];
-                },
             ],
             'reissue' => [
                 'class' => SmartUpdateAction::class,
@@ -115,11 +110,6 @@ class CertificateController extends CrudController
                 ]);
             }
         }
-    }
-
-    public function getWebserverTypes()
-    {
-        return [];
     }
 
     public function actionGetApproverEmails()

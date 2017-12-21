@@ -14,6 +14,8 @@ use hipanel\base\Model;
 use hipanel\base\ModelTrait;
 use hipanel\models\Obj;
 use Yii;
+use yii\base\InvalidParamException;
+use yii\helpers\ArrayHelper;
 
 class Certificate extends Model
 {
@@ -87,5 +89,15 @@ class Certificate extends Model
     {
         /// TODO check if SAN/UCC/Multi-Domain
         return false;
+    }
+
+    public function getWebserverTypesOptions()
+    {
+        $supplier = $this->certificateType->brand;
+        $data = Yii::$app->cache->getOrSet(['get-webserver-types', $supplier], function () use ($supplier) {
+            return static::perform('get-webserver-types', ['supplier' => $supplier]);
+        }, 10);
+
+        return ArrayHelper::map($data, 'id', 'software');
     }
 }

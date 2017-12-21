@@ -50,7 +50,6 @@ heredoc
                     'client_id',
                     'state',
                     'certificateType',
-                    'name',
                     'begins',
                     'expires',
                 ],
@@ -77,6 +76,7 @@ heredoc
                             <?= $form->field($model, 'org_id')->widget(ContactCombo::class, ['hasId' => true]) ?>
                         <?php endif ?>
 
+                        <?= $form->field($model, 'webserver_type')->dropDownList($model->webserverTypesOptions) ?>
 
                         <div class="csr-wrap tab-content">
                             <div id="select-csr" class="tab-pane active">
