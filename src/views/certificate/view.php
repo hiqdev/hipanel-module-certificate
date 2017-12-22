@@ -7,7 +7,7 @@ use hipanel\widgets\Box;
 use hipanel\widgets\ClientSellerLink;
 use yii\helpers\Html;
 
-$this->title = $model->name ?: $model->id;
+$this->title = $model->name;
 $this->params['subtitle'] = Yii::t('hipanel:certificate', 'Certificate detailed information') . ' #' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel:certificate', 'Certificates'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;

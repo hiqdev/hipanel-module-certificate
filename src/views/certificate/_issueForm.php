@@ -18,21 +18,23 @@ $getApproverEmailsUrl = Url::to(['@certificate/get-approver-emails']);
 $this->registerCss('.method { display: none; }');
 $this->registerJs(<<<heredoc
     $(document).on('change', '#certificate-csr', function(e) {
+        var dropdown = $("#certificate-approver_email");
         var csr = e.target.value;
-        $.post('{$getApproverEmailsUrl}', {'csr': csr}).done(function(data) {
-            var dropdown = $("#certificate-approver_email");
-            dropdown.find('option').remove().end().append($('<option />').val(null).text('--'));
-            if (data.success == true) {
-                hipanel.notify.success(data.message);    
-                $.each(data.emails, function() {
-                    dropdown.append($('<option />').val(this).text(this));
-                });
-                dropdown.removeAttr('readonly');
-            } else {
-                hipanel.notify.error(data.message);    
-                dropdown.attr({readonly: true});
-            }  
-        });
+        dropdown.find('option').remove().end().append($('<option />').val(null).text('--'));
+        if (document.getElementById('certificate-dcv_method').value === 'email') {
+            $.post('{$getApproverEmailsUrl}', {'csr': csr}).done(function(data) {
+                if (data.success == true) {
+                    hipanel.notify.success(data.message);    
+                    $.each(data.emails, function() {
+                        dropdown.append($('<option />').val(this).text(this));
+                    });
+                    dropdown.removeAttr('readonly');
+                } else {
+                    hipanel.notify.error(data.message);    
+                    dropdown.attr({readonly: true});
+                }  
+            });
+        }
     });   
     $('#{$form->id}').submit(function () {
         $('#select-csr .btn-success').click();
@@ -98,17 +100,12 @@ heredoc
                         <?php endif ?>
 
                         <?= $form->field($model, 'webserver_type')->dropDownList($model->webserverTypeOptions, [
-                            'options' => [
-                                (function () use ($model) {
-                                    foreach ($model->webserverTypeOptions as $k => $v) {
-                                        if ($v === 'Nginx') {
-                                            return $k;
-                                        }
-                                    }
-                                })() => ['selected' => true],
-                            ],
+                            'options' => [(function ($model) {
+                                foreach ($model->webserverTypeOptions as $k => $v) {
+                                    if ($v === 'Nginx') return $k;
+                                }
+                            })($model) => ['selected' => true]],
                         ])->hint(Yii::t('hipanel:certificate', 'If you are not sure which type of web server suits you, leave Nginx or Other')) ?>
-
                         <div class="csr-wrap tab-content">
                             <div id="select-csr" class="tab-pane active">
                                 <div class="well" style="display: flex; justify-content: space-around">
