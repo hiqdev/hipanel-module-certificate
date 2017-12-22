@@ -107,7 +107,7 @@ heredoc
                                     }
                                 })() => ['selected' => true],
                             ],
-                        ]) ?>
+                        ])->hint(Yii::t('hipanel:certificate', 'If you are not sure which type of web server suits you, leave Nginx or Other')) ?>
 
                         <div class="csr-wrap tab-content">
                             <div id="select-csr" class="tab-pane active">

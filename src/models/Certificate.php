@@ -69,6 +69,7 @@ class Certificate extends Model
             'admin_id' => Yii::t('hipanel:certificate', 'Admin contact'),
             'tech_id' => Yii::t('hipanel:certificate', 'Tech contact'),
             'org_id' => Yii::t('hipanel:certificate', 'Organization contact'),
+            'webserver_type' => Yii::t('hipanel:certificate', 'Webserver type'),
         ]);
     }
 
