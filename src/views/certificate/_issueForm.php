@@ -34,9 +34,19 @@ $this->registerJs(<<<heredoc
             }  
         });
     });   
+    $('#{$form->id}').submit(function () {
+        $('#select-csr .btn-success').click();
+    });
 
+    // DCV
+    showDCVInfo(document.getElementById('certificate-dcv_method').value);
+    
     $('#{$form->id} #certificate-dcv_method').on('change', function (event) {
         var state = event.target.value;
+        showDCVInfo(state);
+    });
+    
+    function showDCVInfo(state) {
         $('.method').each(function(index, value) {
             if ($(value).hasClass(state)) {
                 $(value).show();
@@ -44,10 +54,7 @@ $this->registerJs(<<<heredoc
                 $(value).hide();
             }
         });
-    });
-    $('#{$form->id}').submit(function () {
-        $('#select-csr .btn-success').click();
-    });
+    }
 heredoc
 );
 
@@ -58,6 +65,7 @@ heredoc
         <div class="col-sm-4 col-xs-12">
             <?= CertificateGridView::detailView([
                 'boxed' => true,
+                'boxOptions' => ['bodyOptions' => ['class' => 'no-padding']],
                 'model' => $model,
                 'columns' => [
                     'id',
@@ -89,7 +97,17 @@ heredoc
                             <?= $form->field($model, 'org_id')->widget(ContactCombo::class, ['hasId' => true]) ?>
                         <?php endif ?>
 
-                        <?= $form->field($model, 'webserver_type')->dropDownList($model->webserverTypesOptions) ?>
+                        <?= $form->field($model, 'webserver_type')->dropDownList($model->webserverTypeOptions, [
+                            'options' => [
+                                (function () use ($model) {
+                                    foreach ($model->webserverTypeOptions as $k => $v) {
+                                        if ($v === 'Nginx') {
+                                            return $k;
+                                        }
+                                    }
+                                })() => ['selected' => true],
+                            ],
+                        ]) ?>
 
                         <div class="csr-wrap tab-content">
                             <div id="select-csr" class="tab-pane active">
@@ -115,7 +133,9 @@ heredoc
                             </div>
                         </div>
 
-                        <?= $form->field($model, 'dcv_method')->dropDownList($model->dcvMethodOptions(), ['prompt' => '--']) ?>
+                        <?= $form->field($model, 'dcv_method')->dropDownList($model->dcvMethodOptions(), [
+                            'options' => ['email' => ['selected' => true]],
+                        ]) ?>
 
                         <div class="method email">
                             <p class="bg-warning" style="margin-top: 1em; padding: 1em;"><?= Yii::t('hipanel:certificate', 'In order to select an "Approver Email", you first need to fill in the csr field.') ?></p>

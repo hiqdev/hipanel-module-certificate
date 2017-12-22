@@ -105,13 +105,17 @@ class Certificate extends Model
         return false;
     }
 
-    public function getWebserverTypesOptions()
+    /**
+     * @return \Generator
+     */
+    public function getWebserverTypeOptions()
     {
         $supplier = $this->certificateType->brand;
         $data = Yii::$app->cache->getOrSet(['get-webserver-types', $supplier], function () use ($supplier) {
             return static::perform('get-webserver-types', ['supplier' => $supplier]);
-        }, 10);
-
-        return ArrayHelper::map($data, 'id', 'software');
+        }, 10 * 60);
+        foreach ($data as $option) {
+            yield $option['id'] => $option['software'];
+        }
     }
 }
