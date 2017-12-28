@@ -113,7 +113,7 @@ $this->registerCss('
                         <?php endif; ?>
                     </span>
                     <div class="info-box-content">
-                        <div class="sq"><a href="#"><b class="ca-name"><?= $type->name ?></b></a></div>
+                        <div class="sq"><b class="ca-name"><?= $type->name ?></b></div>
                         <div class="sq hidden-xs text-center">
                             <ul class="list-unstyled">
                                 <?php foreach (explode(' ', $features) as $feature) : ?>
