@@ -42,6 +42,6 @@ class CertificateOrderPurchase extends AbstractCertificatePurchase
     {
         $certificate_id = $this->_result['id'];
 
-        return Yii::t('hipanel:certificate', 'Certificate successfully paid.') . '<br>' . IssueButton::widget(compact('certificate_id'));
+        return Yii::t('hipanel:certificate', 'The certificate has been ordered successfully.') . '<br>' . IssueButton::widget(compact('certificate_id'));
     }
 }

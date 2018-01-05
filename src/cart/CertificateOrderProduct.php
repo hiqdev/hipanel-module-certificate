@@ -47,7 +47,7 @@ class CertificateOrderProduct extends AbstractCertificateProduct
         if ($result = parent::load($data, '')) {
             $this->_model = new CertificateType(['id' => $this->product_id]);
             $this->name = $this->_model->name;
-            $this->description = Yii::t('hipanel:certificate', 'Order');
+            $this->description = Yii::t('hipanel:certificate', 'Ordering');
         }
 
         return $result;
@@ -65,7 +65,11 @@ class CertificateOrderProduct extends AbstractCertificateProduct
     {
         $quantityOptions = $this->getResource()->getAvailablePeriods();
 
-        return CertificateCartQuantity::widget(['model' => $this, 'quantityOptions' => $quantityOptions, 'product_id' => $this->product_id]);
+        return CertificateCartQuantity::widget([
+            'model' => $this,
+            'quantityOptions' => $quantityOptions,
+            'product_id' => $this->product_id
+        ]);
     }
 
     /** {@inheritdoc} */

@@ -11,12 +11,14 @@
 namespace hipanel\modules\certificate\menus;
 
 use hipanel\menus\AbstractDetailMenu;
+use hipanel\modules\certificate\models\Certificate;
 use hipanel\widgets\ModalButton;
 use Yii;
 use yii\bootstrap\Html;
 
 class CertificateDetailMenu extends AbstractDetailMenu
 {
+    /** @var Certificate */
     public $model;
 
     public function items()
@@ -40,8 +42,7 @@ class CertificateDetailMenu extends AbstractDetailMenu
                         ],
                     ],
                     'body' => Yii::t('hipanel:certificate',
-                        'Are you sure to delete certificate {name}? All files under domain root on the server will stay untouched. You can delete them manually later.',
-                        ['name' => $this->model->id]
+                        'Certificate will be immediately revoked without any refunds or ability to reissue this certificate. Are you sure to delete certificate for {domain}?', ['domain' => $this->model->name]
                     ),
                 ]),
                 'encode' => false,

@@ -72,7 +72,7 @@ class CertificateController extends CrudController
             ],
             'reissue' => [
                 'class' => SmartUpdateAction::class,
-                'success' => Yii::t('hipanel:client', 'Successfully reissued'),
+                'success' => Yii::t('hipanel:client', 'Certificate reissue process was initiated. Now you should confirm the domain ownership using the selected domain control validation method.'),
                 'error' => Yii::t('hipanel:client', 'Error reissuing'),
             ],
             'validate-form' => [

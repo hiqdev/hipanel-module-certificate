@@ -18,6 +18,12 @@ use yii\base\InvalidParamException;
 use yii\helpers\ArrayHelper;
 use yii\web\JsExpression;
 
+/**
+ * Class Certificate
+ *
+ * @property int $id
+ * @property string $name
+ */
 class Certificate extends Model
 {
     use ModelTrait;
