@@ -10,6 +10,7 @@
 
 namespace hipanel\modules\certificate\widgets;
 
+use hipanel\modules\certificate\models\CertificateType;
 use hipanel\modules\certificate\CertificateOrderIndexAsset;
 use yii\base\Widget;
 use yii\helpers\Json;
@@ -18,6 +19,10 @@ use yii\web\View;
 class CertificateOrderIndex extends Widget
 {
     public $resources;
+
+    public $secureKeys = ['dv', 'ov', 'ev'];
+
+    public $amountKeys = ['cs', 'san', 'wc'];
 
     public function init()
     {
@@ -31,5 +36,31 @@ class CertificateOrderIndex extends Widget
     public function run()
     {
         return $this->render('CertificateOrderIndex', ['resources' => $this->resources]);
+    }
+
+    protected function getProductFeatures($kyes = [])
+    {
+        return array_filter(CertificateType::features(), function ($key) use ($kyes) {
+            if (!empty($kyes)) {
+                return in_array($key, $kyes);
+            }
+
+            return true;
+        }, ARRAY_FILTER_USE_KEY);
+    }
+
+    public function getSecureProductFeatures()
+    {
+        return $this->getProductFeatures($this->secureKeys);
+    }
+
+    public function getAmountProductFeatures()
+    {
+        return $this->getProductFeatures($this->amountKeys);
+    }
+
+    public function getBrands()
+    {
+        return CertificateType::brands();
     }
 }

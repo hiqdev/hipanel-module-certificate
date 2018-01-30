@@ -37,6 +37,7 @@
 .info-box-content.header {
     font-weight: bold;
 }
+
 .info-box-content {
     display: flex;
     flex-direction: row;
@@ -51,4 +52,19 @@
 
 .btn.disabled.cert-price-btn {
     opacity: 1;
+}
+
+.ca-sort-link:after {
+    font: normal normal normal 11px/1 FontAwesome;
+    content: " \f0dc";
+}
+
+.ca-sort-link[data-direction=asc]:after {
+    font: normal normal normal 11px/1 FontAwesome;
+    content: " \f160";
+}
+
+.ca-sort-link[data-direction=desc]:after {
+    font: normal normal normal 11px/1 FontAwesome;
+    content: " \f161";
 }

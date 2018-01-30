@@ -4,23 +4,6 @@ use hipanel\modules\certificate\models\CertificateType;
 use yii\helpers\Html;
 
 $formatter = Yii::$app->formatter;
-$secureKeys = ['dv', 'ov', 'ev'];
-$amountKeys = ['cs', 'san', 'wc'];
-
-$this->registerCss('
-.ca-sort-link:after {
-    font: normal normal normal 11px/1 FontAwesome;
-    content: " \f0dc";
-}
-.ca-sort-link[data-direction=asc]:after {
-    font: normal normal normal 11px/1 FontAwesome;
-    content: " \f160";
-}
-.ca-sort-link[data-direction=desc]:after {
-    font: normal normal normal 11px/1 FontAwesome;
-    content: " \f161";
-}
-');
 
 ?>
 <div class="row">
@@ -31,31 +14,27 @@ $this->registerCss('
             </div>
             <div class="box-body no-padding">
                 <ul class="nav nav-pills nav-stacked filter-type filter" data-filter-group="secureType">
-                    <?php foreach (CertificateType::features() as $key => $filter) : ?>
-                        <?php if (in_array($key, $secureKeys)) : ?>
-                            <li data-filter=".<?= $key ?>">
-                                <b><?= $filter['label'] ?></b>
-                                <div class="icheck pull-left" style="margin-right: 1rem">
-                                    <input type="checkbox" name="<?= $key ?>">
-                                </div>
-                                <span><?= $filter['text'] ?></span>
-                            </li>
-                        <?php endif; ?>
+                    <?php foreach ($this->context->getSecureProductFeatures() as $key => $filter) : ?>
+                        <li data-filter=".<?= $key ?>">
+                            <b><?= $filter['label'] ?></b>
+                            <div class="icheck pull-left" style="margin-right: 1rem">
+                                <input type="checkbox" name="<?= $key ?>">
+                            </div>
+                            <span><?= $filter['text'] ?></span>
+                        </li>
                     <?php endforeach; ?>
                 </ul>
             </div>
             <div class="box-footer no-padding" style="border-width: 7px;">
                 <ul class="nav nav-pills nav-stacked filter-type filter" data-filter-group="amountType">
-                    <?php foreach (CertificateType::features() as $key => $filter) : ?>
-                        <?php if (in_array($key, $amountKeys)) : ?>
-                            <li data-filter=".<?= $key ?>">
-                                <b><?= $filter['label'] ?></b>
-                                <div class="icheck pull-left" style="margin-right: 1rem">
-                                    <input type="checkbox" name="<?= $key ?>">
-                                </div>
-                                <span><?= $filter['text'] ?></span>
-                            </li>
-                        <?php endif; ?>
+                    <?php foreach ($this->context->getAmountProductFeatures() as $key => $filter) : ?>
+                        <li data-filter=".<?= $key ?>">
+                            <b><?= $filter['label'] ?></b>
+                            <div class="icheck pull-left" style="margin-right: 1rem">
+                                <input type="checkbox" name="<?= $key ?>">
+                            </div>
+                            <span><?= $filter['text'] ?></span>
+                        </li>
                     <?php endforeach; ?>
                 </ul>
             </div>
@@ -66,7 +45,7 @@ $this->registerCss('
             </div>
             <div class="box-body no-padding">
                 <ul class="nav nav-pills nav-stacked filter-brand filter" data-filter-group="brand">
-                    <?php foreach (CertificateType::brands() as $key => $brand) : ?>
+                    <?php foreach ($this->context->getBrands() as $key => $brand) : ?>
                         <li data-filter=".<?= $key ?>">
                             <b><?= $brand['label'] ?></b>
                             <div class="icheck pull-left" style="margin-right: 1rem">
@@ -100,7 +79,7 @@ $this->registerCss('
             </div>
         </div>
         <div class="certificate-order">
-            <?php foreach ($resources as $resource) : ?>
+            <?php foreach ($resources as $type => $resource) : ?>
                 <?php $type = $resource->certificateType ?>
                 <?php $features = implode(' ', $type->getFeatures()) ?>
                 <div class="info-box <?= $type->brand ?> <?= $features ?>"
