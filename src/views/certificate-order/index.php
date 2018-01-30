@@ -9,10 +9,8 @@
  */
 
 use hipanel\modules\certificate\widgets\CertificateOrderIndex;
-use hipanel\modules\certificate\widgets\PreOrderQuestion;
 
 $this->title = Yii::t('hipanel:certificate', 'Get certificate');
 $this->params['breadcrumbs'][] = $this->title;
 
-echo PreOrderQuestion::widget();
 echo CertificateOrderIndex::widget(['resources' => $resources]);

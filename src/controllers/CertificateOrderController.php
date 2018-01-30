@@ -17,7 +17,6 @@ use hipanel\modules\certificate\cart\CertificateOrderProduct;
 use hipanel\modules\certificate\forms\CsrGeneratorForm;
 use hipanel\modules\certificate\forms\OrderForm;
 use hipanel\modules\certificate\repositories\CertificateTariffRepository;
-use hipanel\modules\certificate\widgets\PreOrderQuestion;
 use hiqdev\yii2\cart\actions\AddToCartAction;
 use Yii;
 use yii\helpers\Url;
@@ -80,10 +79,5 @@ class CertificateOrderController extends Controller
         } else {
             return $this->render('order', compact('model'));
         }
-    }
-
-    public function actionGetLinksModal($productId)
-    {
-        return PreOrderQuestion::links($productId);
     }
 }

@@ -23,8 +23,7 @@ class CertificateOrderIndex extends Widget
     {
         $view = $this->getView();
         CertificateOrderIndexAsset::register($view);
-        $jsPluginOptions = Json::encode([
-        ]);
+        $jsPluginOptions = Json::encode([]);
         $view->registerJs("$(document).certificateOrderIndex({$jsPluginOptions})", View::POS_END);
         $view->registerCss('.popover {width: 300px;}');
     }
