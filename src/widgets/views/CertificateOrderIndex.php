@@ -1,9 +1,10 @@
 <?php
 
-use hipanel\modules\certificate\models\CertificateType;
-use yii\helpers\Html;
+/** @var array $resources */
+/** @var array $brands */
+/** @var array $secureProductFeatures */
 
-$formatter = Yii::$app->formatter;
+/** @var array $amountProductFeatures */
 
 ?>
 <div class="row">
@@ -14,7 +15,7 @@ $formatter = Yii::$app->formatter;
             </div>
             <div class="box-body no-padding">
                 <ul class="nav nav-pills nav-stacked filter-type filter" data-filter-group="secureType">
-                    <?php foreach ($this->context->getSecureProductFeatures() as $key => $filter) : ?>
+                    <?php foreach ($secureProductFeatures as $key => $filter) : ?>
                         <li data-filter=".<?= $key ?>">
                             <b><?= $filter['label'] ?></b>
                             <div class="icheck pull-left" style="margin-right: 1rem">
@@ -27,7 +28,7 @@ $formatter = Yii::$app->formatter;
             </div>
             <div class="box-footer no-padding" style="border-width: 7px;">
                 <ul class="nav nav-pills nav-stacked filter-type filter" data-filter-group="amountType">
-                    <?php foreach ($this->context->getAmountProductFeatures() as $key => $filter) : ?>
+                    <?php foreach ($amountProductFeatures as $key => $filter) : ?>
                         <li data-filter=".<?= $key ?>">
                             <b><?= $filter['label'] ?></b>
                             <div class="icheck pull-left" style="margin-right: 1rem">
@@ -45,7 +46,7 @@ $formatter = Yii::$app->formatter;
             </div>
             <div class="box-body no-padding">
                 <ul class="nav nav-pills nav-stacked filter-brand filter" data-filter-group="brand">
-                    <?php foreach ($this->context->getBrands() as $key => $brand) : ?>
+                    <?php foreach ($brands as $key => $brand) : ?>
                         <li data-filter=".<?= $key ?>">
                             <b><?= $brand['label'] ?></b>
                             <div class="icheck pull-left" style="margin-right: 1rem">
@@ -79,47 +80,8 @@ $formatter = Yii::$app->formatter;
             </div>
         </div>
         <div class="certificate-order">
-            <?php foreach ($resources as $type => $resource) : ?>
-                <?php $type = $resource->certificateType ?>
-                <?php $features = implode(' ', $type->getFeatures()) ?>
-                <div class="info-box <?= $type->brand ?> <?= $features ?>"
-                     data-featuresCount="<?= count($type->getFeatures()) ?>">
-                    <span class="info-box-icon">
-                        <?php if ($type->logo) : ?>
-                            <?= Html::img($type->logo) ?>
-                        <?php else: ?>
-                            <i class="fa fa fa-shield fa-fw"></i>
-                        <?php endif; ?>
-                    </span>
-                    <div class="info-box-content">
-                        <div class="sq"><b class="ca-name"><?= $type->name ?></b></div>
-                        <div class="sq hidden-xs text-center">
-                            <ul class="list-unstyled">
-                                <?php foreach (explode(' ', $features) as $feature) : ?>
-                                    <li>
-                                        <span class="label label-info"><?= CertificateType::features()[$feature]['label'] ?></span>
-                                    </li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </div>
-                        <div class="sq text-center">
-                            <div class="btn-group">
-                                <a class="btn btn-default btn-flat text-bold disabled cert-price-btn">
-                                    <span class="ca-raw-price" style="display: none"><?= $resource->getPriceForPeriod(1) ?></span>
-                                    <span class="ca-price">
-                                    <?= $formatter->asCurrency($resource->getPriceForPeriod(1), $resource->getCurrency()) ?>
-                                    </span>
-                                    / <?= Yii::t('hipanel', 'year') ?>
-
-                                </a>
-                                <?= Html::a(Yii::t('hipanel:certificate', 'Order'), [
-                                    '@certificate/order/add-to-cart-order',
-                                    'product_id' => $type->id,
-                                ], ['class' => 'btn btn-success btn-flat']) ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <?php foreach ($resources as $resource) : ?>
+                <?= $this->render('_orderRow', compact('resource')) ?>
             <?php endforeach; ?>
         </div>
     </div>

@@ -35,7 +35,12 @@ class CertificateOrderIndex extends Widget
 
     public function run()
     {
-        return $this->render('CertificateOrderIndex', ['resources' => $this->resources]);
+        return $this->render('CertificateOrderIndex', [
+            'secureProductFeatures' => $this->getSecureProductFeatures(),
+            'amountProductFeatures' => $this->getAmountProductFeatures(),
+            'brands' => $this->getBrands(),
+            'resources' => $this->resources
+        ]);
     }
 
     protected function getProductFeatures($kyes = [])
