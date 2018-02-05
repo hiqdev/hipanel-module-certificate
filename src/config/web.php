@@ -17,6 +17,7 @@ return [
         'themeManager' => [
             'pathMap' => [
                 '@hipanel/modules/certificate/views' => '$themedViewPaths',
+                '@hipanel/modules/certificate/widgets/views' => '$themedWidgetPaths',
             ],
         ],
         'i18n' => [

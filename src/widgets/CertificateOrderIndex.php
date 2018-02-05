@@ -43,6 +43,11 @@ class CertificateOrderIndex extends Widget
         ]);
     }
 
+    public function widgetRender($view, $params = [])
+    {
+        return $this->render($view, $params);
+    }
+
     protected function getProductFeatures($kyes = [])
     {
         return array_filter(CertificateType::features(), function ($key) use ($kyes) {
@@ -54,18 +59,19 @@ class CertificateOrderIndex extends Widget
         }, ARRAY_FILTER_USE_KEY);
     }
 
-    public function getSecureProductFeatures()
+    protected function getSecureProductFeatures()
     {
         return $this->getProductFeatures($this->secureKeys);
     }
 
-    public function getAmountProductFeatures()
+    protected function getAmountProductFeatures()
     {
         return $this->getProductFeatures($this->amountKeys);
     }
 
-    public function getBrands()
+    protected function getBrands()
     {
         return CertificateType::brands();
     }
+
 }
