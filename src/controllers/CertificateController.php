@@ -12,6 +12,7 @@ namespace hipanel\modules\certificate\controllers;
 
 use Exception;
 use hipanel\filters\EasyAccessControl;
+use hipanel\filters\RedirectPanel;
 use hipanel\models\Ref;
 use hipanel\modules\certificate\forms\CsrGeneratorForm;
 use hipanel\modules\certificate\models\Certificate;
@@ -31,7 +32,7 @@ class CertificateController extends CrudController
     public function behaviors()
     {
         return array_merge(parent::behaviors(), [
-            [
+            'access-certificate' => [
                 'class' => EasyAccessControl::class,
                 'actions' => [
                     'create'        => 'certificate.create',
@@ -40,6 +41,10 @@ class CertificateController extends CrudController
                     'push'          => 'certificate.push',
                     '*'             => 'certificate.read',
                 ],
+            ],
+            'redirect-panel' => [
+                'class' => RedirectPanel::class,
+                'actions' => '*',
             ],
         ]);
     }
