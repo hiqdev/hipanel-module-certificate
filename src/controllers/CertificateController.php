@@ -34,11 +34,11 @@ class CertificateController extends CrudController
             [
                 'class' => EasyAccessControl::class,
                 'actions' => [
-                    'create' => 'certificate.create',
+                    'create'        => 'certificate.create',
                     'reissue,renew' => 'certificate.update',
-                    'delete' => 'certificate.delete',
-                    'push' => 'certificate.push',
-                    '*' => 'certificate.read',
+                    'delete'        => 'certificate.delete',
+                    'push'          => 'certificate.push',
+                    '*'             => 'certificate.read',
                 ],
             ],
         ]);
