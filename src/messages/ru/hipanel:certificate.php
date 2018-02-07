@@ -128,4 +128,5 @@ return [
     'Canceled' => 'Отменён',
     'Error' => 'Ошибка',
     'Deleted' => 'Удалён',
+    'SSL Features' => 'Свойства SSL',
 ];
