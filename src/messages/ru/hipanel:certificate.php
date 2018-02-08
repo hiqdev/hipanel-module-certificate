@@ -41,7 +41,7 @@ return [
     'Features' => 'Особенности',
     'Generate new CSR and Private Key' => '',
     'GeoTrust SSL Certificates' => '',
-    'Get light business authentication at an extremely cheap price with our OV SSL Certificates' => 'Легкая бизнес-аутентификацию по низкой цене',
+    'Get light business authentication at an extremely cheap price with our OV SSL Certificates' => 'Легкая бизнес-аутентификация по низкой цене',
     'Get no-frills, industry standard encryption for a cheap price with our DV SSL Certificates' => 'Без излишеств, отраслевой стандарт шифрования по низкой цене',
     'GoGetSSL SSL Certificates' => '',
     'I already have CSR' => 'У меня уже есть CSR',
@@ -57,6 +57,7 @@ return [
     'RapidSSL Certificates' => '',
     'SSL Brands' => 'SSL-бренды',
     'SSL Products' => 'Продукты SSL',
+    'SSL Features' => 'Дополнительные возможности',
     'SSL certificates' => 'SSL-сертификаты',
     'Secure multiple domains on a single certificate for a cheap price with Multi-Domain SSL' => 'Защита нескольких доменов в одном сертификате по доступной цене с помощью Multi-Domain SSL',
     'Secure unlimited Sub-Domains for one cheap price with these Wildcard SSL Certificates' => 'Защита неограниченного количества субдоменов по доступной цене',
@@ -128,5 +129,4 @@ return [
     'Canceled' => 'Отменён',
     'Error' => 'Ошибка',
     'Deleted' => 'Удалён',
-    'SSL Features' => 'Свойства SSL',
 ];
