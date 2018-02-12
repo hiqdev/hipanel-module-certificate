@@ -14,8 +14,6 @@
     Plugin.prototype = {
         init: function () {
             var _this = this;
-            $('[data-toggle=\"popover\"]').popover();
-
             $('.icheck input').iCheck({
                 labelHover: false,
                 cursor: true,
