@@ -27,6 +27,24 @@ class DataView extends Widget
             'model' => $this->data,
             'attributes' => [
                 [
+                    'attribute' => 'dcv_method',
+                    'label' => Yii::t('hipanel:certificate', 'Domain control validation'),
+                    'format' => 'html',
+                    'value' => function ($model) {
+                        $method = $model['dcv_method'];
+                        $value = $model['dcv_data'][$method];
+                        if ($method === 'email') {
+                            $hint = Yii::t('hipanel:certificate', 'follow confirmation link in email sent to your address:');
+                            $value = Html::tag('b', $value);
+                        } elseif ($method === 'dns') {
+                            $hint = Yii::t('hipanel:certificate', 'add following DNS record');
+                            $value = Html::tag('pre', $value['record']);
+                        }
+
+                        return Yii::t('hipanel:certificate', 'Method:') . ' ' . Html::tag('b', strtoupper($method)) . ', ' . $hint . ' ' . $value;
+                    },
+                ],
+                [
                     'attribute' => 'crt_code',
                     'label' => Yii::t('hipanel:certificate', 'Certificate'),
                     'value' => function ($model) {
