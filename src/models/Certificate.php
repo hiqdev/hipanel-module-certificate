@@ -33,7 +33,7 @@ class Certificate extends Model
     {
         return [
             [['id', 'remoteid', 'type_id', 'state_id', 'object_id', 'client_id', 'seller_id'], 'integer'],
-            [['name', 'type', 'state', 'client', 'seller', 'begins', 'expires', 'statuses', 'file'], 'string'],
+            [['name', 'type', 'state', 'client', 'seller', 'begins', 'expires', 'statuses', 'file', 'type_label'], 'string'],
 
             [['dcv_method', 'webserver_type'], 'required', 'on' => ['reissue', 'issue']],
             // Reissue
@@ -52,8 +52,8 @@ class Certificate extends Model
                 'when' => function ($model) {
                     return $model->dcv_method === 'email';
                 },
-                'whenClient' => new JsExpression('function (attribute, value) { 
-                    return $(\'#certificate-dcv_method\').val() === \'email\';    
+                'whenClient' => new JsExpression('function (attribute, value) {
+                    return $(\'#certificate-dcv_method\').val() === \'email\';
                 }'),
             ],
 

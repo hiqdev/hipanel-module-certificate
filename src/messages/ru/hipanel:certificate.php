@@ -129,4 +129,5 @@ return [
     'Canceled' => 'Отменён',
     'Error' => 'Ошибка',
     'Deleted' => 'Удалён',
+    'Cancelled' => 'Отменен',
 ];

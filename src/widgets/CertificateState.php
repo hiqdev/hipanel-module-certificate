@@ -18,7 +18,7 @@ class CertificateState extends \hipanel\widgets\Type
     public $defaultValues = [
         'none'    => ['ok'],
         'danger'  => ['blocked'],
-        'default' => ['deleted'],
+        'default' => ['deleted', 'cancelled'],
         'warning' => ['expired'],
     ];
     public $field = 'state';

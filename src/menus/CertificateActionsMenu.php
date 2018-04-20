@@ -17,9 +17,17 @@ class CertificateActionsMenu extends Menu
 {
     public $model;
 
+    const STATE_DELETED = 'deleted';
+    const STATE_CANCELLED = 'cancelled';
+
+    protected function checkAvailableAction($state)
+    {
+        return !in_array($sate, [self::STATE_DELETED, self::STATE_CANCELLED], true);
+    }
+
     public function items()
     {
-        return [
+        return $this->checkAvailableAction($this->model->state) ? [
             'view' => [
                 'label' => Yii::t('hipanel', 'View'),
                 'icon' => 'fa-info',
@@ -38,6 +46,12 @@ class CertificateActionsMenu extends Menu
                 'url' => ['@certificate/reissue', 'id' => $this->model->id],
                 'encode' => false,
             ],
-        ];
+            'cancel-order' => [
+                'label' => Yii::t('hipanel:certificate', 'Cancel order'),
+                'icon' => '',
+                'url' => ['@certificate/cancel-order', 'id' => $this->model->id],
+                'encode' => false,
+            ],
+        ] : [];
     }
 }
