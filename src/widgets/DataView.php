@@ -53,7 +53,7 @@ class DataView extends Widget
                     'value' => function ($model) {
                         return AlternateDCVMethod::widget(['data' => $model]);
                     },
-                    'visible' => true,
+                    'visible' => empty($this->data['crt_code']) && !empty($this->data['dcv_data_alternate']),
                 ],
                 [
                     'attribute' => 'crt_code',
