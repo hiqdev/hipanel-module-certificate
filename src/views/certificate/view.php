@@ -72,18 +72,21 @@ $this->registerJs("
         <?php $box->endBody() ?>
         <?php $box->end() ?>
 
-        <div class="box box-widget">
-            <div id="certificate-data" class="box-body">
-                <p class="text-center" style="padding: 25px;">
-                    <?= Html::button('<i class="fa fa-arrow-circle-down fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;' . Yii::t('hipanel:certificate', 'Get certificate data'), [
-                        'id' => 'get-certificate-data-button',
-                        'class' => 'btn btn-success',
-                        'data' => [
-                            'loading-text' => Yii::t('hipanel:certificate', 'Loading certificate data...'),
-                        ],
-                    ]) ?>
-                </p>
+        <?php if (!$model->isDisactive()) : ?>
+
+            <div class="box box-widget">
+                <div id="certificate-data" class="box-body">
+                    <p class="text-center" style="padding: 25px;">
+                        <?= Html::button('<i class="fa fa-arrow-circle-down fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;' . Yii::t('hipanel:certificate', 'Get certificate data'), [
+                            'id' => 'get-certificate-data-button',
+                            'class' => 'btn btn-success',
+                            'data' => [
+                                'loading-text' => Yii::t('hipanel:certificate', 'Loading certificate data...'),
+                            ],
+                        ]) ?>
+                    </p>
+                </div>
             </div>
-        </div>
+        <?php endif ?>
     </div>
 <?php

@@ -28,6 +28,28 @@ class CertificateDetailMenu extends AbstractDetailMenu
             [
                 'label' => ModalButton::widget([
                     'model' => $this->model,
+                    'scenario' => 'cancel',
+                    'button' => [
+                        'label' => '<i class="fa fa-fw fa-trash-o"></i> ' . Yii::t('hipanel', 'Cancel'),
+                    ],
+                    'modal' => [
+                        'header' => Html::tag('h4', Yii::t('hipanel:certificate', 'Confirm certificate cancel')),
+                        'headerOptions' => ['class' => 'label-danger'],
+                        'footer' => [
+                            'label' => Yii::t('hipanel:certificate', 'Cancel certificate'),
+                            'data-loading-text' => Yii::t('hipanel', 'Canceling...'),
+                            'class' => 'btn btn-danger btn-flat',
+                        ],
+                    ],
+                    'body' => Yii::t('hipanel:certificate',
+                        'Certificate will be immediately revoked without any refunds or ability to reissue this certificate. Are you sure to delete certificate for {domaim}?', ['domain' => $this->model->name]
+                    ),
+                ]),
+                'encode' => false,
+            ],
+            [
+                'label' => ModalButton::widget([
+                    'model' => $this->model,
                     'scenario' => 'delete',
                     'button' => [
                         'label' => '<i class="fa fa-fw fa-trash-o"></i> ' . Yii::t('hipanel', 'Delete'),
@@ -42,7 +64,7 @@ class CertificateDetailMenu extends AbstractDetailMenu
                         ],
                     ],
                     'body' => Yii::t('hipanel:certificate',
-                        'Certificate will be immediately revoked without any refunds or ability to reissue this certificate. Are you sure to delete certificate for {domain}?', ['domain' => $this->model->name]
+                        'Certificate will be immediately revoked without any refunds or ability to reissue this certificate. Are you sure to delete certificate for {domaim}?', ['domain' => $this->model->name]
                     ),
                 ]),
                 'encode' => false,

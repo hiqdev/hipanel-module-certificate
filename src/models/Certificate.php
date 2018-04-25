@@ -40,6 +40,9 @@ class Certificate extends Model
             [['id', 'remoteid', 'client_id'], 'integer', 'on' => ['reissue']],
             [['id', 'csr'], 'required', 'on' => 'reissue'],
 
+            // Delete
+            [['id'], 'required', 'on' => ['delete', 'cancel']],
+
             // Issue
             [['id', 'admin_id', 'tech_id', 'org_id'], 'integer', 'on' => 'issue'],
             [['webserver_type', 'dns_names', 'csr'], 'string', 'on' => 'issue'],
@@ -100,6 +103,11 @@ class Certificate extends Model
     public function isActive()
     {
         return $this->state === 'ok';
+    }
+
+    public function isDisactive()
+    {
+        return !in_array($this->state, ['ok', 'pending', 'expired'], true);
     }
 
     /**
