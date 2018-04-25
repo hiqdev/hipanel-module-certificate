@@ -23,5 +23,4 @@ class AlternateDCVMethod extends Widget
         return $this->render('AlternateDCVMethod', ['model' => $this->data]);
 
     }
-
 }
