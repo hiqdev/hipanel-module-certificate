@@ -41,7 +41,7 @@ class Certificate extends Model
     {
         return [
             [['id', 'remoteid', 'type_id', 'state_id', 'object_id', 'client_id', 'seller_id'], 'integer'],
-            [['name', 'type', 'state', 'client', 'seller', 'begins', 'expires', 'statuses', 'file', 'type_label'], 'string'],
+            [['name', 'type', 'state', 'client', 'seller', 'begins', 'expires', 'statuses', 'file', 'type_label', 'reason'], 'string'],
 
             [['dcv_method', 'webserver_type'], 'required', 'on' => ['reissue', 'issue']],
             // Reissue
@@ -50,6 +50,9 @@ class Certificate extends Model
 
             // Delete
             [['id'], 'required', 'on' => ['delete', 'cancel']],
+
+            // Cancel
+            [['reason'], 'required', 'on' => ['cancel']],
 
             // Issue
             [['id', 'admin_id', 'tech_id', 'org_id'], 'integer', 'on' => 'issue'],
@@ -87,6 +90,7 @@ class Certificate extends Model
             'tech_id' => Yii::t('hipanel:certificate', 'Tech contact'),
             'org_id' => Yii::t('hipanel:certificate', 'Organization contact'),
             'webserver_type' => Yii::t('hipanel:certificate', 'Webserver type'),
+            'reason' => Yii::t('hipanel', 'Comment'),
         ]);
     }
 

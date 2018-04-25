@@ -12,6 +12,7 @@ namespace hipanel\modules\certificate\menus;
 
 use hipanel\menus\AbstractDetailMenu;
 use hipanel\modules\certificate\models\Certificate;
+use hipanel\modules\certificate\widgets\ModalCancelButton;
 use hipanel\widgets\ModalButton;
 use Yii;
 use yii\bootstrap\Html;
@@ -26,7 +27,7 @@ class CertificateDetailMenu extends AbstractDetailMenu
         $actions = CertificateActionsMenu::create(['model' => $this->model])->items();
         $items = array_merge($actions, [
             [
-                'label' => ModalButton::widget([
+                'label' => ModalCancelButton::widget([
                     'model' => $this->model,
                     'scenario' => 'cancel',
                     'button' => [
@@ -41,9 +42,9 @@ class CertificateDetailMenu extends AbstractDetailMenu
                             'class' => 'btn btn-danger btn-flat',
                         ],
                     ],
-                    'body' => Yii::t('hipanel:certificate',
-                        'Certificate will be immediately revoked without any refunds or ability to reissue this certificate. Are you sure to delete certificate for {name}?', ['name' => $this->model->name]
-                    ),
+                    'body' =>
+                        Yii::t('hipanel:certificate', 'Certificate will be immediately revoked without any refunds or ability to reissue this certificate') . ". " .
+                        Yii::t('hipanel:certificate', 'Are you sure to cancel certificate for {name}?', ['name' => $this->model->name]),
                 ]),
                 'encode' => false,
             ],
@@ -63,11 +64,12 @@ class CertificateDetailMenu extends AbstractDetailMenu
                             'class' => 'btn btn-danger btn-flat',
                         ],
                     ],
-                    'body' => Yii::t('hipanel:certificate',
-                        'Certificate will be immediately revoked without any refunds or ability to reissue this certificate. Are you sure to delete certificate for {domaim}?', ['domain' => $this->model->name]
-                    ),
+                    'body' =>
+                        Yii::t('hipanel:certificate', 'Certificate will be immediately revoked without any refunds or ability to reissue this certificate') . ". " .
+                        Yii::t('hipanel:certificate', 'Are you sure to delete certificate for {name}?', ['name' => $this->model->name]),
                 ]),
                 'encode' => false,
+                'visible' => false,
             ],
         ]);
         unset($items['view']);
