@@ -28,6 +28,14 @@ class Certificate extends Model
 {
     use ModelTrait;
 
+    const STATE_OK = 'ok';
+    const STATE_EXPIRED = 'expired';
+    const STATE_PENDING = 'pending';
+    const STATE_DELETED = 'deleted';
+    const STATE_CANCELLED = 'cancelled';
+    const STATE_ERROR = 'error';
+
+
     /** {@inheritdoc} */
     public function rules()
     {
@@ -102,12 +110,22 @@ class Certificate extends Model
 
     public function isActive()
     {
-        return $this->state === 'ok';
+        return $this->state === self::STATE_OK;
     }
 
     public function isDisactive()
     {
-        return !in_array($this->state, ['ok', 'pending', 'expired'], true);
+        return !in_array($this->state, [self::STATE_OK, self::STATE_EXPIRED, self::STATE_PENDING], true);
+    }
+
+    public function isRenewable()
+    {
+        return in_array($this->state, [self::STATE_OK, self::STATE_EXPIRED], true);
+    }
+
+    public function isReissued()
+    {
+        return in_array($this->state, [self::STATE_OK, self::STATE_PENDING], true);
     }
 
     /**

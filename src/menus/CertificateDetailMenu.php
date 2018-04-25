@@ -42,7 +42,7 @@ class CertificateDetailMenu extends AbstractDetailMenu
                         ],
                     ],
                     'body' => Yii::t('hipanel:certificate',
-                        'Certificate will be immediately revoked without any refunds or ability to reissue this certificate. Are you sure to delete certificate for {domaim}?', ['domain' => $this->model->name]
+                        'Certificate will be immediately revoked without any refunds or ability to reissue this certificate. Are you sure to delete certificate for {name}?', ['name' => $this->model->name]
                     ),
                 ]),
                 'encode' => false,

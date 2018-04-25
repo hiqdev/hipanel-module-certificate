@@ -17,36 +17,30 @@ class CertificateActionsMenu extends Menu
 {
     public $model;
 
-    const STATE_DELETED = 'deleted';
-    const STATE_CANCELLED = 'cancelled';
-    const STATE_ERROR = 'error';
-
-    protected function checkAvailableAction($state)
-    {
-        return !in_array($sate, [self::STATE_DELETED, self::STATE_CANCELLED, self::STATE_ERROR], true);
-    }
-
     public function items()
     {
-        return $this->checkAvailableAction($this->model->state) ? [
+        return [
             'view' => [
                 'label' => Yii::t('hipanel', 'View'),
                 'icon' => 'fa-info',
                 'url' => ['@certificate/view', 'id' => $this->model->id],
                 'encode' => false,
+                'visible' => true,
             ],
             'renew' => [
                 'label' => Yii::t('hipanel:certificate', 'Renew'),
                 'icon' => 'fa-refresh',
                 'url' => ['@certificate/bulk-renew', 'id' => $this->model->id],
                 'encode' => false,
+                'visible' => $this->model->isRenewable(),
             ],
             'reissue' => [
                 'label' => Yii::t('hipanel:certificate', 'Reissue'),
                 'icon' => 'fa-refresh',
                 'url' => ['@certificate/reissue', 'id' => $this->model->id],
                 'encode' => false,
+                'visible' => $this->model->isReissued(),
             ],
-          ] : [];
+          ];
     }
 }
