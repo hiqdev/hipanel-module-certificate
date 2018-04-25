@@ -10,7 +10,7 @@
  * If the value is empty, the message is considered as not translated.
  * Messages that no longer need translation will have their translations
  * enclosed between a pair of '@@' marks.
-Сертификат будетСертификат будет   *
+ *
  * Message string can be used with plural forms format. Check i18n section
  * of the guide for details.
  *
