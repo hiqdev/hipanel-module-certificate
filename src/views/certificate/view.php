@@ -72,7 +72,7 @@ $this->registerJs("
         <?php $box->endBody() ?>
         <?php $box->end() ?>
 
-        <?php if (!$model->isDisactive()) : ?>
+        <?php if (!$model->isDisabled()) : ?>
 
             <div class="box box-widget">
                 <div id="certificate-data" class="box-body">

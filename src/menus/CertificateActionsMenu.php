@@ -39,7 +39,7 @@ class CertificateActionsMenu extends Menu
                 'icon' => 'fa-refresh',
                 'url' => ['@certificate/reissue', 'id' => $this->model->id],
                 'encode' => false,
-                'visible' => $this->model->isReissued(),
+                'visible' => $this->model->isReissueable(),
             ],
           ];
     }
