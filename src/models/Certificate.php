@@ -123,7 +123,7 @@ class Certificate extends Model
         return in_array($this->state, [self::STATE_OK, self::STATE_EXPIRED], true);
     }
 
-    public function isReissueable()
+    public function isReissuable()
     {
         return in_array($this->state, [self::STATE_OK, self::STATE_PENDING], true);
     }
