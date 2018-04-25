@@ -25,19 +25,22 @@ class CertificateActionsMenu extends Menu
                 'icon' => 'fa-info',
                 'url' => ['@certificate/view', 'id' => $this->model->id],
                 'encode' => false,
+                'visible' => true,
             ],
             'renew' => [
                 'label' => Yii::t('hipanel:certificate', 'Renew'),
                 'icon' => 'fa-refresh',
                 'url' => ['@certificate/bulk-renew', 'id' => $this->model->id],
                 'encode' => false,
+                'visible' => $this->model->isRenewable(),
             ],
             'reissue' => [
                 'label' => Yii::t('hipanel:certificate', 'Reissue'),
                 'icon' => 'fa-refresh',
                 'url' => ['@certificate/reissue', 'id' => $this->model->id],
                 'encode' => false,
+                'visible' => $this->model->isReissuable(),
             ],
-        ];
+          ];
     }
 }

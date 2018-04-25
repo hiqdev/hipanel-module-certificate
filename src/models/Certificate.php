@@ -28,17 +28,28 @@ class Certificate extends Model
 {
     use ModelTrait;
 
+    const STATE_OK = 'ok';
+    const STATE_EXPIRED = 'expired';
+    const STATE_PENDING = 'pending';
+    const STATE_DELETED = 'deleted';
+    const STATE_CANCELLED = 'cancelled';
+    const STATE_ERROR = 'error';
+
+
     /** {@inheritdoc} */
     public function rules()
     {
         return [
             [['id', 'remoteid', 'type_id', 'state_id', 'object_id', 'client_id', 'seller_id'], 'integer'],
-            [['name', 'type', 'state', 'client', 'seller', 'begins', 'expires', 'statuses', 'file'], 'string'],
+            [['name', 'type', 'state', 'client', 'seller', 'begins', 'expires', 'statuses', 'file', 'type_label'], 'string'],
 
             [['dcv_method', 'webserver_type'], 'required', 'on' => ['reissue', 'issue']],
             // Reissue
             [['id', 'remoteid', 'client_id'], 'integer', 'on' => ['reissue']],
             [['id', 'csr'], 'required', 'on' => 'reissue'],
+
+            // Delete
+            [['id'], 'required', 'on' => ['delete', 'cancel']],
 
             // Issue
             [['id', 'admin_id', 'tech_id', 'org_id'], 'integer', 'on' => 'issue'],
@@ -52,8 +63,8 @@ class Certificate extends Model
                 'when' => function ($model) {
                     return $model->dcv_method === 'email';
                 },
-                'whenClient' => new JsExpression('function (attribute, value) { 
-                    return $(\'#certificate-dcv_method\').val() === \'email\';    
+                'whenClient' => new JsExpression('function (attribute, value) {
+                    return $(\'#certificate-dcv_method\').val() === \'email\';
                 }'),
             ],
 
@@ -99,7 +110,22 @@ class Certificate extends Model
 
     public function isActive()
     {
-        return $this->state === 'ok';
+        return $this->state === self::STATE_OK;
+    }
+
+    public function isDisabled()
+    {
+        return !in_array($this->state, [self::STATE_OK, self::STATE_EXPIRED, self::STATE_PENDING], true);
+    }
+
+    public function isRenewable()
+    {
+        return in_array($this->state, [self::STATE_OK, self::STATE_EXPIRED], true);
+    }
+
+    public function isReissuable()
+    {
+        return in_array($this->state, [self::STATE_OK, self::STATE_PENDING], true);
     }
 
     /**

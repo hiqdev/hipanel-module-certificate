@@ -24,6 +24,8 @@ use hipanel\actions\ViewAction;
 use hipanel\actions\IndexAction;
 use hipanel\base\CrudController;
 use hipanel\actions\SmartUpdateAction;
+use hipanel\actions\SmartDeleteAction;
+use hipanel\actions\SmartPerformAction;
 use hipanel\actions\ValidateFormAction;
 use yii\helpers\Html;
 
@@ -72,16 +74,26 @@ class CertificateController extends CrudController
             ],
             'issue' => [
                 'class' => SmartUpdateAction::class,
-                'success' => Yii::t('hipanel:client', 'Successfully issued'),
-                'error' => Yii::t('hipanel:client', 'Error issuing'),
+                'success' => Yii::t('hipanel:certificate', 'Successfully issued'),
+                'error' => Yii::t('hipanel:certificate', 'Error issuing'),
             ],
             'reissue' => [
                 'class' => SmartUpdateAction::class,
-                'success' => Yii::t('hipanel:client', 'Certificate reissue process was initiated. Now you should confirm the domain ownership using the selected domain control validation method.'),
-                'error' => Yii::t('hipanel:client', 'Error reissuing'),
+                'success' => Yii::t('hipanel:certificate', 'Certificate reissue process was initiated. Now you should confirm the domain ownership using the selected domain control validation method.'),
+                'error' => Yii::t('hipanel:certificate', 'Error reissuing'),
             ],
             'validate-form' => [
                 'class' => ValidateFormAction::class,
+            ],
+            'delete' => [
+                'class' => SmartDeleteAction::class,
+                'success' => Yii::t('hipanel:certificate', 'Certificate deleted'),
+                'error' => Yii::t('hipanel:certificate', 'Error deleting'),
+            ],
+            'cancel' => [
+                'class' => SmartPerformAction::class,
+                'success' => Yii::t('hipanel:certificate', 'Certificate canceled'),
+                'error' => Yii::t('hipanel:certificate', 'Error canceling'),
             ],
         ]);
     }

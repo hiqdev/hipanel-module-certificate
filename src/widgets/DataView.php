@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Widget;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use hipanel\modules\certificate\widgets\AlternateDCVMethod;
 
 class DataView extends Widget
 {
@@ -35,7 +36,7 @@ class DataView extends Widget
                         $value = $model['dcv_data'][$method];
                         if ($method === 'email') {
                             $hint = Yii::t('hipanel:certificate', 'follow confirmation link in email sent to your address:');
-                            $value = Html::tag('b', $value);
+                            $value = Html::tag('b', $value ? : $model['approver_email']);
                         } elseif ($method === 'dns') {
                             $hint = Yii::t('hipanel:certificate', 'add following DNS record');
                             $value = Html::tag('pre', $value['record']);
@@ -43,6 +44,16 @@ class DataView extends Widget
 
                         return Yii::t('hipanel:certificate', 'Method:') . ' ' . Html::tag('b', strtoupper($method)) . ', ' . $hint . ' ' . $value;
                     },
+                    'visible' => empty($this->data['crt_code']),
+                ],
+                [
+                    'attribute' => 'dcv_method_alternate',
+                    'label' => Yii::t('hipanel:certificate', 'Alternate domain validations'),
+                    'format' => 'html',
+                    'value' => function ($model) {
+                        return AlternateDCVMethod::widget(['data' => $model]);
+                    },
+                    'visible' => empty($this->data['crt_code']) && !empty($this->data['dcv_data_alternate']),
                 ],
                 [
                     'attribute' => 'crt_code',
@@ -57,6 +68,7 @@ class DataView extends Widget
                     'captionOptions' => [
                         'style' => 'min-width: 20rem',
                     ],
+                    'visible' => !empty($this->data['crt_code']),
                 ],
                 [
                     'attribute' => 'ca_code',
@@ -71,6 +83,7 @@ class DataView extends Widget
                     'captionOptions' => [
                         'style' => 'min-width: 20rem',
                     ],
+                    'visible' => !empty($this->data['ca_code']),
                 ],
                 [
                     'attribute' => 'csr_code',

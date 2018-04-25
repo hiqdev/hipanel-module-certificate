@@ -129,4 +129,13 @@ return [
     'Canceled' => 'Отменён',
     'Error' => 'Ошибка',
     'Deleted' => 'Удалён',
+    'Cancelled' => 'Отменен',
+    'Method' => 'Метод',
+    'Method:' => 'Метод:',
+    'follow confirmation link in email sent to your address:' => 'следуйте по ссылке подтверждения, что отправлена на Ваш адрес:',
+    'add following DNS record' => 'добавьте следующую DNS запись',
+    'Values' => 'Значения',
+    'Domain control validation' => 'Валидация домена',
+    'Alternate domain validations' => 'Альтернативные методы валидации',
+    'Certificate request' => 'Запрос сертификата',
 ];
