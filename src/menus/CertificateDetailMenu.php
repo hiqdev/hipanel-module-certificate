@@ -41,9 +41,12 @@ class CertificateDetailMenu extends AbstractDetailMenu
                             'class' => 'btn btn-danger btn-flat',
                         ],
                     ],
-                    'body' => Yii::t('hipanel:certificate',
-                        'Certificate will be immediately revoked without any refunds or ability to reissue this certificate. Are you sure to delete certificate for {name}?', ['name' => $this->model->name]
-                    ),
+                    'body' => function($model, $widget) {
+                        echo Yii::t('hipanel:certificate', 'Certificate will be immediately revoked without any refunds or ability to reissue this certificate');
+                        echo ". ";
+                        echo Yii::t('hipanel:certificate', 'Are you sure to cancel certificate for {name}?', ['name' => $this->model->name]);
+                        echo $widget->form->field($model, 'reason');
+                    },
                 ]),
                 'encode' => false,
             ],
@@ -63,11 +66,12 @@ class CertificateDetailMenu extends AbstractDetailMenu
                             'class' => 'btn btn-danger btn-flat',
                         ],
                     ],
-                    'body' => Yii::t('hipanel:certificate',
-                        'Certificate will be immediately revoked without any refunds or ability to reissue this certificate. Are you sure to delete certificate for {domaim}?', ['domain' => $this->model->name]
-                    ),
+                    'body' =>
+                        Yii::t('hipanel:certificate', 'Certificate will be immediately revoked without any refunds or ability to reissue this certificate') . ". " .
+                        Yii::t('hipanel:certificate', 'Are you sure to delete certificate for {name}?', ['name' => $this->model->name]),
                 ]),
                 'encode' => false,
+                'visible' => false,
             ],
         ]);
         unset($items['view']);

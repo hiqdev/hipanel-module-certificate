@@ -19,7 +19,8 @@
 return [
     'Add the same position' => 'Добавить еще один',
     'Allows publishers to sign their files with own signature to proof their identity' => 'Позволяет подписывать свои файлы собственной подписью',
-    'Certificate will be immediately revoked without any refunds or ability to reissue this certificate. Are you sure to delete certificate for {domain}?' => 'Сертификат будет немедленно отозван без возможности перевыпустить его или получить компенсацию. Вы уверены, что хотите удалить сертификат для {domain}?',
+    'Certificate will be immediately revoked without any refunds or ability to reissue this certificate' => 'Сертификат будет немедленно отозван без возможности перевыпустить его или получить компенсацию',
+    'Are you sure to delete certificate for {name}?' => 'Вы уверены, что хотите удалить сертификат для {name}?',
     'Business Location - City. Ex.: New York' => '',
     'Business Location - Country' => '',
     'Business Location - State/Province. Ex.: Alabama/None' => '',
@@ -138,4 +139,7 @@ return [
     'Domain control validation' => 'Валидация домена',
     'Alternate domain validations' => 'Альтернативные методы валидации',
     'Certificate request' => 'Запрос сертификата',
+    'Confirm certificate cancel' => 'Подтвердите отказ от сертификата',
+    'Are you sure to cancel certificate for {name}?' => 'Вы уверены, что хотите отказаться от сертификата для {name}?',
+    'Cancel certificate' => 'Отказаться от сертификата',
 ];
