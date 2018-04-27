@@ -97,6 +97,10 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
                 'label' => Yii::t('hipanel:certificate', 'Comodo SSL Certificates'),
                 'img' => 'comodo_vendor.png',
             ],
+            'certum' => [
+                'label' => Yii::t('hipanel:certificate', 'Certum'),
+                'img' => 'certum_vendor.png',
+            ],
         ];
     }
 
