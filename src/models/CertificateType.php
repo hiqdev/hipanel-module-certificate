@@ -17,12 +17,14 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
 {
     public $id;
     public $name;
-    public $organization;
+    public $unlimited_servers;
+    public $domain_validation;
+    public $extended_validation;
+    public $organization_validation;
     public $wildcard;
     public $code_signing;
-    public $extended_validation;
-    public $unlimited_servers;
-    public $is_multidomain;
+    public $personal;
+    public $multidomain;
     public $multidomains_included;
     public $multidomains_maximum;
 
@@ -75,26 +77,27 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
     {
         return [
             'symantec' => [
-                'label' => Yii::t('hipanel:certificate', 'Symantec SSL Certificates'),
+                'label' => Yii::t('hipanel:certificate', 'Symantec'),
                 'img' => 'symantec_vendor.png',
             ],
             'ggssl' => [
-                'label' => Yii::t('hipanel:certificate', 'GoGetSSL SSL Certificates'),
+                'label' => Yii::t('hipanel:certificate', 'GoGetSSL'),
+                'img' => 'gogetssl_vendor.png',
             ],
             'thawte' => [
-                'label' => Yii::t('hipanel:certificate', 'Thawte SSL Certificates'),
+                'label' => Yii::t('hipanel:certificate', 'Thawte'),
                 'img' => 'thawte_vendor.png',
             ],
             'geotrust' => [
-                'label' => Yii::t('hipanel:certificate', 'GeoTrust SSL Certificates'),
+                'label' => Yii::t('hipanel:certificate', 'GeoTrust'),
                 'img' => 'geotrust_vendor.png',
             ],
             'rapidssl' => [
-                'label' => Yii::t('hipanel:certificate', 'RapidSSL Certificates'),
+                'label' => Yii::t('hipanel:certificate', 'RapidSSL'),
                 'img' => 'rapidssl_vendor.png',
             ],
             'comodo' => [
-                'label' => Yii::t('hipanel:certificate', 'Comodo SSL Certificates'),
+                'label' => Yii::t('hipanel:certificate', 'Comodo'),
                 'img' => 'comodo_vendor.png',
             ],
             'certum' => [
@@ -171,7 +174,7 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
     public function detectFeatures()
     {
         $res = ['dv' => 'dv'];
-        if ($this->organization) {
+        if ($this->organization_validation) {
             $res['ov'] = 'ov';
             unset($res['dv']);
         }
@@ -186,7 +189,7 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
         if ($this->wildcard) {
             $res['wc'] = 'wc';
         }
-        if ($this->is_multidomain) {
+        if ($this->multidomain) {
             $res['san'] = 'san';
         }
 
