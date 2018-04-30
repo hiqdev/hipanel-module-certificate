@@ -40,8 +40,9 @@ class Certificate extends Model
     public function rules()
     {
         return [
-            [['id', 'remoteid', 'type_id', 'state_id', 'object_id', 'client_id', 'seller_id'], 'integer'],
+            [['id', 'remoteid', 'type_id', 'state_id', 'object_id', 'client_id', 'seller_id', 'product_id'], 'integer'],
             [['name', 'type', 'state', 'client', 'seller', 'begins', 'expires', 'statuses', 'file', 'type_label', 'reason'], 'string'],
+            [['is_parent'], 'boolean'],
 
             [['dcv_method', 'webserver_type'], 'required', 'on' => ['reissue', 'issue']],
             // Reissue
@@ -124,12 +125,17 @@ class Certificate extends Model
 
     public function isRenewable()
     {
-        return in_array($this->state, [self::STATE_OK, self::STATE_EXPIRED], true);
+        return in_array($this->state, [self::STATE_OK, self::STATE_EXPIRED], true) && !$this->isParent();
     }
 
     public function isReissuable()
     {
-        return in_array($this->state, [self::STATE_OK, self::STATE_PENDING], true);
+        return in_array($this->state, [self::STATE_OK, self::STATE_PENDING], true) && !$this->isParent();
+    }
+
+    public function isParent()
+    {
+        return (bool) $this->is_parent;
     }
 
     /**
