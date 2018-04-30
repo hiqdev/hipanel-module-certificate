@@ -17,6 +17,7 @@ use hipanel\modules\certificate\cart\CertificateOrderProduct;
 use hipanel\modules\certificate\forms\CsrGeneratorForm;
 use hipanel\modules\certificate\forms\OrderForm;
 use hipanel\modules\certificate\repositories\CertificateTariffRepository;
+use hipanel\filters\EasyAccessControl;
 use hiqdev\yii2\cart\actions\AddToCartAction;
 use Yii;
 use yii\helpers\Url;
@@ -34,6 +35,19 @@ class CertificateOrderController extends Controller
         parent::__construct($id, $module, $config);
 
         $this->tariffRepository = $tariffRepository;
+    }
+
+    public function behaviors()
+    {
+        return array_merge(parent::behaviors(), [
+            [
+                'class' => EasyAccessControl::class,
+                'actions' => [
+                    'add-to-cart-order' => 'certificate.pay',
+                    '*' => 'certificate.read',
+                ],
+            ],
+        ]);
     }
 
     public function actions()
