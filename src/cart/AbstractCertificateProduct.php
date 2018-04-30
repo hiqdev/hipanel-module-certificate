@@ -29,7 +29,15 @@ abstract class AbstractCertificateProduct extends AbstractCartPosition
      */
     protected $_operation;
 
+    /**
+     * @var integer
+     */
     public $product_id;
+
+    /**
+     * @var string
+     */
+    public $scenario = null;
 
     /** {@inheritdoc} */
     public function getIcon()
@@ -85,7 +93,8 @@ abstract class AbstractCertificateProduct extends AbstractCartPosition
         return CertificateCartQuantity::widget([
             'model' => $this,
             'quantityOptions' => $quantityOptions,
-            'product_id' => $this->product_id
+            'product_id' => $this->product_id,
+            'scenario' => $this->scenario,
         ]);
     }
 }

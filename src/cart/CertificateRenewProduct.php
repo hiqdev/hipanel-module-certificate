@@ -41,6 +41,9 @@ class CertificateRenewProduct extends AbstractCertificateProduct
     public $expires;
 
     /** {@inheritdoc} */
+    public $scenario = 'renewal';
+
+    /** {@inheritdoc} */
     public static function primaryKey()
     {
         return ['model_id'];
@@ -75,7 +78,7 @@ class CertificateRenewProduct extends AbstractCertificateProduct
             'type' => $this->_operation,
             'name' => $this->name,
             'product_id' => $this->_model->id,
-            'expires' => $this->expires,
+            'expires' => $this->_certificate->expires,
         ], $options));
     }
 
@@ -95,9 +98,7 @@ class CertificateRenewProduct extends AbstractCertificateProduct
     {
         return array_merge(parent::rules(), [
             [['model_id', 'product_id'], 'integer'],
-            [['expires'], 'safe'],
             [['name'], 'required'],
-            [['expires'], 'required'],
         ]);
     }
 }
