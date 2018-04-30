@@ -71,6 +71,7 @@ class CertificateRenewProduct extends AbstractCertificateProduct
     public function getCalculationModel($options = [])
     {
         return parent::getCalculationModel(array_merge([
+            'id' => $this->_certificate->id,
             'type' => $this->_operation,
             'name' => $this->name,
             'product_id' => $this->_model->id,
@@ -94,7 +95,7 @@ class CertificateRenewProduct extends AbstractCertificateProduct
     {
         return array_merge(parent::rules(), [
             [['model_id', 'product_id'], 'integer'],
-            [['expires'], 'date'],
+            [['expires'], 'safe'],
             [['name'], 'required'],
             [['expires'], 'required'],
         ]);
