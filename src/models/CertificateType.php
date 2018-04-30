@@ -17,6 +17,7 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
 {
     public $id;
     public $name;
+    public $expires;
     public $unlimited_servers;
     public $domain_validation;
     public $extended_validation;
