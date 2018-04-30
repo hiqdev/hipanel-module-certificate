@@ -18,6 +18,7 @@ use hipanel\modules\certificate\forms\CsrGeneratorForm;
 use hipanel\modules\certificate\models\Certificate;
 use hipanel\modules\certificate\models\CertificateType;
 use hipanel\modules\certificate\widgets\DataView;
+use hipanel\modules\certificate\cart\CertificateRenewProduct;
 use Yii;
 use yii\base\Event;
 use hipanel\actions\ViewAction;
@@ -27,6 +28,7 @@ use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\SmartDeleteAction;
 use hipanel\actions\SmartPerformAction;
 use hipanel\actions\ValidateFormAction;
+use hiqdev\yii2\cart\actions\AddToCartAction;
 use yii\helpers\Html;
 
 class CertificateController extends CrudController
@@ -60,7 +62,7 @@ class CertificateController extends CrudController
                     /** @var \hipanel\actions\SearchAction $action */
                     $action = $event->sender;
                     $dataProvider = $action->getDataProvider();
-                    $dataProvider->query->joinWith('object');
+                    $dataProvider->query->joinWith('object')->addSelect('chain');
                 },
                 'data' => function ($action) {
                     return [
@@ -71,6 +73,10 @@ class CertificateController extends CrudController
             ],
             'view' => [
                 'class' => ViewAction::class,
+                'on beforePerform' => function ($event) {
+                    $action = $event->sender;
+                    $action->getDataProvider()->query->addSelect('chain');
+                },
             ],
             'issue' => [
                 'class' => SmartUpdateAction::class,
@@ -94,6 +100,10 @@ class CertificateController extends CrudController
                 'class' => SmartPerformAction::class,
                 'success' => Yii::t('hipanel:certificate', 'Certificate canceled'),
                 'error' => Yii::t('hipanel:certificate', 'Error canceling'),
+            ],
+            'add-to-cart-renew' => [
+                'class' => AddToCartAction::class,
+                'productClass' => CertificateRenewProduct::class,
             ],
         ]);
     }
