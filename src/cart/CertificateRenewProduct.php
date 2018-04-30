@@ -96,7 +96,7 @@ class CertificateRenewProduct extends AbstractCertificateProduct
             [['model_id', 'product_id'], 'integer'],
             [['expires'], 'date'],
             [['name'], 'required'],
-            [['expires'], 'requoired'],
+            [['expires'], 'required'],
         ]);
     }
 }
