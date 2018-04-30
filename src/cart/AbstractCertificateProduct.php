@@ -14,6 +14,7 @@ use hipanel\modules\certificate\models\CertificateType;
 use hipanel\modules\certificate\repositories\CertificateTariffRepository;
 use hipanel\modules\finance\cart\AbstractCartPosition;
 use hipanel\modules\finance\models\CertificateResource;
+use hipanel\modules\certificate\widgets\CertificateCartQuantity;
 use Yii;
 
 abstract class AbstractCertificateProduct extends AbstractCartPosition
@@ -28,6 +29,8 @@ abstract class AbstractCertificateProduct extends AbstractCartPosition
      */
     protected $_operation;
 
+    public $product_id;
+
     /** {@inheritdoc} */
     public function getIcon()
     {
@@ -37,6 +40,16 @@ abstract class AbstractCertificateProduct extends AbstractCartPosition
     public function getResource()
     {
         return $this->getTariffRepository()->getResource(null, $this->_operation, $this->_model->id);
+    }
+
+    /** {@inheritdoc} */
+    public function load($data, $formName = null)
+    {
+        if ($result = parent::load($data, '')) {
+            $this->ensureRelatedData();
+        }
+
+        return $result;
     }
 
     /**
@@ -63,4 +76,17 @@ abstract class AbstractCertificateProduct extends AbstractCartPosition
         $parent['_model'] = $this->_model;
         return $parent;
     }
+
+    /** {@inheritdoc} */
+    public function getQuantityOptions()
+    {
+        $quantityOptions = $this->getResource()->getAvailablePeriods();
+
+        return CertificateCartQuantity::widget([
+            'model' => $this,
+            'quantityOptions' => $quantityOptions,
+            'product_id' => $this->product_id
+        ]);
+    }
 }
+
