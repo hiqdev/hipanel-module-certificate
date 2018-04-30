@@ -105,6 +105,11 @@ class CertificateController extends CrudController
                 'class' => AddToCartAction::class,
                 'productClass' => CertificateRenewProduct::class,
             ],
+            'bulk-renewal' => [
+                'class' => AddToCartAction::class,
+                'productClass' => CertificateRenewProduct::class,
+                'bulkLoad' => true,
+            ],
         ]);
     }
 

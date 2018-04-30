@@ -8,14 +8,14 @@
  * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
  */
 
-namespace hipanel\modules\server\cart;
+namespace hipanel\modules\certificate\cart;
 
 use hipanel\base\ModelTrait;
 
 /**
  * Class ServerRenewPurchase.
  */
-class ServerRenewPurchase extends AbstractServerPurchase
+class CertificateRenewPurchase extends AbstractCertificatePurchase
 {
     use ModelTrait;
 
@@ -35,15 +35,21 @@ class ServerRenewPurchase extends AbstractServerPurchase
     }
 
     /**
-     * @var string domain expiration datetime
+     * @var string certificate expiration datetime
      */
     public $expires;
+
+    /**
+     * @var integer
+     */
+    public $id;
 
     public function rules()
     {
         return array_merge(parent::rules(), [
             [['name', 'expires'], 'safe'],
             [['expires', 'amount'], 'required'],
+            [['product_id'], 'integer'],
         ]);
     }
 }

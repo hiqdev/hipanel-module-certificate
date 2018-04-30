@@ -35,6 +35,14 @@ class CertificateRenewProduct extends AbstractCertificateProduct
      */
     protected $_certificate;
 
+    /**
+     * @var date
+     */
+    public $expires;
+
+    /** {@inheritdoc} */
+    public $scenario = 'renewal';
+
     /** {@inheritdoc} */
     public static function primaryKey()
     {
@@ -53,6 +61,7 @@ class CertificateRenewProduct extends AbstractCertificateProduct
         $this->_model = $this->_certificate->getCertificateType();
         $this->name = $this->_model->name;
         $this->description = Yii::t('hipanel:certificate', 'Renewal');
+        $this->expires = $this->_certificate->expires;
     }
 
     /** {@inheritdoc} */
@@ -65,11 +74,11 @@ class CertificateRenewProduct extends AbstractCertificateProduct
     public function getCalculationModel($options = [])
     {
         return parent::getCalculationModel(array_merge([
-            // 'id' => $this->_model->id,
+            'id' => $this->_certificate->id,
             'type' => $this->_operation,
             'name' => $this->name,
-            'expires' => $this->_certificate->expires,
             'product_id' => $this->_model->id,
+            'expires' => $this->_certificate->expires,
         ], $options));
     }
 
@@ -77,7 +86,11 @@ class CertificateRenewProduct extends AbstractCertificateProduct
     public function getPurchaseModel($options = [])
     {
         $this->ensureRelatedData(); // To get fresh domain expiration date
-        return parent::getPurchaseModel(array_merge(['expires' => $this->_model->expires], $options));
+        return parent::getPurchaseModel(array_merge([
+            'id' => $this->_certificate->id,
+            'product_id' => $this->_certificate->product_id,
+            'expires' => $this->_certificate->expires,
+        ], $options));
     }
 
     /** {@inheritdoc} */
