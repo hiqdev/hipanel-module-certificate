@@ -30,9 +30,12 @@ class CertificateActionsMenu extends Menu
             'renew' => [
                 'label' => Yii::t('hipanel:certificate', 'Renew'),
                 'icon' => 'fa-refresh',
-                'url' => ['@certificate/add-to-cart-renew', 'id' => $this->model->id],
+                'url' => ['@certificate/add-to-cart-renew', 'model_id' => $this->model->id],
                 'encode' => false,
                 'visible' => $this->model->isRenewable(),
+                'linkOptions' => [
+                    'data-pjax' => 0,
+                ],
             ],
             'reissue' => [
                 'label' => Yii::t('hipanel:certificate', 'Reissue'),
