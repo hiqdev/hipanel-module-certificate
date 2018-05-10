@@ -67,7 +67,7 @@ class CertificateRenewProduct extends AbstractCertificateProduct
     /** {@inheritdoc} */
     public function getId()
     {
-        return hash('crc32b', implode('_', ['certificate', 'renew', $this->_model->id]));
+        return hash('crc32b', implode('_', ['certificate', 'renew', $this->_certificate->id]));
     }
 
     /** {@inheritdoc} */
@@ -92,6 +92,17 @@ class CertificateRenewProduct extends AbstractCertificateProduct
             'expires' => $this->_certificate->expires,
         ], $options));
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function serializationMap()
+    {
+        $parent = parent::serializationMap();
+        $parent['_certificate'] = $this->_certificate;
+        return $parent;
+    }
+
 
     /** {@inheritdoc} */
     public function rules()
