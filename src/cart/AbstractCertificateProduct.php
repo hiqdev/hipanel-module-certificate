@@ -15,9 +15,10 @@ use hipanel\modules\certificate\repositories\CertificateTariffRepository;
 use hipanel\modules\finance\cart\AbstractCartPosition;
 use hipanel\modules\finance\models\CertificateResource;
 use hipanel\modules\certificate\widgets\CertificateCartQuantity;
+use hiqdev\yii2\cart\DontIncrementQuantityWhenAlreadyInCart;
 use Yii;
 
-abstract class AbstractCertificateProduct extends AbstractCartPosition
+abstract class AbstractCertificateProduct extends AbstractCartPosition implements DontIncrementQuantityWhenAlreadyInCart
 {
     /**
      * @var CertificateType
