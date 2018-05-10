@@ -14,6 +14,7 @@ use hipanel\modules\certificate\models\Certificate;
 use hipanel\modules\certificate\models\CertificateType;
 use hipanel\modules\finance\models\CertificateResource;
 use Yii;
+use yii\helpers\Html;
 
 
 /**
@@ -103,7 +104,6 @@ class CertificateRenewProduct extends AbstractCertificateProduct
         return $parent;
     }
 
-
     /** {@inheritdoc} */
     public function rules()
     {
@@ -111,5 +111,13 @@ class CertificateRenewProduct extends AbstractCertificateProduct
             [['model_id', 'product_id'], 'integer'],
             [['name'], 'required'],
         ]);
+    }
+
+    /** {@inheritdoc} */
+    public function renderDescription()
+    {
+        return $this->getIcon() . " " . $this->getName() . " " .
+            Html::a($this->_certificate->name, ['@certificate/view', 'id' => $this->model_id]) . " " .
+            Html::tag('span', $this->getDescription(), ['class' => 'text-muted']);
     }
 }
