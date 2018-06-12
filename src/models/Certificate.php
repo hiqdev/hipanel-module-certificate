@@ -116,6 +116,11 @@ class Certificate extends Model
         return !in_array($this->state, [self::STATE_OK, self::STATE_EXPIRED, self::STATE_PENDING], true);
     }
 
+    public function isDeleteable()
+    {
+        return in_array($this->state, [ self::STATE_DELETED, self::STATE_ERROR, self::STATE_CANCELLED], true);
+    }
+
     public function isRenewable()
     {
         return in_array($this->state, [self::STATE_OK, self::STATE_EXPIRED], true) && !$this->isParent();

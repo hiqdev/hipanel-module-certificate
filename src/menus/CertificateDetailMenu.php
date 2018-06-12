@@ -72,7 +72,7 @@ class CertificateDetailMenu extends AbstractDetailMenu
                         Yii::t('hipanel:certificate', 'Are you sure to delete certificate for {name}?', ['name' => $this->model->name]),
                 ]),
                 'encode' => false,
-                'visible' => Yii::$app->user->can('certificate.delete'),
+                'visible' => Yii::$app->user->can('certificate.delete') && $this->model->isDeleteable(),
             ],
         ]);
         unset($items['view']);
