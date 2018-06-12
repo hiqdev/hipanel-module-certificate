@@ -39,11 +39,11 @@ class CertificateController extends CrudController
             'access-certificate' => [
                 'class' => EasyAccessControl::class,
                 'actions' => [
-                    'create'        => 'certificate.create',
-                    'reissue,renew' => 'certificate.update',
-                    'delete'        => 'certificate.delete',
-                    'push'          => 'certificate.push',
-                    '*'             => 'certificate.read',
+                    'create' => 'certificate.create',
+                    'reissue,cancel' => 'certificate.update',
+                    'add-to-cart-renew,bulk-renewal' => 'certificate.update',
+                    'delete' => 'certificate.delete',
+                    '*' => 'certificate.read',
                 ],
             ],
             'redirect-panel' => [

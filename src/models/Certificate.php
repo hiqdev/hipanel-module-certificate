@@ -43,22 +43,12 @@ class Certificate extends Model
             [['id', 'remoteid', 'type_id', 'state_id', 'object_id', 'client_id', 'seller_id', 'product_id'], 'integer'],
             [['name', 'type', 'state', 'client', 'seller', 'begins', 'expires', 'statuses', 'file', 'type_label', 'reason'], 'string'],
             [['is_parent'], 'boolean'],
-
-            [['dcv_method', 'webserver_type'], 'required', 'on' => ['reissue', 'issue']],
-            // Reissue
-            [['id', 'remoteid', 'client_id'], 'integer', 'on' => ['reissue']],
-            [['id', 'csr'], 'required', 'on' => 'reissue'],
-
-            // Delete
-            [['id'], 'required', 'on' => ['delete', 'cancel']],
-
-            // Cancel
-            [['reason'], 'required', 'on' => ['cancel']],
-
-            // Issue
-            [['id', 'admin_id', 'tech_id', 'org_id'], 'integer', 'on' => 'issue'],
-            [['webserver_type', 'dns_names', 'csr'], 'string', 'on' => 'issue'],
-
+            // All Operations
+            [['id'], 'required', 'on' => ['issue', 'reissue', 'cancel', 'delete']],
+            // Issue And ReIssue
+            [['csr', 'dcv_method', 'webserver_type'], 'required', 'on' => ['issue', 'reissue']],
+            [['admin_id', 'tech_id', 'org_id'], 'integer', 'on' => ['issue', 'reissue']],
+            [['webserver_type', 'dns_names', 'csr'], 'string', 'on' => ['issue', 'reissue']],
             [['approver_email'], 'email', 'on' => ['issue', 'reissue']],
             [
                 ['approver_email'],
@@ -72,7 +62,10 @@ class Certificate extends Model
                 }'),
             ],
 
-            [['approver_emails'], 'email', 'on' => 'issue'],
+            [['approver_emails'], 'email', 'on' => ['issue', 'reissue']],
+
+            // Cancel
+            [['reason'], 'required', 'on' => ['cancel']],
         ];
     }
 
