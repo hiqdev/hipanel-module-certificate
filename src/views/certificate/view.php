@@ -23,6 +23,12 @@ $this->registerJs("
     });
 ");
 
+$this->registerCss("
+    td.pre {
+        font-family: monospace;
+    }
+");
+
 ?>
     <div class="row">
     <div class="col-md-3">
