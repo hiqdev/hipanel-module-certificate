@@ -100,7 +100,8 @@ class Certificate extends Model
         ]);
     }
 
-    public function getIssueData()
+    /** @return \stdClass **/
+    public function getIssueData() : \stdClass
     {
         if ($this->issueData !== null) {
             return $this->issueData;
@@ -128,30 +129,30 @@ class Certificate extends Model
     public function dcvMethodOptions()
     {
         return array_filter([
-            'email' => $this->isSupportEmailValidation() ? Yii::t('hipanel:certificate', 'Email') : null,
-            'dns' => $this->isSupportDNSValidation() ? Yii::t('hipanel:certificate', 'DNS') : null,
-            'file' => $this->isSupportFileValidation() ? Yii::t('hipanel:certificate', 'File') : null,
-            'http' => $this->isSupportHTTPValidation() ? Yii::t('hipanel:certificate', 'HTTP') : null,
-            'https' => $this->isSupportHTTPValidation() ? Yii::t('hipanel:certificate', 'HTTPS') : null,
+            'email' => $this->supportsEmailValidation() ? Yii::t('hipanel:certificate', 'Email') : null,
+            'dns' => $this->supportsDNSValidation() ? Yii::t('hipanel:certificate', 'DNS') : null,
+            'file' => $this->supportsFileValidation() ? Yii::t('hipanel:certificate', 'File') : null,
+            'http' => $this->supportsHTTPValidation() ? Yii::t('hipanel:certificate', 'HTTP') : null,
+            'https' => $this->supportsHTTPValidation() ? Yii::t('hipanel:certificate', 'HTTPS') : null,
         ]);
     }
 
-    public function isSupportEmailValidation()
+    public function supportsEmailValidation()
     {
         return true;
     }
 
-    public function isSupportFileValidation()
+    public function supportsFileValidation()
     {
         return $this->certificateType->brand === self::SUPPLIER_CERTUM;
     }
 
-    public function isSupportDNSValidation()
+    public function supportsDNSValidation()
     {
         return in_array($this->certificateType->brand, [self::SUPPLIER_CERTUM, self::SUPPLIER_COMODO, self::SUPPLIER_GOGETSSL], true);
     }
 
-    public function isSupportHTTPValidation()
+    public function supportsHTTPValidation()
     {
         return in_array($this->certificateType->brand, [self::SUPPLIER_COMODO, self::SUPPLIER_GOGETSSL], true);
     }

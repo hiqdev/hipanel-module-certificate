@@ -71,13 +71,13 @@ class DVCMethod extends Widget
 
     public function registerIssueJS()
     {
-        $this->getView()->registerJs(<<<heredoc
+        $this->getView()->registerJs(<<<JS
             $(document).on('change', '#certificate-csr', function(e) {
                 var dropdown = $("#certificate-approver_email");
                 var csr = e.target.value;
                 dropdown.find('option').remove().end().append($('<option />').val(null).text('--'));
                 if (document.getElementById('certificate-dcv_method').value === 'email') {
-                    $.post('{$this->requestUrl}', {'csr': csr}).done(function(data) {
+                    $.post('{$this->requestUrl}', {'csr': csr, 'id': {$this->model->id}}).done(function(data) {
                         if (data.success == true) {
                             hipanel.notify.success(data.message);
                             $.each(data.emails, function() {
@@ -95,13 +95,13 @@ class DVCMethod extends Widget
                 $('#select-csr .btn-success').click();
             });
             {$this->baseJS}
-heredoc
+JS
         );
     }
 
     public function registerChangeJS()
     {
-        $this->getView()->registerJs(<<<heredoc
+        $this->getView()->registerJs(<<<JS
             var modelId = {$this->model->id};
             var dropdown = $("#certificate-approver_email");
             dropdown.find('option').remove().end().append($('<option />').val(null).text('--'));
@@ -119,7 +119,7 @@ heredoc
             });
 
             {$this->baseJS}
-heredoc
+JS
         );
     }
 }
