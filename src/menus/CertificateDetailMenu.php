@@ -31,7 +31,10 @@ class CertificateDetailMenu extends AbstractDetailMenu
             [
                 'label' => AjaxModal::widget([
                     'id' => 'certificate-change-validation-modal',
-                    'header' => Html::tag('h4', Yii::t('hipanel:certificate', 'Change validation'), ['class' => 'modal-title']),
+                    'header' => Html::tag('h4', Yii::t('hipanel:certificate', 'Change validation'), ['class' => 'modal-tittle']),
+                    'headerOptions' => [
+                        'class' => 'label-warning',
+                    ],
                     'scenario' => 'change-validation-modal',
                     'actionUrl' => ['@certificate/change-validation-modal', 'id' => $this->model->id],
                     'size' => Modal::SIZE_LARGE,
