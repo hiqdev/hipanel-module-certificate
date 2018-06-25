@@ -146,7 +146,7 @@ return [
     'Cancel certificate' => 'Отказаться от сертификата',
     'Change validation' => 'Изменить метод проверки',
     'Confirm certificate change validation' => 'Подтвердите изменение метода валидации',
-    'Certificate validation type was method' => 'Метод валидации был изменен',
+    'Certificate validation method was changed' => 'Метод валидации был изменен',
     'Error changing validation method' => 'Возникла ошибка при смене метода валидации',
     'Resend validation' => 'Отправить данные валидации',
     'Validation data was sended' => 'Данные для валидации были отправлены',
