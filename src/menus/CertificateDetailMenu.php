@@ -13,6 +13,7 @@ namespace hipanel\modules\certificate\menus;
 use hipanel\menus\AbstractDetailMenu;
 use hipanel\modules\certificate\models\Certificate;
 use hipanel\widgets\ModalButton;
+use hipanel\helpers\Url;
 use Yii;
 use yii\bootstrap\Html;
 
@@ -25,6 +26,41 @@ class CertificateDetailMenu extends AbstractDetailMenu
     {
         $actions = CertificateActionsMenu::create(['model' => $this->model])->items();
         $items = array_merge($actions, [
+            'change-validation' => [
+                'label' => ModalButton::widget([
+                    'model' => $this->model,
+                    'scenario' => 'change-validation',
+                    'button' => [
+                        'label' => '<i class="fa fa-pencil-square-o"></i> ' . Yii::t('hipanel', 'Change validation'),
+                    ],
+                    'modal' => [
+                        'header' => Html::tag('h4', Yii::t('hipanel:certificate', 'Confirm certificate change validation')),
+                        'headerOptions' => ['class' => 'label-warning'],
+                        'footer' => [
+                            'label' => Yii::t('hipanel:certificate', 'Change'),
+                            'data-loading-text' => Yii::t('hipanel', 'Changing...'),
+                            'class' => 'btn btn-warning btn-flat',
+                        ],
+                    ],
+                    'body' => function($model, $widget) {
+                        echo $widget->form->field($model, 'dcv_method')->dropDownList($model->dcvMethodOptions(), [
+                            'options' => ['email' => ['selected' => true]],
+                        ]);
+                        echo Html::beginTag('div', ['class' => 'method email']);
+                        echo $widget->form->field($model, 'approver_email')->dropDownList([], [
+                            'prompt' => '--',
+                            'readonly' => true,
+                        ])->hint(Yii::t('hipanel:certificate', 'An Approver Email address will be used during the order process of a Domain Validated SSL Certificate. An email requesting approval will be sent to the designated Approver Email address.'));
+                        echo Html::endTag('div');
+                        echo Html::beginTag('div', ['class' => 'method dns']);
+                        echo Html::beginTag('p', ['class' => 'bg-warning']);
+                        echo Yii::t('hipanel:certificate', 'In order to confirm domain ownership by this method, you will need to create a working DNS record in your domain. Make sure you can do this before choosing this method.');
+                        echo Html::endTag('p');
+                        echo Html::endTag('div');
+                    }
+                ]),
+            'encode' => false,
+            ],
             [
                 'label' => ModalButton::widget([
                     'model' => $this->model,

@@ -110,6 +110,23 @@ class CertificateController extends CrudController
                 'productClass' => CertificateRenewProduct::class,
                 'bulkLoad' => true,
             ],
+            're-validate' => [
+                'class' => SmartPerformAction::class,
+                'success' => Yii::t('hipanel:certificate', 'Domain validation start'),
+                'error' => Yii::t('hipanel:certificate', 'Revalidation failed'),
+            ],
+            'send-notifications' => [
+                'class' => SmartPerformAction::class,
+                'success' => Yii::t('hipanel:certificate', '123'),
+                'error' => Yii::t('hipanel:certificate', '234'),
+            ],
+            'change-validation' => [
+                'class' => SmartUpdateAction::class,
+                'success' => Yii::t('hipanel:certificate', 'Certificate validation type was changed'),
+                'error' => Yii::t('hipanel:certificate', 'Error changing validation type'),
+            ],
+            'change-validation-modal' => [
+            ],
         ]);
     }
 
@@ -154,15 +171,15 @@ class CertificateController extends CrudController
     public function actionGetApproverEmails()
     {
         $csr = Yii::$app->request->post('csr');
+        $id = Yii::$app->request->post('id');
         $result = [
             'success' => true,
             'message' => Yii::t('hipanel:certificate', 'Approver emails received, please choose a email.'),
             'emails' => [],
         ];
-        if ($csr) {
+        if ($csr || $id) {
             try {
-                $apiData = Certificate::perform('get-domain-emails', ['csr' => $csr]);
-
+                $apiData = Certificate::perform('get-domain-emails', ['csr' => $csr, 'id' => $id]);
                 $result['emails'] = $apiData;
             } catch (\Exception $e) {
                 $result['success'] = false;
