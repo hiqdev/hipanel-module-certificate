@@ -54,7 +54,7 @@ class Certificate extends Model
             [['name', 'type', 'state', 'client', 'seller', 'begins', 'expires', 'statuses', 'file', 'type_label', 'reason'], 'string'],
             [['is_parent'], 'boolean'],
             // All Operations
-            [['id'], 'required', 'on' => ['issue', 'reissue', 'cancel', 'delete', 'change-validation', 're-validate', 'send-notifications']],
+            [['id'], 'required', 'on' => ['issue', 'reissue', 'cancel', 'delete', 'change-validation', 'revalidate', 'send-notifications']],
             // Issue And ReIssue
             [['csr', 'webserver_type'], 'required', 'on' => ['issue', 'reissue']],
             [['dcv_method'], 'required', 'on' => ['issue', 'reissue', 'change-validation']],

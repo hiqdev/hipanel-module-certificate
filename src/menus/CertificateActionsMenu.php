@@ -44,15 +44,15 @@ class CertificateActionsMenu extends Menu
                 'encode' => false,
                 'visible' => $this->model->isReissuable(),
             ],
-            're-validate' => [
+            'revalidate' => [
                 'label' => Yii::t('hipanel:certificate', 'Revalidate'),
                 'icon' => 'fa-refresh',
-                'url' => ['@certificate/re-validate'],
+                'url' => ['@certificate/revalidate'],
                 'linkOptions' => [
                     'data' => [
                         'method' => 'post',
                         'pjax' => '0',
-                        'form' => 're-validate',
+                        'form' => 'revalidate',
                         'params' => [
                             'Certificate[id]' => $this->model->id,
                         ],

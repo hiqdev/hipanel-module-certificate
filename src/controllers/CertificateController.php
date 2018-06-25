@@ -110,7 +110,7 @@ class CertificateController extends CrudController
                 'productClass' => CertificateRenewProduct::class,
                 'bulkLoad' => true,
             ],
-            're-validate' => [
+            'revalidate' => [
                 'class' => SmartPerformAction::class,
                 'success' => Yii::t('hipanel:certificate', 'Domain validation start'),
                 'error' => Yii::t('hipanel:certificate', 'Revalidation failed'),
