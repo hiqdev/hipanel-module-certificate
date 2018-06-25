@@ -42,7 +42,7 @@ class DataView extends Widget
                             $value = Html::tag('pre', $value['record']);
                         }
 
-                        return Yii::t('hipanel:certificate', 'Method:') . ' ' . Html::tag('b', strtoupper($method)) . ', ' . $hint . ' ' . $value;
+                        return Yii::t('hipanel:certificate', 'Method:') . ' ' . Html::tag('b', strtoupper($method)) . ($hint || $value ? (', ' . $hint . ' ' . $value) : '');
                     },
                     'visible' => empty($this->data['crt_code']),
                 ],
