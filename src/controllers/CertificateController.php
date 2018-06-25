@@ -27,6 +27,7 @@ use hipanel\base\CrudController;
 use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\SmartDeleteAction;
 use hipanel\actions\SmartPerformAction;
+use hipanel\actions\PrepareBulkAction;
 use hipanel\actions\ValidateFormAction;
 use hiqdev\yii2\cart\actions\AddToCartAction;
 use yii\helpers\Html;
@@ -121,11 +122,14 @@ class CertificateController extends CrudController
                 'error' => Yii::t('hipanel:certificate', 'Error during sending notifications'),
             ],
             'change-validation' => [
-                'class' => SmartUpdateAction::class,
+                'class' => SmartPerformAction::class,
                 'success' => Yii::t('hipanel:certificate', 'Certificate validation method was changed'),
                 'error' => Yii::t('hipanel:certificate', 'Error changing validation method'),
             ],
             'change-validation-modal' => [
+                'class' => PrepareBulkAction::class,
+                'view' => '_changeValidation',
+                'scenario' => 'change-validation',
             ],
         ]);
     }

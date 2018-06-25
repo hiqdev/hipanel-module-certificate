@@ -5,62 +5,18 @@
 use hipanel\helpers\Url;
 use hipanel\modules\certificate\grid\CertificateGridView;
 use hipanel\modules\certificate\widgets\CSRButton;
+use hipanel\modules\certificate\widgets\DVCMethod;
 use hipanel\modules\client\widgets\combo\ContactCombo;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
-$form = ActiveForm::begin([
+?>
+
+<?php $form = ActiveForm::begin([
     'id' => 'issue-form',
     'enableAjaxValidation' => true,
     'validationUrl' => Url::toRoute(['validate-form', 'scenario' => $model->scenario]),
-]);
-$getApproverEmailsUrl = Url::to(['@certificate/get-approver-emails']);
-$this->registerCss('.method { display: none; }');
-$this->registerJs(<<<heredoc
-    $(document).on('change', '#certificate-csr', function(e) {
-        var dropdown = $("#certificate-approver_email");
-        var csr = e.target.value;
-        dropdown.find('option').remove().end().append($('<option />').val(null).text('--'));
-        if (document.getElementById('certificate-dcv_method').value === 'email') {
-            $.post('{$getApproverEmailsUrl}', {'csr': csr}).done(function(data) {
-                if (data.success == true) {
-                    hipanel.notify.success(data.message);    
-                    $.each(data.emails, function() {
-                        dropdown.append($('<option />').val(this).text(this));
-                    });
-                    dropdown.removeAttr('readonly');
-                } else {
-                    hipanel.notify.error(data.message);    
-                    dropdown.attr({readonly: true});
-                }  
-            });
-        }
-    });   
-    $('#{$form->id}').submit(function () {
-        $('#select-csr .btn-success').click();
-    });
-
-    // DCV
-    showDCVInfo(document.getElementById('certificate-dcv_method').value);
-    
-    $('#{$form->id} #certificate-dcv_method').on('change', function (event) {
-        var state = event.target.value;
-        showDCVInfo(state);
-    });
-    
-    function showDCVInfo(state) {
-        $('.method').each(function(index, value) {
-            if ($(value).hasClass(state)) {
-                $(value).show();
-            } else {
-                $(value).hide();
-            }
-        });
-    }
-heredoc
-);
-
-?>
+]) ?>
 
 <div class="container-items">
     <div class="row">
@@ -129,42 +85,7 @@ heredoc
                                 <?= $form->field($model, 'csr')->textarea(['rows' => 5]) ?>
                             </div>
                         </div>
-
-                        <?= $form->field($model, 'dcv_method')->dropDownList($model->dcvMethodOptions(), [
-                            'options' => ['email' => ['selected' => true]],
-                        ]) ?>
-
-                        <div class="method email">
-                            <p class="bg-warning" style="margin-top: 1em; padding: 1em;"><?= Yii::t('hipanel:certificate', 'In order to select an "Approver Email", you first need to fill in the csr field.') ?></p>
-                            <?= $form->field($model, 'approver_email')->dropDownList([], [
-                                'prompt' => '--',
-                                'readonly' => true,
-                            ])->hint(Yii::t('hipanel:certificate', 'An Approver Email address will be used during the order process of a Domain Validated SSL Certificate. An email requesting approval will be sent to the designated Approver Email address.')) ?>
-                        </div>
-
-                        <div class="method dns">
-                            <p class="bg-warning" style="margin-top: 1em; padding: 1em;">
-                                <?= Yii::t('hipanel:certificate', 'In order to confirm domain ownership by this method, you will need to create a working DNS record in your domain') ?>. <?= Yii::t('hipanel:certificate', 'Make sure you can do this before choosing this method') ?>.
-                            </p>
-                        </div>
-
-                        <div class="method file">
-                            <p class="bg-warning" style="margin-top: 1em; padding: 1em;">
-                                <?= Yii::t('hipanel:certificate', 'In order to confirm domain ownership by this method, you will need to create a file on site') ?>. <?= Yii::t('hipanel:certificate', 'Make sure you can do this before choosing this method') ?>.
-                            </p>
-                        </div>
-
-                        <div class="method http">
-                            <p class="bg-warning" style="margin-top: 1em; padding: 1em;">
-                                <?= Yii::t('hipanel:certificate', 'In order to confirm domain ownership by this method, you will need to create a file on site') ?>. <?= Yii::t('hipanel:certificate', 'Make sure you can do this before choosing this method') ?>.
-                            </p>
-                        </div>
-
-                        <div class="method https">
-                            <p class="bg-warning" style="margin-top: 1em; padding: 1em;">
-                                <?= Yii::t('hipanel:certificate', 'In order to confirm domain ownership by this method, you will need to create a file on site') ?>. <?= Yii::t('hipanel:certificate', 'Make sure you can do this before choosing this method') ?>.
-                            </p>
-                        </div>
+                        <?= DVCMethod::widget(compact('model','form')) ?>
                     </div>
                 </div>
             </div>
