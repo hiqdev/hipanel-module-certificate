@@ -31,13 +31,13 @@ class CertificateDetailMenu extends AbstractDetailMenu
                     'model' => $this->model,
                     'scenario' => 'change-validation',
                     'button' => [
-                        'label' => '<i class="fa fa-pencil-square-o"></i> ' . Yii::t('hipanel', 'Change validation'),
+                        'label' => '<i class="fa fa-pencil-square-o"></i> ' . Yii::t('hipanel:certificate', 'Change validation'),
                     ],
                     'modal' => [
                         'header' => Html::tag('h4', Yii::t('hipanel:certificate', 'Confirm certificate change validation')),
                         'headerOptions' => ['class' => 'label-warning'],
                         'footer' => [
-                            'label' => Yii::t('hipanel:certificate', 'Change'),
+                            'label' => Yii::t('hipanel', 'Change'),
                             'data-loading-text' => Yii::t('hipanel', 'Changing...'),
                             'class' => 'btn btn-warning btn-flat',
                         ],
@@ -54,9 +54,25 @@ class CertificateDetailMenu extends AbstractDetailMenu
                         echo Html::endTag('div');
                         echo Html::beginTag('div', ['class' => 'method dns']);
                         echo Html::beginTag('p', ['class' => 'bg-warning']);
-                        echo Yii::t('hipanel:certificate', 'In order to confirm domain ownership by this method, you will need to create a working DNS record in your domain. Make sure you can do this before choosing this method.');
+                        echo Yii::t('hipanel:certificate', 'In order to confirm domain ownership by this method, you will need to create a working DNS record in your domain') . ". " . Yii::t('hipanel:certificate', 'Make sure you can do this before choosing this method') . ".";
                         echo Html::endTag('p');
                         echo Html::endTag('div');
+                        echo Html::beginTag('div', ['class' => 'method file']);
+                        echo Html::beginTag('p', ['class' => 'bg-warning']);
+                        echo Yii::t('hipanel:certificate', 'In order to confirm domain ownership by this method, you will need to create a file on site') . ". " . Yii::t('hipanel:certificate', 'Make sure you can do this before choosing this method') . ".";
+                        echo Html::endTag('p');
+                        echo Html::endTag('div');
+                        echo Html::beginTag('div', ['class' => 'method http']);
+                        echo Html::beginTag('p', ['class' => 'bg-warning']);
+                        echo Yii::t('hipanel:certificate', 'In order to confirm domain ownership by this method, you will need to create a file on site') . ". " . Yii::t('hipanel:certificate', 'Make sure you can do this before choosing this method') . ".";
+                        echo Html::endTag('p');
+                        echo Html::endTag('div');
+                        echo Html::beginTag('div', ['class' => 'method https']);
+                        echo Html::beginTag('p', ['class' => 'bg-warning']);
+                        echo Yii::t('hipanel:certificate', 'In order to confirm domain ownership by this method, you will need to create a file on site') . ". " . Yii::t('hipanel:certificate', 'Make sure you can do this before choosing this method') . ".";
+                        echo Html::endTag('p');
+                        echo Html::endTag('div');
+
                     }
                 ]),
             'encode' => false,

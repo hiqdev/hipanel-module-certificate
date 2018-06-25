@@ -144,10 +144,27 @@ heredoc
 
                         <div class="method dns">
                             <p class="bg-warning" style="margin-top: 1em; padding: 1em;">
-                                <?= Yii::t('hipanel:certificate', 'In order to confirm domain ownership by this method, you will need to create a working DNS record in your domain. Make sure you can do this before choosing this method.') ?>
+                                <?= Yii::t('hipanel:certificate', 'In order to confirm domain ownership by this method, you will need to create a working DNS record in your domain') ?>. <?= Yii::t('hipanel:certificate', 'Make sure you can do this before choosing this method') ?>.
                             </p>
                         </div>
 
+                        <div class="method file">
+                            <p class="bg-warning" style="margin-top: 1em; padding: 1em;">
+                                <?= Yii::t('hipanel:certificate', 'In order to confirm domain ownership by this method, you will need to create a file on site') ?>. <?= Yii::t('hipanel:certificate', 'Make sure you can do this before choosing this method') ?>.
+                            </p>
+                        </div>
+
+                        <div class="method http">
+                            <p class="bg-warning" style="margin-top: 1em; padding: 1em;">
+                                <?= Yii::t('hipanel:certificate', 'In order to confirm domain ownership by this method, you will need to create a file on site') ?>. <?= Yii::t('hipanel:certificate', 'Make sure you can do this before choosing this method') ?>.
+                            </p>
+                        </div>
+
+                        <div class="method https">
+                            <p class="bg-warning" style="margin-top: 1em; padding: 1em;">
+                                <?= Yii::t('hipanel:certificate', 'In order to confirm domain ownership by this method, you will need to create a file on site') ?>. <?= Yii::t('hipanel:certificate', 'Make sure you can do this before choosing this method') ?>.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

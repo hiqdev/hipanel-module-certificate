@@ -117,13 +117,13 @@ class CertificateController extends CrudController
             ],
             'send-notifications' => [
                 'class' => SmartPerformAction::class,
-                'success' => Yii::t('hipanel:certificate', '123'),
-                'error' => Yii::t('hipanel:certificate', '234'),
+                'success' => Yii::t('hipanel:certificate', 'Validation data was sended'),
+                'error' => Yii::t('hipanel:certificate', 'Error during sending notifications'),
             ],
             'change-validation' => [
                 'class' => SmartUpdateAction::class,
-                'success' => Yii::t('hipanel:certificate', 'Certificate validation type was changed'),
-                'error' => Yii::t('hipanel:certificate', 'Error changing validation type'),
+                'success' => Yii::t('hipanel:certificate', 'Certificate validation method was changed'),
+                'error' => Yii::t('hipanel:certificate', 'Error changing validation method'),
             ],
             'change-validation-modal' => [
             ],
