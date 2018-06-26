@@ -45,7 +45,7 @@ class CertificateDetailMenu extends AbstractDetailMenu
                     ],
                 ]),
                 'encode' => false,
-                'visible' => $this->model->isValidationResendable(),
+                'visible' => $this->model->isChangeValidationable(),
             ],
             [
                 'label' => ModalButton::widget([
