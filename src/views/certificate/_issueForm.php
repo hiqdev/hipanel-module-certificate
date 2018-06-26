@@ -5,7 +5,7 @@
 use hipanel\helpers\Url;
 use hipanel\modules\certificate\grid\CertificateGridView;
 use hipanel\modules\certificate\widgets\CSRButton;
-use hipanel\modules\certificate\widgets\DVCMethod;
+use hipanel\modules\certificate\widgets\DCVMethod;
 use hipanel\modules\client\widgets\combo\ContactCombo;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
@@ -85,7 +85,7 @@ use yii\helpers\Html;
                                 <?= $form->field($model, 'csr')->textarea(['rows' => 5]) ?>
                             </div>
                         </div>
-                        <?= DVCMethod::widget(compact('model','form')) ?>
+                        <?= DCVMethod::widget(compact('model','form')) ?>
                     </div>
                 </div>
             </div>

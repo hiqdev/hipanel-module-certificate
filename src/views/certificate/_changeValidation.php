@@ -3,7 +3,7 @@
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use hipanel\helpers\Url;
-use hipanel\modules\certificate\widgets\DVCMethod;
+use hipanel\modules\certificate\widgets\DCVMethod;
 
 $form = ActiveForm::begin([
     'id' => 'issue-form',
@@ -14,10 +14,10 @@ $form = ActiveForm::begin([
 
 echo $form->field($model, 'id')->hiddenInput()->label(false);
 
-echo DVCMethod::widget([
+echo DCVMethod::widget([
     'model' => $model,
     'form' => $form,
-    'changeDVC' => true
+    'changeDCV' => true
 ]);
 
 echo Html::submitButton(Yii::t('hipanel', 'Change'), ['class' => 'btn btn-success']);

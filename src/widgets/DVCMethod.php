@@ -5,7 +5,7 @@ namespace hipanel\modules\certificate\widgets;
 use yii\base\Widget;
 use yii\helpers\Url;
 
-class DVCMethod extends Widget
+class DCVMethod extends Widget
 {
     public $model;
 
@@ -13,7 +13,7 @@ class DVCMethod extends Widget
 
     public $requestUrl = '@certificate/get-approver-emails';
 
-    public $changeDVC = false;
+    public $changeDCV = false;
 
     protected $baseJS;
 
@@ -49,7 +49,7 @@ class DVCMethod extends Widget
     {
         $this->registerCSS();
         $this->registerJS();
-        return $this->render('DVCMethod', [
+        return $this->render('DCVMethod', [
             'model' => $this->model,
             'form' => $this->form,
         ]);
@@ -62,7 +62,7 @@ class DVCMethod extends Widget
 
     public function registerJS()
     {
-        if ($this->changeDVC === false) {
+        if ($this->changeDCV === false) {
             $this->registerIssueJS();
         } else {
             $this->registerChangeJS();
