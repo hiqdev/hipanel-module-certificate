@@ -44,6 +44,40 @@ class CertificateActionsMenu extends Menu
                 'encode' => false,
                 'visible' => $this->model->isReissuable(),
             ],
-          ];
+            'revalidate' => [
+                'label' => Yii::t('hipanel:certificate', 'Revalidate'),
+                'icon' => 'fa-refresh',
+                'url' => ['@certificate/revalidate'],
+                'linkOptions' => [
+                    'data' => [
+                        'method' => 'post',
+                        'pjax' => '0',
+                        'form' => 'revalidate',
+                        'params' => [
+                            'Certificate[id]' => $this->model->id,
+                        ],
+                    ],
+                ],
+                'encode' => false,
+                'visible' => $this->model->isReValidateable(),
+            ],
+            'send-notifications' => [
+                'label' => Yii::t('hipanel:certificate', 'Resend validation'),
+                'icon' => 'fa-location-arrow',
+                'url' => ['@certificate/send-notifications'],
+                'linkOptions' => [
+                    'data' => [
+                        'method' => 'post',
+                        'pjax' => '0',
+                        'form' => 'send-notifications',
+                        'params' => [
+                            'Certificate[id]' => $this->model->id,
+                        ],
+                    ],
+                ],
+                'encode' => false,
+                'visible' => $this->model->isValidationResendable(),
+            ],
+        ];
     }
 }

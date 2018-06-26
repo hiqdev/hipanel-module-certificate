@@ -35,6 +35,16 @@ class Certificate extends Model
     const STATE_CANCELLED = 'cancelled';
     const STATE_ERROR = 'error';
 
+    const SUPPLIER_CERTUM = 'certum';
+    const SUPPLIER_COMODO = 'comodo';
+    const SUPPLIER_RAPIDSSL = 'rapidssl';
+    const SUPPLIER_SYMANTEC = 'symantec';
+    const SUPPLIER_GOGETSSL = 'ggssl';
+    const SUPPLIER_THAWTE = 'thawte';
+    const SUPPLIER_GEOTRUST = 'geotrust';
+
+    public $issueData = null;
+
 
     /** {@inheritdoc} */
     public function rules()
@@ -44,16 +54,17 @@ class Certificate extends Model
             [['name', 'type', 'state', 'client', 'seller', 'begins', 'expires', 'statuses', 'file', 'type_label', 'reason'], 'string'],
             [['is_parent'], 'boolean'],
             // All Operations
-            [['id'], 'required', 'on' => ['issue', 'reissue', 'cancel', 'delete']],
+            [['id'], 'required', 'on' => ['issue', 'reissue', 'cancel', 'delete', 'change-validation', 'revalidate', 'send-notifications']],
             // Issue And ReIssue
-            [['csr', 'dcv_method', 'webserver_type'], 'required', 'on' => ['issue', 'reissue']],
+            [['csr', 'webserver_type'], 'required', 'on' => ['issue', 'reissue']],
+            [['dcv_method'], 'required', 'on' => ['issue', 'reissue', 'change-validation']],
             [['admin_id', 'tech_id', 'org_id'], 'integer', 'on' => ['issue', 'reissue']],
             [['webserver_type', 'dns_names', 'csr'], 'string', 'on' => ['issue', 'reissue']],
-            [['approver_email'], 'email', 'on' => ['issue', 'reissue']],
+            [['approver_email'], 'email', 'on' => ['issue', 'reissue', 'change-validation']],
             [
                 ['approver_email'],
                 'required',
-                'on' => ['issue', 'reissue'],
+                'on' => ['issue', 'reissue', 'change-validation'],
                 'when' => function ($model) {
                     return $model->dcv_method === 'email';
                 },
@@ -66,6 +77,7 @@ class Certificate extends Model
 
             // Cancel
             [['reason'], 'required', 'on' => ['cancel']],
+            [['data'], 'safe'],
         ];
     }
 
@@ -88,6 +100,22 @@ class Certificate extends Model
         ]);
     }
 
+    /** @return \stdClass **/
+    public function getIssueData() : \stdClass
+    {
+        if ($this->issueData !== null) {
+            return $this->issueData;
+        }
+
+        if ($this->data === null) {
+            return new \stdClass();
+        }
+
+        $obj = json_decode($this->data);
+        $this->issueData = json_last_error() === 0 ? $obj : new \stdClass();
+        return $this->issueData;
+    }
+
     public function getObject()
     {
         return $this->hasOne(Obj::class, ['id' => 'object_id']);
@@ -100,10 +128,48 @@ class Certificate extends Model
 
     public function dcvMethodOptions()
     {
-        return [
-            'email' => Yii::t('hipanel:certificate', 'Email'),
-            'dns' => Yii::t('hipanel:certificate', 'DNS'),
-        ];
+        return array_filter([
+            'email' => $this->supportsEmailValidation() ? Yii::t('hipanel:certificate', 'Email') : null,
+            'dns' => $this->supportsDNSValidation() ? Yii::t('hipanel:certificate', 'DNS') : null,
+            'file' => $this->supportsFileValidation() ? Yii::t('hipanel:certificate', 'File') : null,
+            'http' => $this->supportsHTTPValidation() ? Yii::t('hipanel:certificate', 'HTTP') : null,
+            'https' => $this->supportsHTTPValidation() ? Yii::t('hipanel:certificate', 'HTTPS') : null,
+        ]);
+    }
+
+    public function supportsEmailValidation()
+    {
+        return true;
+    }
+
+    public function supportsFileValidation()
+    {
+        return $this->certificateType->brand === self::SUPPLIER_CERTUM;
+    }
+
+    public function supportsDNSValidation()
+    {
+        return in_array($this->certificateType->brand, [self::SUPPLIER_CERTUM, self::SUPPLIER_COMODO, self::SUPPLIER_GOGETSSL], true);
+    }
+
+    public function supportsHTTPValidation()
+    {
+        return in_array($this->certificateType->brand, [self::SUPPLIER_COMODO, self::SUPPLIER_GOGETSSL], true);
+    }
+
+    public function isReValidateable()
+    {
+        return $this->isPending() && $this->certificateType->brand !== self::SUPPLIER_CERTUM && $this->getIssueData()->dcv_method !== 'email';
+    }
+
+    public function isValidationResendable()
+    {
+        return $this->isPending() && ($this->certificateType->brand === self::SUPPLIER_CERTUM || $this->getIssueData()->dcv_method === 'email');
+    }
+
+    public function isChangeValidationable()
+    {
+        return $this->isPending() && count($this->dcvMethodOptions()) > 1;
     }
 
     public function isActive()
@@ -134,6 +200,11 @@ class Certificate extends Model
     public function isParent()
     {
         return (bool) $this->is_parent;
+    }
+
+    public function isPending()
+    {
+        return $this->state === self::STATE_PENDING;
     }
 
     /**

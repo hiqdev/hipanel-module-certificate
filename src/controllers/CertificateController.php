@@ -27,6 +27,7 @@ use hipanel\base\CrudController;
 use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\SmartDeleteAction;
 use hipanel\actions\SmartPerformAction;
+use hipanel\actions\PrepareBulkAction;
 use hipanel\actions\ValidateFormAction;
 use hiqdev\yii2\cart\actions\AddToCartAction;
 use yii\helpers\Html;
@@ -110,6 +111,26 @@ class CertificateController extends CrudController
                 'productClass' => CertificateRenewProduct::class,
                 'bulkLoad' => true,
             ],
+            'revalidate' => [
+                'class' => SmartPerformAction::class,
+                'success' => Yii::t('hipanel:certificate', 'Domain validation start'),
+                'error' => Yii::t('hipanel:certificate', 'Revalidation failed'),
+            ],
+            'send-notifications' => [
+                'class' => SmartPerformAction::class,
+                'success' => Yii::t('hipanel:certificate', 'Validation data was sended'),
+                'error' => Yii::t('hipanel:certificate', 'Error during sending notifications'),
+            ],
+            'change-validation' => [
+                'class' => SmartPerformAction::class,
+                'success' => Yii::t('hipanel:certificate', 'Certificate validation method was changed'),
+                'error' => Yii::t('hipanel:certificate', 'Error changing validation method'),
+            ],
+            'change-validation-modal' => [
+                'class' => PrepareBulkAction::class,
+                'view' => '_changeValidation',
+                'scenario' => 'change-validation',
+            ],
         ]);
     }
 
@@ -154,15 +175,15 @@ class CertificateController extends CrudController
     public function actionGetApproverEmails()
     {
         $csr = Yii::$app->request->post('csr');
+        $id = Yii::$app->request->post('id');
         $result = [
             'success' => true,
             'message' => Yii::t('hipanel:certificate', 'Approver emails received, please choose a email.'),
             'emails' => [],
         ];
-        if ($csr) {
+        if ($csr || $id) {
             try {
-                $apiData = Certificate::perform('get-domain-emails', ['csr' => $csr]);
-
+                $apiData = Certificate::perform('get-domain-emails', ['csr' => $csr, 'id' => $id]);
                 $result['emails'] = $apiData;
             } catch (\Exception $e) {
                 $result['success'] = false;
