@@ -40,12 +40,28 @@ class DataView extends Widget
                         } elseif ($method === 'dns') {
                             $hint = Yii::t('hipanel:certificate', 'add following DNS record');
                             $value = Html::tag('pre', $value['record']);
+                        } else {
+                            if (!empty($model['approver_method'][$method])) {
+                                $value = Html::beginTag('table', ['class' => 'table table-striped table-bordered detail-view']);
+                                foreach ($model['approver_method'][$method] as $key => $v) {
+                                    $value .= Html::beginTag('tr');
+                                    $value .= Html::beginTag('td');
+                                    $value .= mb_strtoupper($key);
+                                    $value .= Html::endTag('td');
+                                    $value .= Html::beginTag('td');
+                                    $value .= nl2br($v);
+                                    $value .= Html::endTag('td');
+                                    $value .= Html::endTag('tr');
+                                }
+                                $value .= Html::endTag('table');
+                            }
                         }
 
                         return Yii::t('hipanel:certificate', 'Method:') . ' ' . Html::tag('b', strtoupper($method)) . ($hint || $value ? (', ' . $hint . ' ' . $value) : '');
                     },
                     'visible' => empty($this->data['crt_code']),
                 ],
+                /***
                 [
                     'attribute' => 'dcv_method_alternate',
                     'label' => Yii::t('hipanel:certificate', 'Alternate domain validations'),
@@ -55,6 +71,7 @@ class DataView extends Widget
                     },
                     'visible' => empty($this->data['crt_code']) && !empty($this->data['dcv_data_alternate']),
                 ],
+                ***/
                 [
                     'attribute' => 'crt_code',
                     'label' => Yii::t('hipanel:certificate', 'Certificate'),
