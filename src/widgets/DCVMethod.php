@@ -1,4 +1,12 @@
 <?php
+/**
+ * SSL certificates module for HiPanel
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-certificate
+ * @package   hipanel-module-certificate
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2017-2018, HiQDev (http://hiqdev.com/)
+ */
 
 namespace hipanel\modules\certificate\widgets;
 
@@ -49,6 +57,7 @@ class DCVMethod extends Widget
     {
         $this->registerCSS();
         $this->registerJS();
+
         return $this->render('DCVMethod', [
             'model' => $this->model,
             'form' => $this->form,

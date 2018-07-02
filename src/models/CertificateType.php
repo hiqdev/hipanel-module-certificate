@@ -1,11 +1,11 @@
 <?php
 /**
- * SSL certificates module for HiPanel.
+ * SSL certificates module for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-certificate
  * @package   hipanel-module-certificate
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2017, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2017-2018, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\certificate\models;
@@ -139,7 +139,7 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
         if ($already>0) {
             return [];
         }
-        $already++;
+        ++$already;
 
         $res = Yii::$app->get('cache')->getOrSet([__METHOD__], function () use ($seller, $client_id) {
             return static::find()->indexBy('id')->all();
@@ -208,6 +208,7 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
             'name' => Yii::t('hipanel:certificate', 'Name'),
         ];
     }
+
     public function __toString()
     {
         return $this->name;

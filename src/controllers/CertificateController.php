@@ -1,35 +1,34 @@
 <?php
 /**
- * SSL certificates module for HiPanel.
+ * SSL certificates module for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-certificate
  * @package   hipanel-module-certificate
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2017, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2017-2018, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\certificate\controllers;
 
 use Exception;
+use hipanel\actions\IndexAction;
+use hipanel\actions\PrepareBulkAction;
+use hipanel\actions\SmartDeleteAction;
+use hipanel\actions\SmartPerformAction;
+use hipanel\actions\SmartUpdateAction;
+use hipanel\actions\ValidateFormAction;
+use hipanel\actions\ViewAction;
+use hipanel\base\CrudController;
 use hipanel\filters\EasyAccessControl;
 use hipanel\filters\RedirectPanel;
 use hipanel\models\Ref;
+use hipanel\modules\certificate\cart\CertificateRenewProduct;
 use hipanel\modules\certificate\forms\CsrGeneratorForm;
 use hipanel\modules\certificate\models\Certificate;
-use hipanel\modules\certificate\models\CertificateType;
 use hipanel\modules\certificate\widgets\DataView;
-use hipanel\modules\certificate\cart\CertificateRenewProduct;
+use hiqdev\yii2\cart\actions\AddToCartAction;
 use Yii;
 use yii\base\Event;
-use hipanel\actions\ViewAction;
-use hipanel\actions\IndexAction;
-use hipanel\base\CrudController;
-use hipanel\actions\SmartUpdateAction;
-use hipanel\actions\SmartDeleteAction;
-use hipanel\actions\SmartPerformAction;
-use hipanel\actions\PrepareBulkAction;
-use hipanel\actions\ValidateFormAction;
-use hiqdev\yii2\cart\actions\AddToCartAction;
 use yii\helpers\Html;
 
 class CertificateController extends CrudController

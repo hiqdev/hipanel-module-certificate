@@ -1,1 +1,1 @@
-<?= \hipanel\modules\certificate\widgets\CSRGenerator::widget(compact('model', 'countries', 'fqdn')) ?>
+<?= \hipanel\modules\certificate\widgets\CSRGenerator::widget(compact('model', 'countries', 'fqdn'));

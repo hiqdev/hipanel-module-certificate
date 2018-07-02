@@ -1,21 +1,19 @@
 <?php
 /**
- * Server module for HiPanel.
+ * SSL certificates module for HiPanel
  *
- * @link      https://github.com/hiqdev/hipanel-module-server
- * @package   hipanel-module-server
+ * @link      https://github.com/hiqdev/hipanel-module-certificate
+ * @package   hipanel-module-certificate
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2017-2018, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\certificate\cart;
 
 use hipanel\modules\certificate\models\Certificate;
-use hipanel\modules\certificate\models\CertificateType;
 use hipanel\modules\finance\models\CertificateResource;
 use Yii;
 use yii\helpers\Html;
-
 
 /**
  * Class ServerRenewProduct.
@@ -101,6 +99,7 @@ class CertificateRenewProduct extends AbstractCertificateProduct
     {
         $parent = parent::serializationMap();
         $parent['_certificate'] = $this->_certificate;
+
         return $parent;
     }
 
@@ -116,8 +115,8 @@ class CertificateRenewProduct extends AbstractCertificateProduct
     /** {@inheritdoc} */
     public function renderDescription()
     {
-        return $this->getIcon() . " " . $this->getName() . " " .
-            Html::a($this->_certificate->name, ['@certificate/view', 'id' => $this->model_id]) . " " .
+        return $this->getIcon() . ' ' . $this->getName() . ' ' .
+            Html::a($this->_certificate->name, ['@certificate/view', 'id' => $this->model_id]) . ' ' .
             Html::tag('span', $this->getDescription(), ['class' => 'text-muted']);
     }
 }

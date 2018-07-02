@@ -1,23 +1,22 @@
 <?php
 /**
- * SSL certificates module for HiPanel.
+ * SSL certificates module for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-certificate
  * @package   hipanel-module-certificate
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2017, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2017-2018, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\certificate\grid;
 
 use hipanel\grid\BoxedGridView;
-use hipanel\grid\MainColumn;
 use hipanel\grid\RefColumn;
-use hipanel\modules\certificate\widgets\IssueButton;
-use hipanel\widgets\obj\ObjLinkWidget;
-use hipanel\modules\domain\widgets\Expires;
 use hipanel\modules\certificate\menus\CertificateActionsMenu;
 use hipanel\modules\certificate\widgets\CertificateState;
+use hipanel\modules\certificate\widgets\IssueButton;
+use hipanel\modules\domain\widgets\Expires;
+use hipanel\widgets\obj\ObjLinkWidget;
 use hiqdev\yii2\menus\grid\MenuColumn;
 use Yii;
 use yii\helpers\Html;

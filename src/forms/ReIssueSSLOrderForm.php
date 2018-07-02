@@ -1,4 +1,12 @@
 <?php
+/**
+ * SSL certificates module for HiPanel
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-certificate
+ * @package   hipanel-module-certificate
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2017-2018, HiQDev (http://hiqdev.com/)
+ */
 
 namespace hipanel\modules\certificate\forms;
 
@@ -17,7 +25,6 @@ class ReIssueSSLOrderForm extends Model
 
             // Value of this specifies DCV method to be used.
             [['dcv_method'], 'range', 'in' => ['email', 'http', 'https', 'dns']],
-
 
             // Required for SAN/UCC/Multi-Domain SSL, for the rest of products this parameter must not be provided.
             [['dns_names'], 'required'],

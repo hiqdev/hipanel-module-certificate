@@ -1,7 +1,6 @@
 <?php
 
 /** @var \hipanel\modules\finance\models\CertificateResource $resource */
-
 use hipanel\modules\certificate\models\CertificateType;
 use yii\helpers\Html;
 

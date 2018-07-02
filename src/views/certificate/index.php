@@ -48,7 +48,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'actions',
                     'client_like', 'seller',
                     'state', 'expires',
-
                 ],
             ]) ?>
         <?php $page->endBulkForm() ?>

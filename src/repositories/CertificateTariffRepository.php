@@ -1,23 +1,21 @@
 <?php
 /**
- * Certificate plugin for HiPanel
+ * SSL certificates module for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-certificate
  * @package   hipanel-module-certificate
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2017-2018, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\certificate\repositories;
 
-use hipanel\models\Ref;
 use hipanel\helpers\ArrayHelper;
 use hipanel\modules\certificate\models\CertificateType;
 use hipanel\modules\finance\models\CertificateResource;
 use hipanel\modules\finance\models\Resource;
 use hipanel\modules\finance\models\Tariff;
 use yii\base\Application;
-use yii\web\UnprocessableEntityHttpException;
 
 class CertificateTariffRepository
 {
@@ -68,7 +66,7 @@ class CertificateTariffRepository
      * @param string $type
      * @param bool $orderByDefault whether to order prices by name
      * @see orderResources
-     * @return Resource[]
+     * @return resource[]
      */
     public function getResources(Tariff $tariff = null, $type = CertificateResource::TYPE_CERT_PURCHASE, $orderByDefault = true)
     {
@@ -76,7 +74,7 @@ class CertificateTariffRepository
             $tariff = $this->getTariff();
         }
 
-        $resources = array_filter((array)$tariff->resources, function ($resource) use ($type) {
+        $resources = array_filter((array) $tariff->resources, function ($resource) use ($type) {
             return $resource->type === $type;
         });
         foreach ($resources as $key => &$resource) {
@@ -101,7 +99,7 @@ class CertificateTariffRepository
      * @param Tariff|null $tariff
      * @param $type
      * @param $object_id
-     * @return Resource|CertificateResource
+     * @return resource|CertificateResource
      */
     public function getResource(Tariff $tariff = null, $type, $object_id)
     {
@@ -109,16 +107,16 @@ class CertificateTariffRepository
             $tariff = $this->getTariff();
         }
 
-        $resources = array_filter((array)$tariff->resources, function ($resource) use ($type, $object_id) {
-            return $resource->type === $type && ((string)$resource->object_id === (string)$object_id);
+        $resources = array_filter((array) $tariff->resources, function ($resource) use ($type, $object_id) {
+            return $resource->type === $type && ((string) $resource->object_id === (string) $object_id);
         });
 
         return reset($resources);
     }
 
     /**
-     * @param Resource[] $resources array of resources to be sorted
-     * @return Resource[] sorted by name
+     * @param resource[] $resources array of resources to be sorted
+     * @return resource[] sorted by name
      */
     public function orderResources($resources)
     {

@@ -5,7 +5,6 @@
 /** @var array $secureProductFeatures */
 
 /** @var array $amountProductFeatures */
-
 ?>
 <div class="row">
     <div class="col-md-3 filters">

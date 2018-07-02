@@ -4,12 +4,11 @@
 /** @var array $countries */
 
 /** @var string $orderUrl */
-
+use hipanel\modules\client\widgets\combo\ContactCombo;
 use yii\base\DynamicModel;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use hipanel\modules\client\widgets\combo\ContactCombo;
 
 $loadingText = Yii::t('hipanel', 'Loadding');
 $this->registerJs(/** @lang JavaScript */

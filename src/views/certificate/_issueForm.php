@@ -1,7 +1,6 @@
 <?php
 
 /** @var array $approverEmails */
-
 use hipanel\helpers\Url;
 use hipanel\modules\certificate\grid\CertificateGridView;
 use hipanel\modules\certificate\widgets\CSRButton;
@@ -58,7 +57,9 @@ use yii\helpers\Html;
                         <?= $form->field($model, 'webserver_type')->dropDownList($model->webserverTypeOptions, [
                             'options' => [(function ($model) {
                                 foreach ($model->webserverTypeOptions as $k => $v) {
-                                    if ($v === 'Nginx') return $k;
+                                    if ($v === 'Nginx') {
+                                        return $k;
+                                    }
                                 }
                             })($model) => ['selected' => true]],
                         ])->hint(Yii::t('hipanel:certificate', 'If you are not sure which type of web server suits you, leave Nginx or Other')) ?>

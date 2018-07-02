@@ -1,23 +1,23 @@
 <?php
 /**
- * SSL certificates module for HiPanel.
+ * SSL certificates module for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-certificate
  * @package   hipanel-module-certificate
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2017, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2017-2018, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\certificate\controllers;
 
 use hipanel\actions\RenderAction;
+use hipanel\filters\EasyAccessControl;
 use hipanel\models\Ref;
-use hipanel\modules\certificate\Module;
 use hipanel\modules\certificate\cart\CertificateOrderProduct;
 use hipanel\modules\certificate\forms\CsrGeneratorForm;
 use hipanel\modules\certificate\forms\OrderForm;
+use hipanel\modules\certificate\Module;
 use hipanel\modules\certificate\repositories\CertificateTariffRepository;
-use hipanel\filters\EasyAccessControl;
 use hiqdev\yii2\cart\actions\AddToCartAction;
 use Yii;
 use yii\helpers\Url;
@@ -89,6 +89,7 @@ class CertificateOrderController extends Controller
         ];
         if (Yii::$app->request->isAjax) {
             sleep(2);
+
             return $this->renderAjax('_orderForm', compact('model'));
         } else {
             return $this->render('order', compact('model'));

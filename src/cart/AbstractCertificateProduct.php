@@ -1,20 +1,19 @@
 <?php
 /**
- * SSL certificates module for HiPanel.
+ * SSL certificates module for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-certificate
  * @package   hipanel-module-certificate
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2017, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2017-2018, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\certificate\cart;
 
 use hipanel\modules\certificate\models\CertificateType;
 use hipanel\modules\certificate\repositories\CertificateTariffRepository;
-use hipanel\modules\finance\cart\AbstractCartPosition;
-use hipanel\modules\finance\models\CertificateResource;
 use hipanel\modules\certificate\widgets\CertificateCartQuantity;
+use hipanel\modules\finance\cart\AbstractCartPosition;
 use hiqdev\yii2\cart\DontIncrementQuantityWhenAlreadyInCart;
 use Yii;
 
@@ -83,6 +82,7 @@ abstract class AbstractCertificateProduct extends AbstractCartPosition implement
         $parent = parent::serializationMap();
         $parent['_operation'] = $this->_operation;
         $parent['_model'] = $this->_model;
+
         return $parent;
     }
 
@@ -99,4 +99,3 @@ abstract class AbstractCertificateProduct extends AbstractCartPosition implement
         ]);
     }
 }
-

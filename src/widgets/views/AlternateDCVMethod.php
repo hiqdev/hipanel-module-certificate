@@ -1,9 +1,6 @@
 <?php
 
 /** @var array $model */
-
-use yii\helpers\Html;
-
 ?>
 
 <table class="table table-striped table-bordered detail-view">

@@ -23,11 +23,11 @@ $this->registerJs("
     });
 ");
 
-$this->registerCss("
+$this->registerCss('
     td.pre {
         font-family: monospace;
     }
-");
+');
 
 ?>
     <div class="row">

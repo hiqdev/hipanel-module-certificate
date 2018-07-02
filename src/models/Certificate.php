@@ -1,11 +1,11 @@
 <?php
 /**
- * SSL certificates module for HiPanel.
+ * SSL certificates module for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-certificate
  * @package   hipanel-module-certificate
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2017, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2017-2018, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\certificate\models;
@@ -14,12 +14,10 @@ use hipanel\base\Model;
 use hipanel\base\ModelTrait;
 use hipanel\models\Obj;
 use Yii;
-use yii\base\InvalidParamException;
-use yii\helpers\ArrayHelper;
 use yii\web\JsExpression;
 
 /**
- * Class Certificate
+ * Class Certificate.
  *
  * @property int $id
  * @property string $name
@@ -44,7 +42,6 @@ class Certificate extends Model
     const SUPPLIER_GEOTRUST = 'geotrust';
 
     public $issueData = null;
-
 
     /** {@inheritdoc} */
     public function rules()
@@ -101,7 +98,7 @@ class Certificate extends Model
     }
 
     /** @return \stdClass **/
-    public function getIssueData() : \stdClass
+    public function getIssueData(): \stdClass
     {
         if ($this->issueData !== null) {
             return $this->issueData;
@@ -113,6 +110,7 @@ class Certificate extends Model
 
         $obj = json_decode($this->data);
         $this->issueData = json_last_error() === 0 ? $obj : new \stdClass();
+
         return $this->issueData;
     }
 
@@ -184,7 +182,7 @@ class Certificate extends Model
 
     public function isDeleteable()
     {
-        return in_array($this->state, [ self::STATE_DELETED, self::STATE_ERROR, self::STATE_CANCELLED], true);
+        return in_array($this->state, [self::STATE_DELETED, self::STATE_ERROR, self::STATE_CANCELLED], true);
     }
 
     public function isRenewable()

@@ -1,17 +1,17 @@
 <?php
 /**
- * SSL certificates module for HiPanel.
+ * SSL certificates module for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-certificate
  * @package   hipanel-module-certificate
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2017, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2017-2018, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\certificate\widgets;
 
-use hipanel\modules\certificate\models\CertificateType;
 use hipanel\modules\certificate\CertificateOrderIndexAsset;
+use hipanel\modules\certificate\models\CertificateType;
 use yii\base\Widget;
 use yii\helpers\Json;
 use yii\web\View;
@@ -39,7 +39,7 @@ class CertificateOrderIndex extends Widget
             'secureProductFeatures' => $this->getSecureProductFeatures(),
             'amountProductFeatures' => $this->getAmountProductFeatures(),
             'brands' => $this->getBrands(),
-            'resources' => $this->resources
+            'resources' => $this->resources,
         ]);
     }
 
@@ -52,7 +52,7 @@ class CertificateOrderIndex extends Widget
     {
         return array_filter(CertificateType::features(), function ($key) use ($kyes) {
             if (!empty($kyes)) {
-                return in_array($key, $kyes);
+                return in_array($key, $kyes, true);
             }
 
             return true;
@@ -73,5 +73,4 @@ class CertificateOrderIndex extends Widget
     {
         return CertificateType::brands();
     }
-
 }

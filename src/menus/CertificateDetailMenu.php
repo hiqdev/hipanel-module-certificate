@@ -1,20 +1,19 @@
 <?php
 /**
- * SSL certificates module for HiPanel.
+ * SSL certificates module for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-certificate
  * @package   hipanel-module-certificate
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2017, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2017-2018, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\certificate\menus;
 
 use hipanel\menus\AbstractDetailMenu;
 use hipanel\modules\certificate\models\Certificate;
-use hipanel\widgets\ModalButton;
 use hipanel\widgets\AjaxModal;
-use hipanel\helpers\Url;
+use hipanel\widgets\ModalButton;
 use Yii;
 use yii\bootstrap\Html;
 use yii\bootstrap\Modal;
@@ -63,9 +62,9 @@ class CertificateDetailMenu extends AbstractDetailMenu
                             'class' => 'btn btn-danger btn-flat',
                         ],
                     ],
-                    'body' => function($model, $widget) {
+                    'body' => function ($model, $widget) {
                         echo Yii::t('hipanel:certificate', 'Certificate will be immediately revoked without any refunds or ability to reissue this certificate');
-                        echo ". ";
+                        echo '. ';
                         echo Yii::t('hipanel:certificate', 'Are you sure to cancel certificate for {name}?', ['name' => $this->model->name]);
                         echo $widget->form->field($model, 'reason');
                     },
@@ -89,8 +88,7 @@ class CertificateDetailMenu extends AbstractDetailMenu
                             'class' => 'btn btn-danger btn-flat',
                         ],
                     ],
-                    'body' =>
-                        Yii::t('hipanel:certificate', 'Certificate will be immediately revoked without any refunds or ability to reissue this certificate') . ". " .
+                    'body' => Yii::t('hipanel:certificate', 'Certificate will be immediately revoked without any refunds or ability to reissue this certificate') . '. ' .
                         Yii::t('hipanel:certificate', 'Are you sure to delete certificate for {name}?', ['name' => $this->model->name]),
                 ]),
                 'encode' => false,

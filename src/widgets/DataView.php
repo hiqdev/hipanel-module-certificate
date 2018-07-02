@@ -1,4 +1,12 @@
 <?php
+/**
+ * SSL certificates module for HiPanel
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-certificate
+ * @package   hipanel-module-certificate
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2017-2018, HiQDev (http://hiqdev.com/)
+ */
 
 namespace hipanel\modules\certificate\widgets;
 
@@ -6,7 +14,6 @@ use Yii;
 use yii\base\Widget;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use hipanel\modules\certificate\widgets\AlternateDCVMethod;
 
 class DataView extends Widget
 {
@@ -14,7 +21,7 @@ class DataView extends Widget
 
     public function run()
     {
-        $this->view->registerCss("
+        $this->view->registerCss('
         .pre {
             white-space: pre-wrap;       /* css-3 */
             white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
@@ -22,7 +29,7 @@ class DataView extends Widget
             white-space: -o-pre-wrap;    /* Opera 7 */
             word-wrap: break-word;       /* Internet Explorer 5.5+ */
         }
-        ");
+        ');
 
         $detailView = DetailView::widget([
             'model' => $this->data,
@@ -36,7 +43,7 @@ class DataView extends Widget
                         $value = $model['dcv_data'][$method];
                         if ($method === 'email') {
                             $hint = Yii::t('hipanel:certificate', 'follow confirmation link in email sent to your address:');
-                            $value = Html::tag('b', $value ? : $model['approver_email']);
+                            $value = Html::tag('b', $value ?: $model['approver_email']);
                         } elseif ($method === 'dns') {
                             $hint = Yii::t('hipanel:certificate', 'add following DNS record');
                             $value = Html::tag('pre', $value['record']);
