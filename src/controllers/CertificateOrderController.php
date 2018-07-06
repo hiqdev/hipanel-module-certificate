@@ -37,19 +37,6 @@ class CertificateOrderController extends Controller
         $this->tariffRepository = $tariffRepository;
     }
 
-    public function behaviors()
-    {
-        return array_merge(parent::behaviors(), [
-            [
-                'class' => EasyAccessControl::class,
-                'actions' => [
-                    'add-to-cart-order' => 'certificate.pay',
-                    '*' => 'certificate.read',
-                ],
-            ],
-        ]);
-    }
-
     public function actions()
     {
         return array_merge(parent::actions(), [
