@@ -59,6 +59,7 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
                 'label' => Yii::t('hipanel:certificate', 'Extended Validation'),
                 'text' => Yii::t('hipanel:certificate', 'Inspire maximum trust at an unbeatable price with an Extended Validation SSL'),
             ],
+            /***
             'cs' => [
                 'label' => Yii::t('hipanel:certificate', 'Code Signing'),
                 'text' => Yii::t('hipanel:certificate', 'Allows publishers to sign their files with own signature to proof their identity'),
@@ -67,6 +68,7 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
                 'label' => Yii::t('hipanel:certificate', 'Multi-Domain / SAN'),
                 'text' => Yii::t('hipanel:certificate', 'Secure multiple domains on a single certificate for a cheap price with Multi-Domain SSL'),
             ],
+            ***/
             'wc' => [
                 'label' => Yii::t('hipanel:certificate', 'Wildcard Certificates'),
                 'text' => Yii::t('hipanel:certificate', 'Secure unlimited Sub-Domains for one cheap price with these Wildcard SSL Certificates'),
@@ -77,14 +79,18 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
     public static function brands()
     {
         return [
+            /***
             'symantec' => [
                 'label' => Yii::t('hipanel:certificate', 'Symantec'),
                 'img' => 'symantec_vendor.png',
             ],
+            ***/
+            /***
             'ggssl' => [
                 'label' => Yii::t('hipanel:certificate', 'GoGetSSL'),
                 'img' => 'gogetssl_vendor.png',
             ],
+            ***/
             'thawte' => [
                 'label' => Yii::t('hipanel:certificate', 'Thawte'),
                 'img' => 'thawte_vendor.png',
@@ -101,10 +107,12 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
                 'label' => Yii::t('hipanel:certificate', 'Comodo'),
                 'img' => 'comodo_vendor.png',
             ],
+            /****
             'certum' => [
                 'label' => Yii::t('hipanel:certificate', 'Certum'),
                 'img' => 'certum_vendor.png',
             ],
+            ***/
         ];
     }
 
@@ -183,16 +191,20 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
             $res['ev'] = 'ev';
             unset($res['dv']);
         }
+        /***
         if ($this->code_signing) {
             $res['cs'] = 'cs';
             unset($res['dv']);
         }
+        ***/
         if ($this->wildcard) {
             $res['wc'] = 'wc';
         }
+        /***
         if ($this->multidomain) {
             $res['san'] = 'san';
         }
+        ***/
 
         return $res;
     }
