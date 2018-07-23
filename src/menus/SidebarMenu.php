@@ -27,11 +27,11 @@ class SidebarMenu extends \hiqdev\yii2\menus\Menu
                 'url' => ['@certificate/index'],
                 'icon' => 'fa-shield',
                 'visible' => Yii::$app->user->can('certificate.read'),
+                'isNew' => true,
                 'items' => [
                     'certificates' => [
                         'label' => Yii::t('hipanel:certificate', 'Certificates'),
                         'url' => ['@certificate/index'],
-                        'isNew' => true,
                     ],
                     'certificate-order' => [
                         'label' => Yii::t('hipanel:certificate', 'Buy certificate'),
