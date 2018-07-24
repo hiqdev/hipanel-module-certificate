@@ -44,7 +44,7 @@ class CertificateTariffRepository
             $client_id = $this->app->user->id;
         }
 
-        return $this->app->get('cache')->getOrSet([__METHOD__, $seller, $client_id], function () use ($seller, $client_id) {
+        return $this->app->get('cache')->getOrSet([__METHOD__, $seller, $client_id ? : ''], function () use ($seller) {
             $res = Tariff::find()
                 ->action('get-available-info')
                 ->joinWith('resources')
