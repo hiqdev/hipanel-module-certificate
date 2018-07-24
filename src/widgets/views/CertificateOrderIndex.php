@@ -30,7 +30,7 @@
             <div class="box-header with-border">
                 <h3 class="box-title"><?= Yii::t('hipanel:certificate', 'SSL Features') ?></h3>
             </div>
-            <div class="box-footer no-padding" style="border-width: 7px;">
+            <div class="box-footer no-padding">
                 <ul class="nav nav-pills nav-stacked filter-type filter" data-filter-group="amountType">
                     <?php foreach ($amountProductFeatures as $key => $filter) : ?>
                         <li data-filter=".<?= $key ?>">
