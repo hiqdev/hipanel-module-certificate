@@ -17,10 +17,6 @@ class SidebarMenu extends \hiqdev\yii2\menus\Menu
 {
     public function items()
     {
-        if (!Yii::$app->user->can('test.beta')) {
-            return [];
-        }
-
         return [
             'certificates' => [
                 'label' => Yii::t('hipanel:certificate', 'SSL certificates'),
