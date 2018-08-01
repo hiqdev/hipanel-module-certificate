@@ -54,7 +54,8 @@
     },
     "autoload": {
         "psr-4": {
-            "hipanel\\modules\\certificate\\": "src"
+            "hipanel\\modules\\certificate\\": "src",
+            "hipanel\\modules\\certificate\\tests\\": "tests"
         }
     },
     "extra": {
