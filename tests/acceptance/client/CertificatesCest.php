@@ -31,32 +31,28 @@ class CertificatesCest
 
     private function ensureICanSeeAdvancedSearchBox()
     {
-        $certificateSearchType = new Dropdown('certificatesearch-type');
-        $certificateSearchType->withItems([
-            'Comodo Code Signing SSL',
-            'CPAC Basic',
-            'GeoTrust QuickSSL Premium',
-            'GGSSL TrialSSL',
-            'Symantec Safe Site',
-            'Ukrnames DomainSSL',
-            'Certum Test ID',
-        ]);
-        $certificateSearchStateIn = new Dropdown('certificatesearch-state_in');
-        $certificateSearchStateIn->withItems([
-            'New',
-            'Incomplete',
-            'Pending',
-            'Ok',
-            'Expired',
-            'Cancelled',
-            'Error',
-            'Deleted',
-            'Rejected',
-        ]);
         $this->index->containsFilters([
             new Input('Name'),
-            $certificateSearchType,
-            $certificateSearchStateIn,
+            (new Dropdown('certificatesearch-type'))->withItems([
+                'Comodo Code Signing SSL',
+                'CPAC Basic',
+                'GeoTrust QuickSSL Premium',
+                'GGSSL TrialSSL',
+                'Symantec Safe Site',
+                'Ukrnames DomainSSL',
+                'Certum Test ID',
+            ]),
+            (new Dropdown('certificatesearch-state_in'))->withItems([
+                'New',
+                'Incomplete',
+                'Pending',
+                'Ok',
+                'Expired',
+                'Cancelled',
+                'Error',
+                'Deleted',
+                'Rejected',
+            ]),
             new Input('Expires'),
         ]);
     }
