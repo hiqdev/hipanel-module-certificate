@@ -11,7 +11,7 @@
 namespace hipanel\modules\certificate;
 
 use hipanel\assets\IsotopeAsset;
-use hiqdev\assets\icheck\iCheckAsset;
+use hiqdev\themes\adminlte\CheckboxStyleAsset;
 use yii\bootstrap\BootstrapPluginAsset;
 use yii\web\AssetBundle;
 use yii\web\JqueryAsset;
@@ -29,7 +29,7 @@ class CertificateOrderIndexAsset extends AssetBundle
     ];
 
     public $depends = [
-        iCheckAsset::class,
+        CheckboxStyleAsset::class,
         IsotopeAsset::class,
         JqueryAsset::class,
         BootstrapPluginAsset::class,

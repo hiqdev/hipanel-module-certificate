@@ -14,13 +14,6 @@
     Plugin.prototype = {
         init: function () {
             var _this = this;
-            $('.icheck input').iCheck({
-                labelHover: false,
-                cursor: true,
-                handle: 'checkbox',
-                checkboxClass: 'icheckbox_minimal-blue',
-                radioClass: 'iradio_minimal-blue'
-            });
 
             // init Isotope
             var grid = $('.certificate-order').isotope({
@@ -48,15 +41,18 @@
             });
 
             $('.filter').on('click ifClicked', 'li, input', function (event) {
+                var input = null;
+                var target = $(event.currentTarget);
                 if (event.currentTarget.tagName === 'INPUT') {
                     event.stopPropagation();
-                    $(event.currentTarget).closest('li').click();
-
-                    return false;
+                    target = target.closest('li');
+                } else {
+                    input = target.find('input');
                 }
-                var target = $(event.currentTarget);
                 target.toggleClass('active');
-                target.find('input').iCheck('toggle');
+                if (input && input[0]) {
+                    input[0].checked = !input[0].checked;
+                }
                 var isChecked = target.hasClass('active');
                 var group = target.parents('.filter').attr('data-filter-group');
                 var filterGroup = _this.filters[group];
