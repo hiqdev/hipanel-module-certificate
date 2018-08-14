@@ -11,7 +11,7 @@
 namespace hipanel\modules\certificate;
 
 use hipanel\assets\IsotopeAsset;
-use hipanel\assets\CheckboxStyleAsset;
+use hiqdev\themes\adminlte\CheckboxStyleAsset;
 use yii\bootstrap\BootstrapPluginAsset;
 use yii\web\AssetBundle;
 use yii\web\JqueryAsset;
