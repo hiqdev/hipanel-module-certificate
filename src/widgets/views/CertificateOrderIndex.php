@@ -17,8 +17,8 @@
                     <?php foreach ($secureProductFeatures as $key => $filter) : ?>
                         <li data-filter=".<?= $key ?>">
                             <b><?= $filter['label'] ?></b>
-                            <div class="icheck pull-left" style="margin-right: 1rem">
-                                <input type="checkbox" name="<?= $key ?>">
+                            <div class="pull-left" style="margin-right: 1rem">
+                                <input class="option-input" type="checkbox" name="<?= $key ?>">
                             </div>
                             <span><?= $filter['text'] ?></span>
                         </li>
@@ -35,8 +35,8 @@
                     <?php foreach ($amountProductFeatures as $key => $filter) : ?>
                         <li data-filter=".<?= $key ?>">
                             <b><?= $filter['label'] ?></b>
-                            <div class="icheck pull-left" style="margin-right: 1rem">
-                                <input type="checkbox" name="<?= $key ?>">
+                            <div class="pull-left" style="margin-right: 1rem">
+                                <input class="option-input" type="checkbox" name="<?= $key ?>">
                             </div>
                             <span><?= $filter['text'] ?></span>
                         </li>
@@ -53,8 +53,8 @@
                     <?php foreach ($brands as $key => $brand) : ?>
                         <li data-filter=".<?= $key ?>">
                             <b><?= $brand['label'] ?></b>
-                            <div class="icheck pull-left" style="margin-right: 1rem">
-                                <input type="checkbox" name="<?= $key ?>">
+                            <div class="pull-left" style="margin-right: 1rem">
+                                <input class="option-input" type="checkbox" name="<?= $key ?>">
                             </div>
                         </li>
                     <?php endforeach; ?>
