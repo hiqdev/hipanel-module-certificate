@@ -116,9 +116,9 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
         ];
     }
 
-    public static function get($key)
+    public static function get($key, $client = null)
     {
-        $types = static::getKnownTypes();
+        $types = static::getKnownTypes($client);
         if (isset($types[$key])) {
             return $types[$key];
         }
@@ -131,16 +131,16 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
         return null;
     }
 
-    public static function getKnownTypes()
+    public static function getKnownTypes($client)
     {
         if (static::$knownTypes === null) {
-            static::$knownTypes = static::fetchKnownTypes();
+            static::$knownTypes = static::fetchKnownTypes($client);
         }
 
         return static::$knownTypes;
     }
 
-    protected static function fetchKnownTypes()
+    protected static function fetchKnownTypes($client)
     {
         /// prevent infinit recursion loop
         static $already = 0;
@@ -149,8 +149,8 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
         }
         ++$already;
 
-        $res = Yii::$app->get('cache')->getOrSet([__METHOD__], function () use ($seller, $client_id) {
-            return static::find()->indexBy('id')->all();
+        $res = Yii::$app->get('cache')->getOrSet([__METHOD__], function () use ($seller, $client) {
+            return static::find()->where(['client' => $client])->indexBy('id')->all();
         }, 10); /// TODO change to 3600*24 XXX
 
         return $res;
