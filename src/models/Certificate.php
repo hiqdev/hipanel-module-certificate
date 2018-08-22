@@ -121,7 +121,7 @@ class Certificate extends Model
 
     public function getCertificateType()
     {
-        return CertificateType::get($this->type_id);
+        return CertificateType::get($this->type_id, isset($this->client) ? $this->client : null);
     }
 
     public function dcvMethodOptions()

@@ -75,7 +75,8 @@ class CertificateController extends CrudController
                 'class' => ViewAction::class,
                 'on beforePerform' => function ($event) {
                     $action = $event->sender;
-                    $action->getDataProvider()->query->addSelect('chain');
+                    $dataProvider = $action->getDataProvider();
+                    $dataProvider->query->joinWith('object')->addSelect('chain');
                 },
             ],
             'issue' => [
