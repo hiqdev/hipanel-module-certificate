@@ -146,4 +146,5 @@ return [
     'Revalidate' => 'Валидировать',
     'Domain validation start' => 'Валидация домена начата',
     'Revalidation failed' => 'Валидация домена не выполнена',
+    'To obtain an SSL-certificate, you need to prepare a CSR – certificate signing request. It contains your website domain name and some other registration information.' => 'Чтобы получить SSL-сертификат, вам нужно подготовить CSR — запрос на подпись сертификата (по-английски Certificate signing request). В CSR входит название домена, для которого нужно выпустить сертификат и некоторая регистрационная информация.'
 ];

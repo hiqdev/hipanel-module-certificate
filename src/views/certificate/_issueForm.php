@@ -85,6 +85,9 @@ use yii\helpers\Html;
                                 ]) ?>
                                 <?= $form->field($model, 'csr')->textarea(['rows' => 5]) ?>
                             </div>
+                            <p class="help-block">
+                                <?= Yii::t('hipanel:certificate', 'To obtain an SSL-certificate, you need to prepare a CSR – certificate signing request. It contains your website domain name and some other registration information.') ?>
+                            </p>
                         </div>
                         <?= DCVMethod::widget(compact('model','form')) ?>
                     </div>
