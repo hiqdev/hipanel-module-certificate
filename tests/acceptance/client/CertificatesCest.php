@@ -25,24 +25,23 @@ class CertificatesCest
         $I->login();
         $I->needPage(Url::to('@certificate'));
         $I->see('Certificates', 'h1');
-        $this->ensureICanSeeAdvancedSearchBox();
+        $this->ensureICanSeeAdvancedSearchBox($I);
         $this->ensureICanSeeBulkSearchBox();
     }
 
-    private function ensureICanSeeAdvancedSearchBox()
+    private function ensureICanSeeAdvancedSearchBox(Client $I)
     {
         $this->index->containsFilters([
-            new Input('Name'),
-            (new Dropdown('certificatesearch-type'))->withItems([
+            (Dropdown::asAdvancedSearch($I, 'Type'))->withItems([
                 'Comodo Code Signing SSL',
                 'CPAC Basic',
                 'GeoTrust QuickSSL Premium',
-                'GGSSL TrialSSL',
+                'GoGetSSL TrialSSL',
                 'Symantec Safe Site',
                 'Ukrnames DomainSSL',
                 'Certum Test ID',
             ]),
-            (new Dropdown('certificatesearch-state_in'))->withItems([
+            (Dropdown::asAdvancedSearch($I, 'Status'))->withItems([
                 'New',
                 'Incomplete',
                 'Pending',
@@ -51,9 +50,9 @@ class CertificatesCest
                 'Cancelled',
                 'Error',
                 'Deleted',
-                'Rejected',
             ]),
-            new Input('Expires'),
+            Input::asAdvancedSearch($I, 'Name'),
+            new Input($I, '#certificatesearch-expires'),
         ]);
     }
 
