@@ -32,8 +32,7 @@ class CertificatesCest
     private function ensureICanSeeAdvancedSearchBox(Client $I)
     {
         $this->index->containsFilters([
-            new Input($I, '#certificatesearch-name_ilike'),
-            (new Dropdown($I, '#certificatesearch-type'))->withItems([
+            (Dropdown::asAdvancedSearch($I, 'Type'))->withItems([
                 'Comodo Code Signing SSL',
                 'CPAC Basic',
                 'GeoTrust QuickSSL Premium',
@@ -42,7 +41,7 @@ class CertificatesCest
                 'Ukrnames DomainSSL',
                 'Certum Test ID',
             ]),
-            (new Dropdown($I, '#certificatesearch-state_in'))->withItems([
+            (Dropdown::asAdvancedSearch($I, 'Status'))->withItems([
                 'New',
                 'Incomplete',
                 'Pending',
@@ -52,6 +51,7 @@ class CertificatesCest
                 'Error',
                 'Deleted',
             ]),
+            Input::asAdvancedSearch($I, 'Name'),
             new Input($I, '#certificatesearch-expires'),
         ]);
     }
