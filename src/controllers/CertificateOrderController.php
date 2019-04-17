@@ -5,13 +5,12 @@
  * @link      https://github.com/hiqdev/hipanel-module-certificate
  * @package   hipanel-module-certificate
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2017-2018, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2017-2019, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\certificate\controllers;
 
 use hipanel\actions\RenderAction;
-use hipanel\filters\EasyAccessControl;
 use hipanel\models\Ref;
 use hipanel\modules\certificate\cart\CertificateOrderProduct;
 use hipanel\modules\certificate\forms\CsrGeneratorForm;

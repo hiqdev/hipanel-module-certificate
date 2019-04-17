@@ -5,7 +5,7 @@
  * @link      https://github.com/hiqdev/hipanel-module-certificate
  * @package   hipanel-module-certificate
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2017-2018, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2017-2019, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\certificate\repositories;
@@ -44,7 +44,7 @@ class CertificateTariffRepository
             $client_id = $this->app->user->id;
         }
 
-        return $this->app->get('cache')->getOrSet([__METHOD__, $seller, $client_id ? : ''], function () use ($seller) {
+        return $this->app->get('cache')->getOrSet([__METHOD__, $seller, $client_id ?: ''], function () use ($seller) {
             $res = Tariff::find()
                 ->action('get-available-info')
                 ->joinWith('resources')

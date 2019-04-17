@@ -5,13 +5,13 @@
  * @link      https://github.com/hiqdev/hipanel-module-certificate
  * @package   hipanel-module-certificate
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2017-2018, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2017-2019, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\certificate;
 
-use hipanel\assets\IsotopeAsset;
 use hipanel\assets\CheckboxStyleAsset;
+use hipanel\assets\IsotopeAsset;
 use yii\bootstrap\BootstrapPluginAsset;
 use yii\web\AssetBundle;
 use yii\web\JqueryAsset;

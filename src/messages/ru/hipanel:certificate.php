@@ -5,7 +5,7 @@
  * @link      https://github.com/hiqdev/hipanel-module-certificate
  * @package   hipanel-module-certificate
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2017-2018, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2017-2019, HiQDev (http://hiqdev.com/)
  */
 
 return [
@@ -146,5 +146,5 @@ return [
     'Revalidate' => 'Валидировать',
     'Domain validation start' => 'Валидация домена начата',
     'Revalidation failed' => 'Валидация домена не выполнена',
-    'To obtain an SSL-certificate, you need to prepare a CSR – certificate signing request. It contains your website domain name and some other registration information.' => 'Чтобы получить SSL-сертификат, вам нужно подготовить CSR — запрос на подпись сертификата (по-английски Certificate signing request). В CSR входит название домена, для которого нужно выпустить сертификат и некоторая регистрационная информация.'
+    'To obtain an SSL-certificate, you need to prepare a CSR – certificate signing request. It contains your website domain name and some other registration information.' => 'Чтобы получить SSL-сертификат, вам нужно подготовить CSR — запрос на подпись сертификата (по-английски Certificate signing request). В CSR входит название домена, для которого нужно выпустить сертификат и некоторая регистрационная информация.',
 ];

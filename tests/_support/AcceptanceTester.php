@@ -1,8 +1,17 @@
 <?php
+/**
+ * SSL certificates module for HiPanel
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-certificate
+ * @package   hipanel-module-certificate
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2017-2019, HiQDev (http://hiqdev.com/)
+ */
+
 namespace hipanel\modules\certificate\tests\_support;
 
 /**
- * Inherited Methods
+ * Inherited Methods.
  * @method void wantToTest($text)
  * @method void wantTo($text)
  * @method void execute($callable)
@@ -15,12 +24,12 @@ namespace hipanel\modules\certificate\tests\_support;
  * @method \Codeception\Lib\Friend haveFriend($name, $actorClass = NULL)
  *
  * @SuppressWarnings(PHPMD)
-*/
+ */
 class AcceptanceTester extends \Codeception\Actor
 {
     use _generated\AcceptanceTesterActions;
 
-   /**
-    * Define custom actions here
-    */
+    /**
+     * Define custom actions here.
+     */
 }
