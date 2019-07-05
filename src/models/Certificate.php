@@ -34,7 +34,6 @@ class Certificate extends Model
     const STATE_ERROR = 'error';
 
     const SUPPLIER_CERTUM = 'certum';
-    const SUPPLIER_COMODO = 'comodo';
     const SUPPLIER_RAPIDSSL = 'rapidssl';
     const SUPPLIER_SYMANTEC = 'symantec';
     const SUPPLIER_GOGETSSL = 'ggssl';
@@ -148,12 +147,12 @@ class Certificate extends Model
 
     public function supportsDNSValidation()
     {
-        return in_array($this->certificateType->brand, [self::SUPPLIER_CERTUM, self::SUPPLIER_COMODO, self::SUPPLIER_GOGETSSL, self::SUPPLIER_SECTIGO], true);
+        return in_array($this->certificateType->brand, [self::SUPPLIER_CERTUM, self::SUPPLIER_GOGETSSL, self::SUPPLIER_SECTIGO], true);
     }
 
     public function supportsHTTPValidation()
     {
-        return in_array($this->certificateType->brand, [self::SUPPLIER_COMODO, self::SUPPLIER_GOGETSSL, self::SUPPLIER_SECTIGO], true);
+        return in_array($this->certificateType->brand, [self::SUPPLIER_GOGETSSL, self::SUPPLIER_SECTIGO], true);
     }
 
     public function isReValidateable()

@@ -103,9 +103,9 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
                 'label' => Yii::t('hipanel:certificate', 'RapidSSL'),
                 'img' => 'rapidssl_vendor.png',
             ],
-            'comodo' => [
-                'label' => Yii::t('hipanel:certificate', 'Comodo'),
-                'img' => 'comodo_vendor.png',
+            'sectigo' => [
+                'label' => Yii::t('hipanel:certificate', 'Sectogo'),
+                'img' => 'sectigo_vendor.png',
             ],
             /****
             'certum' => [
