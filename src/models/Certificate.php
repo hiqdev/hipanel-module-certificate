@@ -40,6 +40,7 @@ class Certificate extends Model
     const SUPPLIER_GOGETSSL = 'ggssl';
     const SUPPLIER_THAWTE = 'thawte';
     const SUPPLIER_GEOTRUST = 'geotrust';
+    const SUPPLIER_SECTIGO = 'sectigo';
 
     public $issueData = null;
 
@@ -147,12 +148,12 @@ class Certificate extends Model
 
     public function supportsDNSValidation()
     {
-        return in_array($this->certificateType->brand, [self::SUPPLIER_CERTUM, self::SUPPLIER_COMODO, self::SUPPLIER_GOGETSSL], true);
+        return in_array($this->certificateType->brand, [self::SUPPLIER_CERTUM, self::SUPPLIER_COMODO, self::SUPPLIER_GOGETSSL, self::SUPPLIER_SECTIGO], true);
     }
 
     public function supportsHTTPValidation()
     {
-        return in_array($this->certificateType->brand, [self::SUPPLIER_COMODO, self::SUPPLIER_GOGETSSL], true);
+        return in_array($this->certificateType->brand, [self::SUPPLIER_COMODO, self::SUPPLIER_GOGETSSL, self::SUPPLIER_SECTIGO], true);
     }
 
     public function isReValidateable()
