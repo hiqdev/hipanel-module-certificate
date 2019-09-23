@@ -99,7 +99,7 @@ class CertificateTariffRepository
      * @param Tariff|null $tariff
      * @param $type
      * @param $object_id
-     * @return resource|CertificateResource
+     * @return Resource|CertificateResource
      */
     public function getResource(Tariff $tariff = null, $type, $object_id)
     {

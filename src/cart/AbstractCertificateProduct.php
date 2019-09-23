@@ -14,6 +14,8 @@ use hipanel\modules\certificate\models\CertificateType;
 use hipanel\modules\certificate\repositories\CertificateTariffRepository;
 use hipanel\modules\certificate\widgets\CertificateCartQuantity;
 use hipanel\modules\finance\cart\AbstractCartPosition;
+use hipanel\modules\finance\models\CertificateResource;
+use hipanel\modules\finance\models\Resource;
 use hiqdev\yii2\cart\DontIncrementQuantityWhenAlreadyInCart;
 use Yii;
 
@@ -45,6 +47,9 @@ abstract class AbstractCertificateProduct extends AbstractCartPosition implement
         return '<i class="fa fa-shield fa-fw"></i>';
     }
 
+    /**
+     * @return Resource|CertificateResource
+     */
     public function getResource()
     {
         return $this->getTariffRepository()->getResource(null, $this->_operation, $this->_model->id);
@@ -89,7 +94,8 @@ abstract class AbstractCertificateProduct extends AbstractCartPosition implement
     /** {@inheritdoc} */
     public function getQuantityOptions()
     {
-        $quantityOptions = $this->getResource()->getAvailablePeriods();
+        $resource = $this->getResource();
+        $quantityOptions = is_object($resource) ? $resource->getAvailablePeriods() : [];
 
         return CertificateCartQuantity::widget([
             'model' => $this,
