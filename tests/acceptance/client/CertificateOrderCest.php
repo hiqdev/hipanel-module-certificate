@@ -38,7 +38,7 @@ class CertificateOrderCest
             'Thawte',
             'GeoTrust',
             'RapidSSL',
-            'Comodo',
+            'Sectigo',
         ]);
     }
 
