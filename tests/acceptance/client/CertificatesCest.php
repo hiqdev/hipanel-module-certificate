@@ -41,10 +41,10 @@ class CertificatesCest
     {
         $this->index->containsFilters([
             (Dropdown::asAdvancedSearch($I, 'Type'))->withItems([
-                'Comodo Code Signing SSL',
+                'Sectigo Code Signing SSL',
                 'CPAC Basic',
                 'GeoTrust QuickSSL Premium',
-                'GoGetSSL TrialSSL',
+                'GGSSL TrialSSL',
                 'Symantec Safe Site',
                 'Ukrnames DomainSSL',
                 'Certum Test ID',
