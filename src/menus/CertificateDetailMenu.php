@@ -70,7 +70,7 @@ class CertificateDetailMenu extends AbstractDetailMenu
                     },
                 ]),
                 'encode' => false,
-                'visible' => Yii::$app->user->can('certificate.update'),
+                'visible' => Yii::$app->user->can('certificate.update') && $this->model->isCancelable(),
             ],
             [
                 'label' => ModalButton::widget([

@@ -31,6 +31,7 @@ class Certificate extends Model
     const STATE_PENDING = 'pending';
     const STATE_DELETED = 'deleted';
     const STATE_CANCELLED = 'cancelled';
+    const STATE_INCOMPLETE = 'incomplete';
     const STATE_ERROR = 'error';
 
     const SUPPLIER_CERTUM = 'certum';
@@ -182,12 +183,17 @@ class Certificate extends Model
 
     public function isDeleteable()
     {
-        return in_array($this->state, [self::STATE_DELETED, self::STATE_ERROR, self::STATE_CANCELLED], true);
+        return in_array($this->state, [self::STATE_DELETED, self::STATE_ERROR, self::STATE_CANCELLED, self::STATE_INCOMPLETE], true);
     }
 
     public function isRenewable()
     {
         return in_array($this->state, [self::STATE_OK, self::STATE_EXPIRED], true) && !$this->isParent();
+    }
+
+    public function isCancelable()
+    {
+        return in_array($this->state, [self::STATE_OK, self::STATE_PENDING], true) && !$this->isParent();
     }
 
     public function isReissuable()
