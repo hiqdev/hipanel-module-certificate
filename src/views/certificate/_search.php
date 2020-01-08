@@ -1,9 +1,13 @@
 <?php
 
-/** @var \hipanel\widgets\AdvancedSearch $search */
 use hipanel\modules\client\widgets\combo\ClientCombo;
-use hipanel\widgets\DatePicker;
+use hipanel\widgets\DateTimePicker;
 
+/**
+ * @var \hipanel\widgets\AdvancedSearch $search
+ * @var array $typeOptions
+ * @var array $stateOptions
+ */
 ?>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
@@ -29,14 +33,16 @@ use hipanel\widgets\DatePicker;
 
 <div class="col-md-4 col-sm-6 col-xs-12">
     <div class="form-group">
-        <?= DatePicker::widget([
+        <?= DateTimePicker::widget([
             'model' => $search->model,
             'attribute' => 'expires',
-            'type' => DatePicker::TYPE_COMPONENT_APPEND,
-            'options' => ['placeholder' => $search->model->getAttributeLabel('expires')],
-            'pluginOptions' => [
+            'options' => [
+                'placeholder' => $search->model->getAttributeLabel('expires'),
+            ],
+            'clientOptions' => [
                 'autoclose' => true,
                 'format' => 'yyyy-mm-dd',
+                'minView' => 2,
             ],
         ]) ?>
     </div>
