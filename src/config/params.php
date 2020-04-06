@@ -9,4 +9,5 @@
  */
 
 return [
+    'module.certificate.order.allowed' => false,
 ];
