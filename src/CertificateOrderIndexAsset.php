@@ -18,7 +18,7 @@ use yii\web\JqueryAsset;
 
 class CertificateOrderIndexAsset extends AssetBundle
 {
-    public $sourcePath = '@hipanel/modules/certificate/assets';
+    public $sourcePath = __DIR__ . '/assets';
 
     public $css = [
         'css/certificateOrderIndex.css',
