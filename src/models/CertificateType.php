@@ -161,7 +161,7 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
         $brands = static::brands();
         $img = $brands[$this->brand]['img'];
         if ($img !== null) {
-            $pathToImage = Yii::getAlias(sprintf('@hipanel/modules/certificate/assets/img/%s', $img));
+            $pathToImage = dirname(__DIR__) . '/assets/img/' . $img;
             if (is_file($pathToImage)) {
                 Yii::$app->assetManager->publish($pathToImage);
                 $img = Yii::$app->assetManager->getPublishedUrl($pathToImage);

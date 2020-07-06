@@ -16,15 +16,15 @@ return [
     'components' => [
         'themeManager' => [
             'pathMap' => [
-                '@hipanel/modules/certificate/views' => '$themedViewPaths',
-                '@hipanel/modules/certificate/widgets/views' => '$themedWidgetPaths',
+                dirname(__DIR__) . '/src/views' => '$themedViewPaths',
+                dirname(__DIR__) . '/src/widgets/views' => '$themedWidgetPaths',
             ],
         ],
         'i18n' => [
             'translations' => [
                 'hipanel:certificate' => [
                     'class' => \yii\i18n\PhpMessageSource::class,
-                    'basePath' => '@hipanel/modules/certificate/messages',
+                    'basePath' => dirname(__DIR__) . '/src/messages',
                 ],
             ],
         ],
