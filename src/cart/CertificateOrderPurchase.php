@@ -20,7 +20,7 @@ class CertificateOrderPurchase extends AbstractCertificatePurchase
     /** {@inheritdoc} */
     public static function operation()
     {
-        return 'Purchase';
+        return 'purchase';
     }
 
     public function init()
