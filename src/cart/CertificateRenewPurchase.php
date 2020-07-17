@@ -22,7 +22,7 @@ class CertificateRenewPurchase extends AbstractCertificatePurchase
     /** {@inheritdoc} */
     public static function operation()
     {
-        return 'Renew';
+        return 'renew';
     }
 
     /** {@inheritdoc} */
