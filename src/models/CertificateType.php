@@ -11,6 +11,7 @@
 namespace hipanel\modules\certificate\models;
 
 use hipanel\helpers\StringHelper;
+use hipanel\helpers\SellerHelper;
 use Yii;
 
 class CertificateType extends \hiqdev\hiart\ActiveRecord
@@ -35,6 +36,10 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
     {
         parent::init();
         $known = static::get($this->id);
+        if (empty($known)) {
+            return ;
+        }
+
         foreach (array_keys(get_object_vars($this)) as $key) {
             if ($this->{$key} === null) {
                 $this->{$key} = $known->{$key};
@@ -147,6 +152,7 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
         if ($already>0) {
             return [];
         }
+        $seller = SellerHelper::get();
         ++$already;
 
         $res = Yii::$app->get('cache')->getOrSet([__METHOD__], function () use ($seller, $client) {
@@ -159,7 +165,7 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
     public function getLogo()
     {
         $brands = static::brands();
-        $img = $brands[$this->brand]['img'];
+        $img = $brands[$this->brand]['img'] ?? null;
         if ($img !== null) {
             $pathToImage = dirname(__DIR__) . '/assets/img/' . $img;
             if (is_file($pathToImage)) {
