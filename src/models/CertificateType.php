@@ -11,7 +11,7 @@
 namespace hipanel\modules\certificate\models;
 
 use hipanel\helpers\StringHelper;
-use hipanel\helpers\SellerHelper;
+use hipanel\helpers\UserHelper;
 use Yii;
 
 class CertificateType extends \hiqdev\hiart\ActiveRecord
@@ -152,7 +152,7 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
         if ($already>0) {
             return [];
         }
-        $seller = SellerHelper::get();
+        $seller = UserHelper::getSeller();
         ++$already;
 
         $res = Yii::$app->get('cache')->getOrSet([__METHOD__], function () use ($seller, $client) {
