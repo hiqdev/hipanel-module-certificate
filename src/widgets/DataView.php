@@ -43,7 +43,7 @@ class DataView extends Widget
                         $value = $model['dcv_data'][$method];
                         if ($method === 'email') {
                             $hint = Yii::t('hipanel:certificate', 'follow confirmation link in email sent to your address:');
-                            $value = Html::tag('b', $value ?: $model['approver_email']);
+                            $value = Html::tag('b', $value[$method] ?? $model['approver_email']);
                         } elseif ($method === 'dns') {
                             $hint = Yii::t('hipanel:certificate', 'add following DNS record');
                             $value = Html::tag('pre', $value['record']);
@@ -56,7 +56,7 @@ class DataView extends Widget
                                     $value .= mb_strtoupper($key);
                                     $value .= Html::endTag('td');
                                     $value .= Html::beginTag('td');
-                                    $value .= nl2br($v);
+                                    $value .= nl2br(is_array($v) ? $v[$key] : $v);
                                     $value .= Html::endTag('td');
                                     $value .= Html::endTag('tr');
                                 }

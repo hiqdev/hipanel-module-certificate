@@ -90,12 +90,10 @@ class CertificateType extends \hiqdev\hiart\ActiveRecord
                 'img' => 'symantec_vendor.png',
             ],
             ***/
-            /***
-            'ggssl' => [
+            'gogetssl' => [
                 'label' => Yii::t('hipanel:certificate', 'GoGetSSL'),
                 'img' => 'gogetssl_vendor.png',
             ],
-            ***/
             'thawte' => [
                 'label' => Yii::t('hipanel:certificate', 'Thawte'),
                 'img' => 'thawte_vendor.png',
