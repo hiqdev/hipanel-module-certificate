@@ -38,7 +38,7 @@ class CertificateCartQuantity extends Widget
     public function run()
     {
         $out = Html::dropDownList('quantity', $this->model->getQuantity(), $this->quantityOptions, ['class' => 'form-control quantity-field']);
-        if ($scenario === 'order') {
+        if ($this->scenario === 'order') {
             $out .= Html::a(
                 '<i class="fa fa-plus fa-fw"></i>&nbsp;&nbsp;' . Yii::t('hipanel:certificate', 'Add the same position'),
                 ['@certificate/order/add-to-cart-order', 'product_id' => $this->product_id],
