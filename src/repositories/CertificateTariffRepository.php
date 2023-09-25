@@ -73,7 +73,9 @@ class CertificateTariffRepository
         if ($tariff === null) {
             $tariff = $this->getTariff();
         }
-
+        if (!$tariff) {
+            return [];
+        }
         $resources = array_filter((array) $tariff->resources, function ($resource) use ($type) {
             return $resource->type === $type;
         });
